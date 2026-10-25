@@ -12,3 +12,8 @@ export {
 } from './towers.js';
 export { NIGHTMARES, NIGHTMARE_LOOKUP, getNightmare, WEAKNESS_MULT, RESIST_MULT } from './nightmares.js';
 export { REACTIONS, REACTION_LOOKUP } from './reactions.js';
+
+export {
+  ROOMMATE_TRAITS, RELIC_REWARDS, ACHIEVEMENTS, ACHIEVEMENT_LOOKUP,
+  DAILY_MODIFIERS, DAILY_LOOKUP, dailyKey, getDailyPlan, getDailyEffects,
+} from './social.js';

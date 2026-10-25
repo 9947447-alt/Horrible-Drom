@@ -13,6 +13,7 @@ import {
   tickSpawns,
 } from './nightmare.js';
 import { tickRoommates } from './roommates.js';
+import { tickSocial } from './social.js';
 import { tickPressure } from './pressure.js';
 import { finishRun } from './result.js';
 import { getAvailableAcidStages, getBuildLimit } from './build.js';
@@ -92,6 +93,7 @@ function tick(state, dt) {
   tickMinions(state, dt);
   tickTowers(state, dt);
   tickRoommates(state, dt);
+  tickSocial(state, dt);
 
   const newLevels = tickPressure(state, dt);
   if (newLevels.length > 0) applyPressureLevels(state, newLevels);

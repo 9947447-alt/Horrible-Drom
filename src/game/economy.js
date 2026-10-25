@@ -56,6 +56,11 @@ export function getDreamMultiplier(state) {
 // UI / getPreviewStats 用的当前收入（每秒）
 export function getIncomeRates(state) {
   const difficulty = DIFFICULTIES[state.difficulty] || DIFFICULTIES.normal;
+  // v2.1 每日修饰词：economyMult 只影响收入，不影响价格（classic 恒为 1）
+  const dailyEconomyMult =
+    state.dailyEffects && Number.isFinite(Number(state.dailyEffects.economyMult))
+      ? Number(state.dailyEffects.economyMult)
+      : 1;
   const bedIncome = CONFIG.bed.income[state.player.bedLevel] || 0;
   let reagentPerSec = 0;
   for (const building of state.buildings) {
@@ -64,8 +69,8 @@ export function getIncomeRates(state) {
     }
   }
   return {
-    dreamPerSec: bedIncome * difficulty.economyMult * getDreamMultiplier(state),
-    reagentPerSec: reagentPerSec * difficulty.economyMult,
+    dreamPerSec: bedIncome * difficulty.economyMult * dailyEconomyMult * getDreamMultiplier(state),
+    reagentPerSec: reagentPerSec * difficulty.economyMult * dailyEconomyMult,
   };
 }
 

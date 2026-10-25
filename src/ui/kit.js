@@ -76,6 +76,26 @@ export function fmtDuration(seconds) {
 }
 
 // state.clock 为 0..360，映射成 00:00 .. 06:00 的夜钟。
+// 值班记录里的“最佳夜钟”：04:20 / 1:02:30（数值来自 nightElapsed 秒）。
+export function fmtNight(seconds) {
+  const n = Math.max(0, Math.round(Number(seconds) || 0));
+  const h = Math.floor(n / 3600);
+  const m = Math.floor((n % 3600) / 60);
+  const s = n % 60;
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+export function fmtDateStamp(ts) {
+  const n = Number(ts);
+  if (!Number.isFinite(n) || n <= 0) return '';
+  const d = new Date(n);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 export function fmtClock(clock) {
   const total = Math.max(0, Math.round(Number(clock) || 0));
   const h = Math.floor(total / 60) % 24;
@@ -424,6 +444,11 @@ export function roomNightmarePreview(state, room) {
 // ---------- 事件 ----------
 
 const EVENT_ICON = {
+  radio: 'radio',
+  relic: 'archive',
+  support: 'bond',
+  daily: 'calendar',
+  achievement: 'star',
   build: 'hammer',
   upgrade: 'upgrade',
   reaction: 'spark',

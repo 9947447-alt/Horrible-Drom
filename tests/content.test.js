@@ -82,7 +82,7 @@ test('反应链包含六条且需求有效', () => {
 });
 
 test('难度矩阵完整、普通与噩梦天亮时长正确', () => {
-  for (const key of ['easy', 'normal', 'nightmare']) {
+  for (const key of ['easy', 'normal', 'nightmare', 'abyss']) {
     assert.ok(DIFFICULTIES[key]);
     assert.ok(DIFFICULTIES[key].dawnSeconds >= 300);
   }
@@ -95,4 +95,19 @@ test('建筑标签可读', () => {
   assert.match(getBuildingLabel({ type: 'acid', stage: 4, level: 2 }), /硫酸/);
   assert.match(getBuildingLabel({ type: 'chlorate', level: 7 }), /VII/);
   assert.match(getBuildingLabel({ type: 'atm', level: 2 }), /II/);
+});
+
+test('v2.1 室友性格/每日挑战/成就数据完整', async () => {
+  const social = await import('../src/content/social.js');
+  assert.equal(social.ROOMMATE_TRAITS.economist.request.cost.dream > 0, true);
+  assert.equal(Object.keys(social.ACHIEVEMENTS).length >= 9, true);
+  assert.equal(social.DAILY_MODIFIERS.length >= 4, true);
+  const a = social.getDailyPlan(new Date('2026-10-25T12:00:00'));
+  const b = social.getDailyPlan(new Date('2026-10-25T23:00:00'));
+  assert.deepEqual(a.modifierIds, b.modifierIds);
+  assert.equal(a.modifierIds.length, 2);
+  assert.notEqual(a.modifierIds[0], a.modifierIds[1]);
+  const effects = social.getDailyEffects(['thin_air', 'brittle']);
+  assert.equal(effects.economyMult, 0.9);
+  assert.equal(effects.doorHpMult, 0.85);
 });

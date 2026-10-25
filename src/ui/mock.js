@@ -12,7 +12,63 @@
 
 import {
   CONFIG, DIFFICULTIES, NIGHTMARES, ROOMMATE_NAMES, ROOMS, getRoom, getBuildDef,
+  ROOMMATE_TRAITS, RELIC_REWARDS, ACHIEVEMENTS, DAILY_LOOKUP, dailyKey, getDailyPlan, getDailyEffects,
 } from '../content/index.js';
+
+const TRAIT_BY_INDEX = ['economist', 'gunner', 'turtle', 'chemist', 'lucky'];
+
+function makeRequest(traitId, now) {
+  const trait = ROOMMATE_TRAITS[traitId];
+  if (!trait) return null;
+  return {
+    id: `req-${traitId}`,
+    trait: traitId,
+    title: trait.request.title,
+    text: trait.request.text,
+    cost: { ...trait.request.cost },
+    rewardLabel: trait.request.rewardLabel,
+    expiresAt: now + 12,
+    reward: { ...trait.request.reward },
+  };
+}
+
+function makeRelic(index, color) {
+  const reward = RELIC_REWARDS[index % RELIC_REWARDS.length];
+  return {
+    id: `relic-${index + 1}`,
+    label: reward.label,
+    color: reward.color || color || '#63e0c2',
+    reward: { kind: reward.kind, value: reward.min + Math.round((reward.max - reward.min) / 2) },
+    cost: { reagent: 8 },
+  };
+}
+
+function createMockRecords() {
+  const now = Date.now();
+  const day = (offset) => { const d = new Date(); d.setDate(d.getDate() + offset); return dailyKey(d); };
+  return {
+    runs: 27,
+    wins: 16,
+    bestNight: 384,
+    bestGrade: 'S',
+    byDifficulty: {
+      easy: { runs: 8, wins: 7, bestNight: 360 },
+      normal: { runs: 13, wins: 8, bestNight: 384 },
+      nightmare: { runs: 6, wins: 1, bestNight: 422 },
+    },
+    achievements: {
+      first_dawn: now - 86400000 * 3,
+      night_banisher: now - 86400000 * 2,
+      reaction_six: now - 86400000,
+      no_repair: now - 3600000,
+    },
+    daily: {
+      [day(0)]: { runs: 2, wins: 1, bestNight: 488, bestGrade: 'A' },
+      [day(-1)]: { runs: 3, wins: 2, bestNight: 470, bestGrade: 'A' },
+      [day(-3)]: { runs: 1, wins: 0, bestNight: 0, bestGrade: '' },
+    },
+  };
+}
 
 function nightmare(def, level, { now = 168, secondary = false, hpPct = 0.68, targetRoomId = 'room-303' } = {}) {
   const hpScale = CONFIG.nightmare.hpScale[level] || 1;
@@ -65,19 +121,27 @@ function buildingsFor(room) {
 }
 
 function roommatesFor(now) {
-  return ROOMMATE_NAMES.map((meta, index) => ({
-    id: `mate-${index + 1}`,
-    roomId: `room-${302 + index}`,
-    name: meta.name,
-    color: meta.color,
-    alive: index < 4,
-    doorHp: index === 3 ? 72 : CONFIG.roommates.baseDoorHp - index * 34,
-    maxDoorHp: CONFIG.roommates.baseDoorHp + index * 30,
-    offense: CONFIG.roommates.baseOffense + index,
-    threat: 1 + index * 0.35,
-    note: meta.note,
-    lastHitAt: now - index * 12,
-  }));
+  return ROOMMATE_NAMES.map((meta, index) => {
+    const trait = TRAIT_BY_INDEX[index];
+    const dead = index >= 4;
+    return {
+      id: `mate-${index + 1}`,
+      roomId: `room-${302 + index}`,
+      name: meta.name,
+      color: meta.color,
+      alive: !dead,
+      doorHp: index === 3 ? 72 : CONFIG.roommates.baseDoorHp - index * 34,
+      maxDoorHp: CONFIG.roommates.baseDoorHp + index * 30,
+      offense: CONFIG.roommates.baseOffense + index,
+      threat: 1 + index * 0.35,
+      note: meta.note,
+      lastHitAt: now - index * 12,
+      trait,
+      bond: index === 0 ? 2 : index === 2 ? 3 : index === 4 ? 1 : 0,
+      request: index === 1 ? makeRequest(trait, now) : null,
+      relic: dead ? makeRelic(index, meta.color) : null,
+    };
+  });
 }
 
 function eventsFor(now, room) {
@@ -148,9 +212,16 @@ function baseState(mode) {
       builds: 8,
       reactions: 3,
       repairs: 2,
+      roommateSupports: 2,
+      relics: 1,
     },
     result: null,
     settings: { volume: 0.6, muted: false, reducedMotion: false, shake: true },
+    mode: 'classic',
+    daily: null,
+    dailyEffects: { economyMult: 1, doorHpMult: 1, dawnBonus: 0, nightmareHpMult: 1 },
+    records: createMockRecords(),
+    newAchievements: [],
   };
 }
 
@@ -159,13 +230,29 @@ export function createMockState(options = {}) {
   const state = baseState(mode);
   const room = getRoom(state.roomId);
   const now = state.now;
+  const wantsDaily = ['daily', 'menuDaily', 'roomDaily', 'victoryDaily', 'defeatDaily'].includes(mode) || Boolean(options.daily);
+  if (wantsDaily) {
+    const plan = getDailyPlan();
+    state.mode = 'daily';
+    state.daily = plan;
+    state.dailyEffects = getDailyEffects(plan.modifierIds);
+    state.difficulty = 'normal';
+    state.dawnAt = Math.round(state.dawnAt + (state.dailyEffects.dawnBonus || 0));
+    state.events.push({ id: 'e-daily', at: now - 6, text: `每日守夜 · ${plan.key}：${plan.modifierIds.map((id) => (DAILY_LOOKUP[id] || {}).name || id).join(' / ')}。`, kind: 'daily' });
+  }
 
-  if (mode === 'menu') {
+  const clearSocial = () => {
+    state.roommates = (state.roommates || []).map((mate) => ({ ...mate, request: null, relic: null }));
+  };
+
+  if (mode === 'menu' || mode === 'menuDaily') {
     state.screen = 'menu';
     state.phase = 'prep';
-  } else if (mode === 'roomSelect') {
+    clearSocial();
+  } else if (mode === 'roomSelect' || mode === 'roomDaily') {
     state.screen = 'roomSelect';
     state.phase = 'prep';
+    clearSocial();
   } else if (mode === 'empty') {
     state.phase = 'prep';
     state.prepRemaining = 25;
@@ -189,9 +276,16 @@ export function createMockState(options = {}) {
       showerReadyAt: 0,
       threat: 1,
     };
-    state.stats = { dreamEarned: 0, reagentEarned: 0, damageDealt: 0, kills: 0, builds: 0, reactions: 0, repairs: 0 };
+    state.stats = {
+      dreamEarned: 0, reagentEarned: 0, damageDealt: 0, kills: 0, builds: 0,
+      reactions: 0, repairs: 0, roommateSupports: 0, relics: 0,
+    };
   } else if (mode === 'prep') {
     state.phase = 'prep';
+    state.mode = 'classic';
+    state.daily = null;
+    state.dailyEffects = { economyMult: 1, doorHpMult: 1, dawnBonus: 0, nightmareHpMult: 1 };
+    clearSocial();
     state.prepRemaining = 18;
     state.now = 7;
     state.nightElapsed = 0;
@@ -211,8 +305,9 @@ export function createMockState(options = {}) {
       nightmare(NIGHTMARES[2], 5, { now, secondary: true, targetRoomId: 'room-304' }),
     ];
     state.events.push({ id: 'e-9', at: now - 2, text: '04:00：第二只梦魇从断电的 304 室钻出。', kind: 'nightmare' });
-  } else if (mode === 'victory' || mode === 'defeat') {
-    const victory = mode === 'victory';
+  } else if (mode === 'victory' || mode === 'defeat' || mode === 'victoryDaily' || mode === 'defeatDaily') {
+    const victory = mode === 'victory' || mode === 'victoryDaily';
+    clearSocial();
     state.phase = victory ? 'victory' : 'defeat';
     state.clock = victory ? 360 : 214 / 480 * 360;
     state.activeNightmares = victory ? [] : [nightmare(NIGHTMARES[0], 14, { now, hpPct: 0.35 })];
@@ -235,7 +330,12 @@ export function createMockState(options = {}) {
       builds: victory ? 14 : 9,
       reactions: victory ? 5 : 2,
       repairs: victory ? 7 : 3,
+      roommateSupports: victory ? 4 : 1,
+      relics: victory ? 2 : 0,
     };
+    state.newAchievements = victory
+      ? ['first_dawn', 'roommate_savior', 'reaction_six'].concat(state.mode === 'daily' ? ['daily_clear'] : [])
+      : [];
     if (!victory) {
       state.player.doorHp = 0;
     }
@@ -244,6 +344,12 @@ export function createMockState(options = {}) {
   const merged = { ...state, ...overrides };
   if (overrides.player) merged.player = { ...state.player, ...overrides.player };
   if (overrides.ui) merged.ui = { ...state.ui, ...overrides.ui };
+  if (overrides.stats) merged.stats = { ...state.stats, ...overrides.stats };
+  if (overrides.daily) merged.daily = overrides.daily;
+  if (overrides.dailyEffects) merged.dailyEffects = { ...state.dailyEffects, ...overrides.dailyEffects };
+  if (overrides.records) merged.records = { ...state.records, ...overrides.records };
+  if (overrides.roommates) merged.roommates = overrides.roommates;
+  if (overrides.newAchievements) merged.newAchievements = overrides.newAchievements;
   return merged;
 }
 
@@ -263,6 +369,19 @@ export function createMockActions(state) {
       state.screen = 'roomSelect';
       state.paused = false;
     },
+    startDaily() {
+      this._record('startDaily');
+      const plan = getDailyPlan();
+      state.mode = 'daily';
+      state.daily = plan;
+      state.dailyEffects = getDailyEffects(plan.modifierIds);
+      state.screen = 'roomSelect';
+      state.phase = 'prep';
+      state.paused = false;
+      state.difficulty = 'normal';
+      state.dawnAt = Math.round((state.dawnAt || 480) + (state.dailyEffects.dawnBonus || 0));
+      return { ok: true };
+    },
     setDifficulty(id) {
       this._record('setDifficulty', [id]);
       if (DIFFICULTIES[id]) state.difficulty = id;
@@ -280,10 +399,64 @@ export function createMockActions(state) {
       state.nightElapsed = 0;
       state.clock = 0;
       state.result = null;
+      state.newAchievements = [];
       state.activeNightmares = [];
+      state.buildings = (state.buildings || []).filter((b) => b.isStarter);
+      state.reactions = [];
+      state.player.dream = 70;
+      state.player.reagent = 0;
+      state.player.doorHp = state.player.doorMaxHp;
+      state.roommates = roommatesFor(0).map((mate) => ({ ...mate, request: null, relic: null }));
+      state.stats = { ...state.stats, roommateSupports: 0, relics: 0, builds: 0, reactions: 0, repairs: 0 };
       state.ui.buildMode = null;
       state.ui.selectedBuildingId = null;
       state.events = [{ id: 'mock-select', at: 0, text: `选择 ${room.number} ${room.name}，准备开始守夜。`, kind: 'info' }];
+      return { ok: true };
+    },
+    answerRoommateRequest(accept) {
+      this._record('answerRoommateRequest', [accept]);
+      const owner = (state.roommates || []).find((mate) => mate.request);
+      if (!owner) return { ok: false, error: '没有待处理的求援' };
+      const request = owner.request;
+      if (accept) {
+        const cost = request.cost || {};
+        if (state.player.dream < (cost.dream || 0)) return { ok: false, error: `梦能不足：需要 ${cost.dream}` };
+        if (state.player.reagent < (cost.reagent || 0)) return { ok: false, error: `试剂不足：需要 ${cost.reagent}` };
+        state.player.dream -= cost.dream || 0;
+        state.player.reagent -= cost.reagent || 0;
+        owner.bond = Math.min(3, (owner.bond || 0) + 1);
+        state.stats.roommateSupports = (state.stats.roommateSupports || 0) + 1;
+        const reward = request.reward || {};
+        const value = Number(reward.value) || 0;
+        if (reward.kind === 'dream') state.player.dream += value;
+        else if (reward.kind === 'reagent') state.player.reagent += value;
+        else if (reward.kind === 'roommateOffense') owner.offense = (owner.offense || 0) + value;
+        else if (reward.kind === 'doorHealPct') {
+          state.player.doorHp = Math.min(state.player.doorMaxHp, state.player.doorHp + Math.round(state.player.doorMaxHp * value));
+        } else if (reward.kind === 'lucky') state.player.dream += 40;
+        owner.doorHp = Math.min(owner.maxDoorHp, owner.doorHp + Math.round(owner.maxDoorHp * 0.08));
+      }
+      state.events.push({ id: `ev-radio-${Date.now()}`, at: state.now, text: accept ? `${owner.name} 的求援已回应。` : `${owner.name} 的求援被暂时放下。`, kind: 'radio' });
+      owner.request = null;
+      return { ok: true };
+    },
+    collectRoommateRelic(roommateId) {
+      this._record('collectRoommateRelic', [roommateId]);
+      const mate = (state.roommates || []).find((entry) => entry.id === roommateId);
+      if (!mate || !mate.relic) return { ok: false, error: '这件遗物已经不在原处' };
+      const cost = mate.relic.cost || { reagent: 8 };
+      if (state.player.reagent < (cost.reagent || 0)) return { ok: false, error: `试剂不足：需要 ${cost.reagent}` };
+      state.player.reagent -= cost.reagent || 0;
+      state.stats.relics = (state.stats.relics || 0) + 1;
+      const reward = mate.relic.reward || {};
+      const value = Number(reward.value) || 0;
+      if (reward.kind === 'dream') state.player.dream += value;
+      else if (reward.kind === 'reagent') state.player.reagent += value;
+      else if (reward.kind === 'doorHealPct') {
+        state.player.doorHp = Math.min(state.player.doorMaxHp, state.player.doorHp + Math.round(state.player.doorMaxHp * value));
+      }
+      state.events.push({ id: `ev-relic-${Date.now()}`, at: state.now, text: `回收 ${mate.name} 的遗物：${mate.relic.label}。`, kind: 'relic' });
+      mate.relic = null;
       return { ok: true };
     },
     pause() {
@@ -310,12 +483,14 @@ export function createMockActions(state) {
       state.nightElapsed = 0;
       state.clock = 0;
       state.result = null;
+      state.newAchievements = [];
       state.activeNightmares = [];
       state.ui.buildMode = null;
       state.ui.selectedBuildingId = null;
       state.player.doorHp = state.player.doorMaxHp;
       state.player.dream = 70;
       state.player.reagent = 0;
+      state.roommates = roommatesFor(0).map((mate) => ({ ...mate, request: null, relic: null }));
       return { ok: true };
     },
     startBuild(type, buildOptions) {

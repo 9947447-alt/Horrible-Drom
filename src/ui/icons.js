@@ -105,6 +105,11 @@ const P = {
   flaskGroup: '<path d="M7 3h4M8.5 3v4L5.4 14.2A1.8 1.8 0 0 0 7 16.8h5.4a1.8 1.8 0 0 0 1.6-2.6L11 7V3"/><path d="M16 8h3M17.5 8v3.2l2 3.5a1.4 1.4 0 0 1-1.2 2.1h-2.6"/>',
   log: '<rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 11.5h8M8 15h5M8 18h3"/>',
   tap: '<path d="M4 14h10M4 10h10M4 18h10M18 8v8M15 12h6"/>',
+  radio: '<rect x="3.5" y="9" width="13" height="10.5" rx="1.6"/><path d="m14.5 9 3.2-5M6.2 12.5h5.2M6.2 15.5h3M19 12.5c1.1.7 1.1 2.6 0 3.3M21 10.5c2 1.5 2 5.4 0 7"/>',
+  archive: '<rect x="3" y="4" width="18" height="4.6" rx="1"/><path d="M5 8.6V19a1.4 1.4 0 0 0 1.4 1.4h11.2A1.4 1.4 0 0 0 19 19V8.6M10 12.5h4"/>',
+  reaction: '<circle cx="12" cy="12" r="2.2"/><circle cx="6" cy="7" r="1.8"/><circle cx="18" cy="8" r="1.8"/><circle cx="8" cy="18" r="1.8"/><path d="M10.4 10.5 7.4 8.2M13.7 10.7l2.6-1.7M11 14.1l-1.6 2.2"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M7.5 13h.2M12 13h.2M16.5 13h.2M7.5 16.5h.2M12 16.5h.2"/>',
+  bond: '<path d="M12 20s-7.6-4.6-7.6-10A4.4 4.4 0 0 1 12 6.9a4.4 4.4 0 0 1 7.6 3.1C19.6 15.4 12 20 12 20Z"/>',
 };
 
 const ALIASES = {
@@ -127,6 +132,9 @@ const ALIASES = {
   ring: 'ring',
   acid: 'acid',
   snowflake: 'snow',
+  relic: 'archive',
+  achievement: 'star',
+  fog: 'wind',
 };
 
 export function icon(name, className = '', size = 18) {

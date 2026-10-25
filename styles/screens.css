@@ -720,3 +720,192 @@
   font-size: 12px;
   color: var(--text-faint);
 }
+
+/* ── v2.1：每日守夜入口 / 选房每日条 ───────────────────────── */
+
+.hd-ui .menu-nav-records { position: relative; }
+
+.hd-ui .menu-nav-badge {
+  margin-left: 2px;
+  padding: 0 4px;
+  border-radius: 2px;
+  background: rgba(255, 199, 90, 0.16);
+  color: var(--lamp);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.hd-ui .menu-daily-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 12px;
+  padding: 7px 11px;
+  border: 1px dashed rgba(99, 224, 194, 0.32);
+  border-radius: 3px;
+  background: rgba(99, 224, 194, 0.045);
+  text-align: left;
+  color: var(--text-dim);
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.hd-ui .menu-daily-note:hover {
+  border-color: rgba(99, 224, 194, 0.6);
+  background: rgba(99, 224, 194, 0.08);
+  transform: translateY(-1px);
+}
+
+.hd-ui .menu-daily-note__stamp {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1.5px double rgba(255, 199, 90, 0.6);
+  border-radius: 2px;
+  transform: rotate(-2.5deg);
+  color: var(--lamp);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: rgba(255, 199, 90, 0.06);
+}
+
+.hd-ui .menu-daily-note__body {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+}
+
+.hd-ui .menu-daily-note__body b {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+.hd-ui .menu-daily-note__mods {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.hd-ui .menu-daily-note__go {
+  flex: none;
+  display: inline-flex;
+  color: rgba(99, 224, 194, 0.65);
+}
+
+/* 选房每日条 */
+.hd-ui .daily-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(99, 224, 194, 0.26);
+  border-left: 3px solid rgba(255, 199, 90, 0.72);
+  border-radius: 3px;
+  background:
+    linear-gradient(rgba(243, 231, 207, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 231, 207, 0.022) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(14, 24, 34, 0.95), rgba(8, 14, 22, 0.96));
+  background-size: 22px 22px, 22px 22px, 100% 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  min-height: 0;
+}
+
+.hd-ui .daily-bar__stamp {
+  flex: none;
+  padding: 3px 7px;
+  border: 1.5px double rgba(255, 199, 90, 0.65);
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  color: var(--lamp);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: rgba(255, 199, 90, 0.06);
+}
+
+.hd-ui .daily-bar__meta {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 240px;
+  min-width: 0;
+}
+
+.hd-ui .daily-bar__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .daily-bar__label .ico { color: var(--aqua); flex: none; }
+
+.hd-ui .daily-bar__sub { font-size: 12px; color: var(--text-faint); white-space: nowrap; }
+
+.hd-ui .daily-bar__mods {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.hd-ui .daily-mod {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--mod-accent) 30%, transparent);
+  border-left: 2px solid var(--mod-accent);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.hd-ui .daily-mod__icon { flex: none; display: inline-flex; color: var(--mod-accent); }
+.hd-ui .daily-mod__body { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.hd-ui .daily-mod__body b {
+  font-size: 12px;
+  color: var(--paper);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.hd-ui .daily-mod__body small {
+  font-size: 12px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .daily-bar__record {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  padding-left: 10px;
+  border-left: 1px dashed rgba(243, 231, 207, 0.14);
+}
+
+.hd-ui .daily-bar__record span { font-size: 12px; color: var(--text-faint); }
+.hd-ui .daily-bar__record b { font-family: var(--font-mono); font-size: 13px; color: var(--lamp); font-weight: 600; white-space: nowrap; }

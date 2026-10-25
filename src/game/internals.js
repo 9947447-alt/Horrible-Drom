@@ -9,12 +9,18 @@ function createInternals(state) {
   const buildingCount = Array.isArray(state.buildings) ? state.buildings.length : 0;
   return {
     rng: createRng(normalizeSeed(state.seed)),
+    // 室友网络使用独立随机流，避免改变 v1 战斗的随机序列（v1 行为不回归）
+    socialRng: createRng(normalizeSeed(`${state.seed}:social`)),
     // 自增 id 计数器
     buildingSeq: Math.max(1, buildingCount),
     nightmareSeq: 0,
     minionSeq: 0,
     eventSeq: 0,
     fxSeq: 0,
+    // v2.1 室友求援：下一次求援的 nightElapsed 阈值 / 请求与遗物 id 序号
+    nextRequestAt: null,
+    requestSeq: 0,
+    relicSeq: 0,
     // 逐实体内部计时
     towers: new Map(), // buildingId -> { cooldown, shots, burstTimer, speedDebuffUntil, speedDebuffPct }
     monsters: new Map(), // nightmareId -> 见 monsterState()

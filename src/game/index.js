@@ -22,4 +22,10 @@ export {
   getShowerRemaining,
 } from './economy.js';
 export { getDamageMultiplier } from './damage.js';
+export {
+  answerRoommateRequest,
+  collectRoommateRelic,
+  getActiveRoommateRequest,
+  SOCIAL,
+} from './social.js';
 export { formatClock } from './result.js';

@@ -1,11 +1,36 @@
 // 主菜单与选房屏幕。DOM 只构建一次，数值/选中态通过 update 差量刷新。
 
-import { ROOMS, getRoom } from '../content/index.js';
+import {
+  ROOMS, getRoom, getDailyPlan, DAILY_LOOKUP,
+} from '../content/index.js';
 import { icon } from './icons.js';
 import {
   esc, btn, iconBtn, keycap, difficultyOf,
   roomStarterLabel, roomNightmarePreview,
 } from './kit.js';
+
+const DAILY_ICONS = {
+  thin_air: 'wind', brittle: 'door', long_night: 'moon', high_pressure: 'pressure',
+};
+
+function dailyPlanFor(state) {
+  if (!state) return getDailyPlan();
+  if (state.daily && Array.isArray(state.daily.modifierIds)) return state.daily;
+  if (state.mode === 'daily') return getDailyPlan();
+  return null;
+}
+
+function modifierOf(id) {
+  return DAILY_LOOKUP[id] || null;
+}
+
+function modifierIcons(plan) {
+  return (plan.modifierIds || []).map((id) => {
+    const mod = modifierOf(id);
+    if (!mod) return '';
+    return `<span class="daily-mod-mini" style="--mod-accent:${esc(mod.accent)}" data-tip="${esc(mod.desc)}" title="${esc(mod.desc)}">${icon(DAILY_ICONS[id] || 'flask', '', 12)}<span>${esc(mod.name)}</span></span>`;
+  }).join('');
+}
 
 const MENU_SKETCH = `
 <svg class="record-sketch" viewBox="0 0 400 206" role="img" aria-label="手绘宿舍夜景：吊灯、窗户、书桌与冷凝床">
@@ -76,6 +101,10 @@ export function createMenuScreen() {
           </span>
         </div>
         <nav class="menu-topnav" aria-label="菜单">
+          <button type="button" class="btn btn--quiet btn--sm menu-nav-records" data-menu="records" data-tip="本机值班记录与成就">
+            ${icon('notebook', 'btn__ico', 16)}<span class="btn__label">值班记录</span>
+            <span class="menu-nav-badge" data-ref="recordsBadge" hidden></span>
+          </button>
           ${menuActions('梦魇图鉴', 'book', 'codex', 'btn btn--quiet btn--sm')}
           ${menuActions('设置', 'settings', 'settings', 'btn btn--quiet btn--sm')}
           ${menuActions('制作说明', 'info', 'about', 'btn btn--quiet btn--sm')}
@@ -96,12 +125,21 @@ export function createMenuScreen() {
           </p>
           <div class="menu-actions">
             ${btn({ label: '开始守夜', iconName: 'play', cls: 'btn btn--primary btn--lg', extra: 'data-menu="start"' })}
+            ${btn({ label: '每日守夜', iconName: 'calendar', cls: 'btn btn--daily btn--lg', extra: 'data-menu="daily"' })}
             ${menuActions('梦魇图鉴', 'book', 'codex')}
             ${menuActions('设置', 'sliders', 'settings')}
             ${menuActions('制作说明', 'notebook', 'about', 'btn btn--quiet')}
           </div>
+          <button type="button" class="menu-daily-note" data-menu="daily" data-tip="固定日期种子 + 两个修饰词，独立记录">
+            <span class="menu-daily-note__stamp">${icon('calendar', '', 13)} 每日</span>
+            <span class="menu-daily-note__body">
+              <b data-ref="menuDailyLabel">每日守夜</b>
+              <span class="menu-daily-note__mods" data-ref="menuDailyMods"></span>
+            </span>
+            <span class="menu-daily-note__go" aria-hidden="true">${icon('arrowRight', '', 14)}</span>
+          </button>
           <p class="menu-meta">
-            <span>${icon('clock', '', 14)} 单局 6–10 分钟</span>
+            <span>${icon('clock', '', 14)} 单局 6–10.5 分钟</span>
             <span>${icon('shield', '', 14)} 无联网 · 无内购</span>
             <span>${icon('flask', '', 14)} 全部程序化绘制</span>
           </p>
@@ -146,7 +184,7 @@ export function createMenuScreen() {
       </main>
 
       <footer class="menu-foot">
-        <span>Horrible Dorm: Reaction · v1.0</span>
+        <span>Horrible Dorm: Reaction · v1.1</span>
         <span class="menu-foot__sep">/</span>
         <span>幻想化学塔防 · 键盘与鼠标操作</span>
         <span class="menu-foot__right">熄灯后请保持安静</span>
@@ -160,9 +198,42 @@ export function createMenuScreen() {
     el.dispatchEvent(new CustomEvent('menu', { detail: { kind }, bubbles: true }));
   });
 
+  const dailyLabel = el.querySelector('[data-ref="menuDailyLabel"]');
+  const dailyMods = el.querySelector('[data-ref="menuDailyMods"]');
+  const recordsBadge = el.querySelector('[data-ref="recordsBadge"]');
+  let lastDailyKey = '';
+  let lastRecordsKey = '';
+
+  function paintDaily(state) {
+    const plan = dailyPlanFor(state) || getDailyPlan();
+    if (!plan) return;
+    const key = `${plan.key}|${(plan.modifierIds || []).join(',')}`;
+    if (key === lastDailyKey) return;
+    lastDailyKey = key;
+    if (dailyLabel) dailyLabel.textContent = `每日守夜 · ${plan.label ? plan.label.replace(/^每日守夜\s*·\s*/, '') : plan.key}`;
+    if (dailyMods) dailyMods.innerHTML = modifierIcons(plan);
+  }
+
+  function paintRecords(state) {
+    const records = state && state.records;
+    if (!records || !recordsBadge) return;
+    const key = `${records.runs || 0}|${records.wins || 0}`;
+    if (key === lastRecordsKey) return;
+    lastRecordsKey = key;
+    const active = (records.runs || 0) > 0;
+    recordsBadge.hidden = !active;
+    recordsBadge.textContent = active ? `${records.wins || 0} 胜` : '';
+  }
+
+  paintDaily(null);
+  paintRecords(null);
+
   return {
     el,
-    update() {},
+    update(state) {
+      paintDaily(state);
+      paintRecords(state);
+    },
     destroy() {},
   };
 }
@@ -211,8 +282,8 @@ export function createRoomScreen() {
           </div>
         </div>
         <div class="room-top__right">
-          <span class="room-diff">
-            <span class="room-diff__label">难度</span>
+          <span class="room-diff" data-room-diff-wrap>
+            <span class="room-diff__label" data-room-diff-label-key>难度</span>
             <b data-room-diff-label>普通</b>
             ${btn({ label: '更改', cls: 'btn btn--ghost btn--xs', extra: 'data-room-diff="1"' })}
           </span>
@@ -220,6 +291,8 @@ export function createRoomScreen() {
           ${iconBtn({ iconName: 'settings', ariaLabel: '设置', tip: '设置', extra: 'data-room-settings="1"', cls: 'iconbtn iconbtn--sm' })}
         </div>
       </header>
+
+      <div class="daily-bar" data-room-daily hidden></div>
 
       <main class="room-grid" role="group" aria-label="六间宿舍">
         ${ROOMS.map((room, i) => roomCard(room, i)).join('')}
@@ -241,12 +314,69 @@ export function createRoomScreen() {
   let lastDifficulty = null;
   let lastBossKey = '';
   let firstPaint = true;
+  let lastDailyKey = '';
+  let isDaily = false;
   const bossSlots = Array.from(el.querySelectorAll('[data-room-boss]'));
   const cards = Array.from(el.querySelectorAll('[data-room-pick]'));
   const diffLabel = el.querySelector('[data-room-diff-label]');
+  const diffLabelKey = el.querySelector('[data-room-diff-label-key]');
+  const diffWrap = el.querySelector('[data-room-diff-wrap]');
+  const diffBtn = el.querySelector('[data-room-diff]');
+  const dailyBar = el.querySelector('[data-room-daily]');
   const selectedLine = el.querySelector('[data-room-selected]');
   const confirmBtn = el.querySelector('[data-room-confirm]');
   const summaryRoom = () => getRoom(selectedId);
+
+  const DAILY_MOD_ICONS = {
+    thin_air: 'wind', brittle: 'door', long_night: 'moon', high_pressure: 'pressure',
+  };
+
+  function paintDaily(state) {
+    const plan = dailyPlanFor(state);
+    isDaily = Boolean(plan);
+    el.classList.toggle('screen--daily', isDaily);
+    if (!dailyBar) return;
+    dailyBar.hidden = !plan;
+    if (!plan) {
+      lastDailyKey = '';
+      if (diffBtn) diffBtn.hidden = false;
+      if (diffLabelKey) diffLabelKey.textContent = '难度';
+      if (diffWrap) diffWrap.removeAttribute('data-tip');
+      return;
+    }
+    const key = plan.key || 'daily';
+    const record = (((state && state.records && state.records.daily) || {})[key]) || null;
+    const recordKey = record ? `${record.runs || 0}|${record.wins || 0}|${record.bestNight || 0}` : 'none';
+    const dailyKey = `${key}|${(plan.modifierIds || []).join(',')}|${recordKey}`;
+    if (dailyKey === lastDailyKey) return;
+    lastDailyKey = dailyKey;
+    const mods = (plan.modifierIds || []).map((id) => {
+      const mod = modifierOf(id) || { name: id, desc: '', accent: '#ffc75a' };
+      return `
+        <article class="daily-mod" style="--mod-accent:${esc(mod.accent)}" data-tip="${esc(mod.desc)}">
+          <span class="daily-mod__icon">${icon(DAILY_MOD_ICONS[id] || 'flask', '', 16)}</span>
+          <span class="daily-mod__body">
+            <b>${esc(mod.name)}</b>
+            <small>${esc(mod.desc)}</small>
+          </span>
+        </article>`;
+    }).join('');
+    dailyBar.innerHTML = `
+      <div class="daily-bar__stamp">每日</div>
+      <div class="daily-bar__meta">
+        <span class="daily-bar__label">${icon('calendar', '', 13)} 每日守夜 · ${esc(key.length >= 10 ? key.slice(5) : key)}</span>
+        <span class="daily-bar__sub">固定普通难度 · 两个修饰词 · 独立记录</span>
+      </div>
+      <div class="daily-bar__mods">${mods}</div>
+      <div class="daily-bar__record">
+        <span>今日记录</span>
+        <b>${record ? `${record.wins || 0} 胜 / ${record.runs || 0} 场` : '尚未开始'}</b>
+      </div>`;
+    if (diffLabelKey) diffLabelKey.textContent = '模式';
+    if (diffBtn) diffBtn.hidden = true;
+    if (diffWrap) diffWrap.setAttribute('data-tip', '每日守夜固定普通难度；返回主菜单可开始普通守夜');
+    paintSelection();
+  }
 
   function paintSelection() {
     cards.forEach((card) => {
@@ -260,7 +390,7 @@ export function createRoomScreen() {
     }
     if (room && confirmBtn) {
       const label = confirmBtn.querySelector('.btn__label');
-      if (label) label.textContent = `进入 ${room.number} · 开始守夜`;
+      if (label) label.textContent = isDaily ? `进入 ${room.number} · 每日守夜` : `进入 ${room.number} · 开始守夜`;
     }
   }
 
@@ -275,7 +405,7 @@ export function createRoomScreen() {
 
   function paintDifficulty(state) {
     const diff = difficultyOf(state && state.difficulty);
-    if (diffLabel) diffLabel.textContent = diff.name;
+    if (diffLabel) diffLabel.textContent = isDaily ? `每日 · ${diff.name}` : diff.name;
     lastDifficulty = diff.id;
   }
 
@@ -308,9 +438,11 @@ export function createRoomScreen() {
   });
 
   function update(state) {
+    const dailyBefore = isDaily;
+    paintDaily(state);
     const diff = difficultyOf(state && state.difficulty);
     const bossKey = `${diff.id}|${state && state.nightmarePreview ? JSON.stringify(state.nightmarePreview) : ''}`;
-    if (diff.id !== lastDifficulty) paintDifficulty(state);
+    if (diff.id !== lastDifficulty || dailyBefore !== isDaily) paintDifficulty(state);
     if (firstPaint || bossKey !== lastBossKey) {
       lastBossKey = bossKey;
       firstPaint = false;

@@ -5,6 +5,7 @@ import { getInternals, roommateState } from './internals.js';
 import { pushEvent, pushFx } from './fx.js';
 import { applyDamageToMinion, applyDamageToNightmare } from './damage.js';
 import { addPressureXp } from './pressure.js';
+import { createRoommateRelic } from './social.js';
 
 export function tickRoommates(state, dt) {
   if (!state.roommates.length) return;
@@ -22,13 +23,18 @@ export function tickRoommates(state, dt) {
       roommate.doorHp += maxDoorHp - roommate.maxDoorHp;
       roommate.maxDoorHp = maxDoorHp;
     }
+    // 求援奖励的永久火力加成（v1 默认 0，不改变默认平衡）
+    const rs = roommateState(state, roommate.id);
+    const offenseBonus = Number(rs.offenseBonus) || 0;
     roommate.offense =
       Math.round(
-        (CONFIG.roommates.baseOffense + CONFIG.roommates.offenseGrowthPerMinute * minutes) * 10,
+        (CONFIG.roommates.baseOffense +
+          CONFIG.roommates.offenseGrowthPerMinute * minutes +
+          offenseBonus) *
+          10,
       ) / 10;
 
     // 舍友火力：反击正在挠自己房门的梦魇 / 小怪
-    const rs = roommateState(state, roommate.id);
     rs.timer -= dt;
     if (rs.timer <= 0) {
       rs.timer = CONFIG.roommates.damageTickInterval;
@@ -65,6 +71,8 @@ export function tickRoommates(state, dt) {
         color: roommate.color,
         ttl: 2,
       });
+      // v2.1：舍友房间灯灭，留下一件待回收的遗物
+      createRoommateRelic(state, roommate);
       // 正在攻击该房间的梦魇改换目标
       for (const nightmare of state.activeNightmares) {
         if (nightmare.targetRoomId === roommate.roomId) {

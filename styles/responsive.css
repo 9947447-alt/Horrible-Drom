@@ -331,3 +331,74 @@
   .hd-ui .build-card { min-height: 64px; }
   .hd-ui .hud-mobile-hint { display: none; }
 }
+
+/* ── v2.1 每日 / 求援 / 记录 的响应式 ───────────────────────── */
+
+@media (max-width: 1279px) {
+  .hd-ui .menu-actions .btn--daily { min-height: 42px; padding: 0 16px; font-size: 14px; }
+  .hd-ui .menu-daily-note__body b { font-size: 12px; }
+  .hd-ui .daily-bar { gap: 9px; padding: 6px 10px; }
+  .hd-ui .daily-bar__meta { max-width: 190px; }
+  .hd-ui .daily-bar__sub { display: none; }
+  .hd-ui .daily-mod__body small { display: none; }
+  .hd-ui .daily-bar__record { display: none; }
+}
+
+@media (max-width: 1024px), (max-height: 640px) {
+  .hd-ui .hud-daily-mods { gap: 2px; }
+  .hd-ui .hud-daily-mod { max-width: 56px; padding: 0 4px; }
+  .hd-ui .radio-card__text { -webkit-line-clamp: 1; }
+}
+
+@media (max-width: 960px), (max-height: 620px) {
+  .hd-ui .menu-daily-note { display: none; }
+  .hd-ui .menu-actions .btn--daily { min-height: 36px; font-size: 13px; padding: 0 12px; }
+  .hd-ui .daily-bar {
+    gap: 7px;
+    padding: 5px 8px;
+    min-height: 0;
+  }
+  .hd-ui .daily-bar__stamp { padding: 2px 5px; font-size: 12px; letter-spacing: 0.1em; }
+  .hd-ui .daily-bar__meta { max-width: 150px; }
+  .hd-ui .daily-bar__label { font-size: 12px; }
+  .hd-ui .daily-bar__mods { gap: 4px; }
+  .hd-ui .daily-mod { padding: 3px 6px; gap: 5px; }
+  .hd-ui .daily-mod__body b { font-size: 12px; }
+  .hd-ui .screen--daily .room-card__specs { margin-top: 0; }
+  .hd-ui .screen--daily .room-grid { gap: 5px; }
+  .hd-ui .screen--daily .room-card { padding: 7px 8px 6px 10px; }
+  .hd-ui .screen--daily .room-card__sub { display: none; }
+}
+
+@media (max-height: 460px) {
+  .hd-ui .daily-bar { padding: 3px 7px; gap: 6px; }
+  .hd-ui .daily-bar__stamp { font-size: 12px; padding: 1px 4px; }
+  .hd-ui .daily-bar__meta { max-width: 130px; }
+  .hd-ui .daily-bar__label { font-size: 12px; }
+  .hd-ui .daily-mod { padding: 2px 5px; }
+  .hd-ui .daily-mod__body b { font-size: 12px; }
+  .hd-ui .screen--daily .room-card { padding: 5px 7px 4px 9px; }
+  .hd-ui .screen--daily .room-spec { padding: 1px 0; }
+  .hd-ui .screen--daily .room-spec__k,
+  .hd-ui .screen--daily .room-spec__v { font-size: 12px; }
+  .hd-ui .screen--daily .room-card__specs { margin-top: 2px; }
+  .hd-ui .screen--daily .room-card__num { font-size: 18px; }
+  .hd-ui .screen--daily .room-card__name { font-size: 12px; }
+  .hd-ui .hud-daily-row { margin-top: 0; }
+  .hd-ui .hud-daily-stamp { height: 16px; font-size: 12px; padding: 0 4px; }
+  .hd-ui .hud-daily-mod { height: 16px; font-size: 12px; }
+  .hd-ui .radio-slot { padding-bottom: 3px; }
+  .hd-ui .radio-card { padding: 4px 6px; gap: 3px; }
+  .hd-ui .radio-card__text { display: none; }
+}
+
+/* v2.1：每日选房在 1280×720 下压缩卡片内容，避免裁切 */
+@media (max-height: 800px) and (min-width: 961px) {
+  .hd-ui .screen--daily .room-card__desc {
+    -webkit-line-clamp: 1;
+    line-height: 1.6;
+  }
+  .hd-ui .screen--daily .room-card { gap: 4px; }
+  .hd-ui .screen--daily .room-spec { padding: 3px 0; }
+  .hd-ui .screen--daily .room-foot { padding: 8px 12px; }
+}

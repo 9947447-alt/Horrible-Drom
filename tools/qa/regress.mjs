@@ -398,7 +398,7 @@ async function main() {
       report.network.failures = browser.failures;
 
       const menuMeta = await page(`document.querySelector('.menu-meta')?.textContent.replace(/\s+/g, ' ').trim()`);
-      check('主菜单单局时长文案为 6–10 分钟（覆盖噩梦实际时长）', /6–10 分钟/.test(menuMeta || ''), menuMeta);
+      check('主菜单单局时长文案为 6–10.5 分钟（覆盖噩梦与深渊实际时长）', /6–10(\.5)? 分钟/.test(menuMeta || ''), menuMeta);
       const cs = await qa('canvasStats()');
       check('Canvas 元素铺满视口（CSS 尺寸）', cs && cs.cssW === 1440 && cs.cssH === 900, cs);
       note(`主菜单阶段 Canvas backing store = ${cs.backingW}x${cs.backingH}（进入对局后按 DPR 重建，菜单不绘制世界）`);
@@ -441,17 +441,19 @@ async function main() {
           selected: c.getAttribute('aria-pressed'),
         }));
       })()`);
-      check('难度弹层有 3 档难度', diffInfo.length === 3, diffInfo.map((d) => d.id));
-      check('难度卡展示目标通关率（简单≥85%/普通60–75%/噩梦30–45%）',
+      check('难度弹层有 4 档难度（含深渊）', diffInfo.length === 4, diffInfo.map((d) => d.id));
+      check('难度卡展示目标通关率（简单≥85%/普通60–75%/噩梦30–45%/深渊20–30%）',
         diffInfo.some((d) => d.target.includes('≥85%'))
         && diffInfo.some((d) => d.target.includes('60%–75%'))
-        && diffInfo.some((d) => d.target.includes('30%–45%')),
+        && diffInfo.some((d) => d.target.includes('30%–45%'))
+        && diffInfo.some((d) => d.target.includes('20%–30%')),
         diffInfo.map((d) => `${d.id}:${d.target}`));
       const nightmareStats = diffInfo.find((d) => d.id === 'nightmare')?.stats || [];
       const durationOf = (id) => (diffInfo.find((d) => d.id === id)?.stats || []).find((row) => row.startsWith('守夜时长')) || '';
-      check('难度卡守夜时长与配置一致（6 / 8 / 9.5 分钟）',
-        /6\s*分钟/.test(durationOf('easy')) && /8\s*分钟/.test(durationOf('normal')) && /9\.5\s*分钟/.test(durationOf('nightmare')),
-        { easy: durationOf('easy'), normal: durationOf('normal'), nightmare: durationOf('nightmare') });
+      check('难度卡守夜时长与配置一致（6 / 8 / 9.5 / 10.5 分钟）',
+        /6\s*分钟/.test(durationOf('easy')) && /8\s*分钟/.test(durationOf('normal'))
+        && /9\.5\s*分钟/.test(durationOf('nightmare')) && /10\.5\s*分钟/.test(durationOf('abyss')),
+        { easy: durationOf('easy'), normal: durationOf('normal'), nightmare: durationOf('nightmare'), abyss: durationOf('abyss') });
       note(`噩梦难度卡：${nightmareStats.join(' / ')}`);
       await shot('06-difficulty-1440x900');
 

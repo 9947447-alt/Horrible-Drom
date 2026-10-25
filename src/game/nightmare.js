@@ -38,11 +38,17 @@ export function recomputeNightmareStats(state, nightmare) {
   const def = getNightmare(nightmare.type);
   const difficulty = DIFFICULTIES[state.difficulty] || DIFFICULTIES.normal;
   const level = Math.max(1, Math.min(CONFIG.nightmare.maxLevel, nightmare.level));
+  // v2.1 每日修饰词：梦魇生命乘数（classic 恒为 1）
+  const dailyHpMult =
+    state.dailyEffects && Number.isFinite(Number(state.dailyEffects.nightmareHpMult))
+      ? Number(state.dailyEffects.nightmareHpMult)
+      : 1;
   const maxHp =
     CONFIG.nightmare.baseHp *
     (def.hpMult || 1) *
     (CONFIG.nightmare.hpScale[level] || 1) *
-    difficulty.hpMult;
+    difficulty.hpMult *
+    dailyHpMult;
   const damage =
     CONFIG.nightmare.baseDamage *
     (def.dmgMult || 1) *

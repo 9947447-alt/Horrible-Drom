@@ -3,11 +3,12 @@
 
 import {
   CONFIG, DIFFICULTIES, NIGHTMARES, REACTIONS, ACID_STAGES, SPECIAL_TOWERS, DEVICES,
+  ACHIEVEMENTS, ACHIEVEMENT_LOOKUP, DAILY_LOOKUP, getDailyPlan,
   getRoom, getDeviceStats, roman,
 } from '../content/index.js';
 import { icon } from './icons.js';
 import {
-  esc, fmtInt, fmtNum, fmtDuration, fmtSpan, fmtClock, clamp, num, difficultyOf,
+  esc, fmtInt, fmtNum, fmtDuration, fmtSpan, fmtClock, fmtNight, fmtDateStamp, clamp, num, difficultyOf,
   btn, keycap, costHtml, weaknessTags, damageTypeMeta,
   deviceEffectLine, fmtRate, bedIncome, reagentIncome, dawnRemaining,
 } from './kit.js';
@@ -238,7 +239,7 @@ function buildCatalogPanel() {
     return `
       <li class="catalog-row" style="--catalog-accent:${esc(def.accent)}">
         <span class="catalog-row__icon">${icon(def.icon, '', 17)}</span>
-        <span class="catalog-row__main"><b>${esc(def.name)}</b><small>${esc(def.desc)}</small></span>
+        <span class="catalog-row__main"><b>${esc(def.name)}</b></span>
         <span class="catalog-row__meta">
           <span class="catalog-row__type">${esc(deviceEffectLine(def.type, stats))}${def.maxCount ? ` · 限 ${def.maxCount}` : ''}</span>
           <span class="catalog-row__cost">${costHtml(def.buildCost)}</span>
@@ -474,7 +475,7 @@ function renderAbout(ctx) {
       </section>
       <section class="about-card">
         <h3>${icon('users', '', 16)} 制作</h3>
-        <p>个人原创项目 · v1.0</p>
+        <p>个人原创项目 · v1.1</p>
         <p>玩法骨架致敬经典“守门发育”类型，名称、美术、文案、数值与系统均为原创实现。</p>
       </section>
     </div>`;
@@ -485,6 +486,150 @@ function renderAbout(ctx) {
     kind: 'about', title: '制作说明', dismissible: true, onDismiss: () => ctx.closeOverlay(),
     panelClass: 'panel--paper panel--about', body, foot,
     head: headHtml({ kicker: '记录本末页 · 制作者留', title: '制作说明', sub: '关于玩法、实现与安全边界。' }),
+  });
+  bindClose(root, ctx);
+  return root;
+}
+
+// ---------- 值班记录 / 成就 ----------
+const DIFF_ORDER = Object.keys(DIFFICULTIES);
+const DAILY_MOD_ICONS = { thin_air: 'wind', brittle: 'door', long_night: 'moon', high_pressure: 'pressure' };
+
+function achievementCard(def, unlockedAt) {
+  const unlocked = Boolean(unlockedAt);
+  return `
+    <article class="ach-card${unlocked ? ' is-unlocked' : ' is-locked'}" style="--ach-accent:${unlocked ? '#ffc75a' : '#8c9aa8'}">
+      <span class="ach-card__icon">${icon(def.icon || 'star', '', 20)}</span>
+      <div class="ach-card__body">
+        <div class="ach-card__head">
+          <b>${esc(def.name)}</b>
+          <span class="ach-card__state">${unlocked ? '已解锁' : '未解锁'}</span>
+        </div>
+        <p>${esc(def.desc)}</p>
+        ${unlocked ? `<span class="ach-card__date">${esc(fmtDateStamp(unlockedAt))}</span>` : ''}
+      </div>
+      <span class="ach-card__stamp" aria-hidden="true">${unlocked ? 'DONE' : '—'}</span>
+    </article>`;
+}
+
+function dailyModChips(plan) {
+  if (!plan || !Array.isArray(plan.modifierIds)) return '';
+  return plan.modifierIds.map((id) => {
+    const mod = DAILY_LOOKUP[id];
+    if (!mod) return '';
+    return `<span class="daily-mod-mini" style="--mod-accent:${esc(mod.accent)}" data-tip="${esc(mod.desc)}">${icon(DAILY_MOD_ICONS[id] || 'flask', '', 12)}<span>${esc(mod.name)}</span></span>`;
+  }).join('');
+}
+
+function planForKey(key) {
+  if (!key) return null;
+  const date = new Date(`${key}T12:00:00`);
+  if (Number.isNaN(date.getTime())) return null;
+  return getDailyPlan(date);
+}
+
+function renderRecords(ctx) {
+  const state = ctx.state || {};
+  const fallback = state.records || ctx.records || (typeof ctx.getRecords === 'function' ? ctx.getRecords() : null) || {};
+  const records = {
+    runs: num(fallback.runs, 0),
+    wins: num(fallback.wins, 0),
+    bestNight: num(fallback.bestNight, 0),
+    bestGrade: fallback.bestGrade || '',
+    byDifficulty: fallback.byDifficulty || {},
+    achievements: fallback.achievements || {},
+    daily: fallback.daily || {},
+  };
+  const unlockedIds = Object.keys(records.achievements);
+  const winRate = records.runs > 0 ? Math.round((records.wins / records.runs) * 100) : 0;
+  const todayPlan = (state.daily && state.daily.key) ? state.daily : getDailyPlan();
+  const todayKey = todayPlan && todayPlan.key;
+  const dailyKeys = Object.keys(records.daily).sort().reverse();
+  const totalAch = ACHIEVEMENTS.length;
+  const unlockedCount = ACHIEVEMENTS.filter((def) => records.achievements[def.id]).length;
+
+  const diffCards = DIFF_ORDER.map((id) => {
+    const def = DIFFICULTIES[id];
+    const bucket = records.byDifficulty[id] || {};
+    const runs = num(bucket.runs, 0);
+    const wins = num(bucket.wins, 0);
+    const rate = runs > 0 ? Math.round((wins / runs) * 100) : 0;
+    return `
+      <article class="rec-diff" style="--diff-accent:${esc(def.accent)}">
+        <header class="rec-diff__head">
+          <b>${esc(def.name)}</b>
+          <span>${runs} 场 · ${wins} 胜</span>
+        </header>
+        <span class="bar bar--rec"><i style="--v:${rate}%;--bar-color:${esc(def.accent)}"></i></span>
+        <div class="rec-diff__meta">
+          <span>胜率 <b>${rate}%</b></span>
+          <span>最佳夜钟 <b>${fmtNight(bucket.bestNight || 0)}</b></span>
+        </div>
+      </article>`;
+  }).join('');
+
+  const dailyRows = dailyKeys.slice(0, 6).map((key) => {
+    const bucket = records.daily[key] || {};
+    const plan = planForKey(key);
+    const isToday = key === todayKey;
+    return `
+      <li class="rec-daily-row${isToday ? ' is-today' : ''}">
+        <span class="rec-daily-row__date">${isToday ? '今日 · ' : ''}${esc(key)}</span>
+        <span class="rec-daily-row__mods">${dailyModChips(plan)}</span>
+        <span class="rec-daily-row__stat">${num(bucket.wins, 0)} 胜 / ${num(bucket.runs, 0)} 场</span>
+        <span class="rec-daily-row__best">${fmtNight(bucket.bestNight || 0)}</span>
+      </li>`;
+  }).join('');
+
+  const todayBucket = todayKey ? records.daily[todayKey] : null;
+  const dailySection = `
+    <section class="records-section records-section--daily">
+      <h3 class="records-section__title">${icon('calendar', '', 15)} 每日守夜</h3>
+      <div class="rec-today">
+        <div class="rec-today__head">
+          <b>${esc(todayPlan ? (todayPlan.label || `每日守夜 · ${todayKey}`) : '每日守夜')}</b>
+          <span>${todayBucket ? `${num(todayBucket.wins, 0)} 胜 / ${num(todayBucket.runs, 0)} 场` : '今天还没守夜'}</span>
+        </div>
+        <div class="rec-today__mods">${dailyModChips(todayPlan)}</div>
+        <div class="rec-today__meta">固定普通难度 · 独立记录 · ${records.daily[todayKey] ? `最佳夜钟 ${fmtNight(records.daily[todayKey].bestNight || 0)}` : '完成后记录在此'}</div>
+      </div>
+      ${dailyRows
+        ? `<ul class="rec-daily-list">${dailyRows}</ul>`
+        : `<p class="records-empty">${icon('info', '', 13)} 还没有每日挑战记录。每日守夜每天 0 点更新，两个修饰词与本机记录独立保存。</p>`}
+    </section>`;
+
+  const body = `
+    <div class="records-summary">
+      <div class="rec-tile"><span class="rec-tile__k">总场次</span><b class="rec-tile__v">${fmtInt(records.runs)}</b><small>全部难度</small></div>
+      <div class="rec-tile"><span class="rec-tile__k">胜场</span><b class="rec-tile__v">${fmtInt(records.wins)}</b><small>胜率 ${winRate}%</small></div>
+      <div class="rec-tile"><span class="rec-tile__k">最佳夜钟</span><b class="rec-tile__v mono">${fmtNight(records.bestNight)}</b><small>最长守夜</small></div>
+      <div class="rec-tile"><span class="rec-tile__k">最佳评级</span><b class="rec-tile__v">${esc(records.bestGrade || '—')}</b><small>历史最优</small></div>
+    </div>
+    <div class="records-grid">
+      <section class="records-section records-section--diff">
+        <h3 class="records-section__title">${icon('shield', '', 15)} 全部难度</h3>
+        <div class="rec-diff-list">${diffCards}</div>
+      </section>
+      ${dailySection}
+    </div>
+    <section class="records-section records-section--ach">
+      <div class="records-section__head">
+        <h3 class="records-section__title">${icon('trophy', '', 15)} 成就</h3>
+        <span class="records-ach-count"><b>${unlockedCount}</b> / ${totalAch}</span>
+      </div>
+      <div class="ach-grid">${ACHIEVEMENTS.map((def) => achievementCard(def, records.achievements[def.id])).join('')}</div>
+    </section>
+    <p class="overlay__note">${icon('info', '', 14)} 值班记录保存在本机浏览器，不上传、不联网；换浏览器或清理站点数据会清空。成就与每日记录在结算时写入。</p>`;
+  const foot = `<div class="overlay__foot-inner">
+      <span class="overlay__foot-hint">本机存档 · ${esc(todayKey || '')}</span>
+      <div class="overlay__foot-right">
+        ${btn({ label: '合上记录', iconName: 'notebook', cls: 'btn btn--primary', extra: 'data-overlay-close="合上记录"' })}
+      </div>
+    </div>`;
+  const root = shell({
+    kind: 'records', title: '值班记录', dismissible: true, onDismiss: () => ctx.closeOverlay(),
+    panelClass: 'panel--paper panel--records', body, foot,
+    head: headHtml({ kicker: '本机存档 · 手写记录', title: '值班记录', sub: '每一夜的梦能、舍友与天亮，都留在这里。' }),
   });
   bindClose(root, ctx);
   return root;
@@ -502,6 +647,17 @@ function renderResult(ctx) {
   const title = result.title || (victory ? '天亮了，噩梦退散' : '气密门被推开');
   const room = getRoom(state.roomId);
   const diff = difficultyOf(state.difficulty);
+  const isDaily = state.mode === 'daily' || Boolean(state.daily);
+  const daily = isDaily ? (state.daily || getDailyPlan()) : null;
+  const dailyMods = daily && Array.isArray(daily.modifierIds)
+    ? daily.modifierIds.map((id) => DAILY_LOOKUP[id]).filter(Boolean)
+    : [];
+  const newAchievements = Array.isArray(state.newAchievements) ? state.newAchievements : [];
+  const newAchDefs = newAchievements
+    .map((id) => ACHIEVEMENT_LOOKUP[id] || { id, name: id, desc: '', icon: 'star' });
+  const extraStats = [];
+  if (num(stats.roommateSupports, 0) > 0) extraStats.push({ icon: 'radio', label: `无线电支援 ×${num(stats.roommateSupports, 0)}` });
+  if (num(stats.relics, 0) > 0) extraStats.push({ icon: 'archive', label: `遗物回收 ×${num(stats.relics, 0)}` });
   const statRows = [
     { k: '击退梦魇', v: `${fmtInt(stats.kills)} 只`, icon: 'skull' },
     { k: '造成伤害', v: fmtInt(stats.damageDealt), icon: 'impact' },
@@ -519,24 +675,34 @@ function renderResult(ctx) {
       </div>
       <div class="result-title">
         <p class="kicker kicker--sm">${esc(room.number)} 室 · ${esc(diff.name)} · 记录终止</p>
+        ${daily ? `<div class="result-daily"><span class="result-daily__stamp">${icon('calendar', '', 12)} 每日</span><b>${esc(daily.label || `每日守夜 · ${daily.key || ''}`)}</b>${dailyMods.map((mod) => `<span class="daily-mod-mini" style="--mod-accent:${esc(mod.accent)}">${icon(DAILY_MOD_ICONS[mod.id] || 'flask', '', 11)}${esc(mod.name)}</span>`).join('')}</div>` : ''}
         <h2>${esc(title)}</h2>
         <p class="result-reason">${esc(result.reason || (victory ? '第一缕晨光落在旧宿舍的窗台上。' : '走廊安静了下来，门板倒向房间内侧。'))}</p>
         ${(result.lines || []).length ? `<ul class="result-lines">${result.lines.map((line) => `<li>${esc(line)}</li>`).join('')}</ul>` : ''}
+        ${extraStats.length ? `<div class="result-extra">${extraStats.map((row) => `<span>${icon(row.icon, '', 12)}${esc(row.label)}</span>`).join('')}</div>` : ''}
       </div>
       <div class="result-grade ${victory ? 'is-win' : 'is-loss'}">
         <span class="result-grade__label">评级</span>
         <span class="result-grade__value">${esc(String(grade))}</span>
       </div>
     </div>
+    ${newAchDefs.length ? `
+    <div class="result-new">
+      <span class="result-new__label">${icon('star', '', 14)} 新成就</span>
+      <ul class="result-new__list">
+        ${newAchDefs.map((def) => `<li><span class="result-new__ico">${icon(def.icon || 'star', '', 14)}</span><b>${esc(def.name)}</b></li>`).join('')}
+      </ul>
+    </div>` : ''}
     <div class="result-stats">
       ${statRows.map((row) => `<div class="result-stat"><span class="result-stat__k">${icon(row.icon, '', 14)}${esc(row.k)}</span><b class="result-stat__v">${esc(row.v)}</b></div>`).join('')}
     </div>
     <div class="result-actions">
       ${btn({ label: '再来一局', iconName: 'restart', cls: 'btn btn--primary btn--lg', extra: 'data-result="restart"' })}
       ${btn({ label: '查看图鉴', iconName: 'book', extra: 'data-result="codex"' })}
+      ${btn({ label: '值班记录', iconName: 'notebook', cls: 'btn btn--quiet', extra: 'data-result="records"' })}
       ${btn({ label: '返回主菜单', iconName: 'home', cls: 'btn btn--quiet', extra: 'data-result="menu"' })}
     </div>
-    <p class="result-foot">${icon('info', '', 13)} 重新开始会沿用同一间宿舍与难度；返回主菜单可重新选择。</p>`;
+    <p class="result-foot">${icon('info', '', 13)} ${daily ? '每日守夜记录与新成就已写入值班记录。' : '重新开始会沿用同一间宿舍与难度；返回主菜单可重新选择。'}</p>`;
   const root = shell({
     kind: 'result', title: '守夜结算', rootClass: victory ? 'overlay--win' : 'overlay--loss',
     panelClass: 'panel--paper panel--result', body,
@@ -548,6 +714,8 @@ function renderResult(ctx) {
   if (menu) menu.addEventListener('click', () => ctx.call('goMenu'));
   const codex = root.querySelector('[data-result="codex"]');
   if (codex) codex.addEventListener('click', () => ctx.openOverlay('help', 'nightmares'));
+  const recordsBtn = root.querySelector('[data-result="records"]');
+  if (recordsBtn) recordsBtn.addEventListener('click', () => ctx.openOverlay('records'));
   return root;
 }
 
@@ -650,6 +818,7 @@ export function renderOverlay(spec, ctx) {
   if (name === 'help') return renderHelp(ctx);
   if (name === 'settings') return renderSettings(ctx);
   if (name === 'about') return renderAbout(ctx);
+  if (name === 'records') return renderRecords(ctx);
   if (name === 'result') return renderResult(ctx);
   if (name === 'tutorial') return renderTutorial(ctx);
   return null;

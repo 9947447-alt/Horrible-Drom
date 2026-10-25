@@ -3,10 +3,10 @@ import { createRenderer } from '../render/index.js';
 import { createUI } from '../ui/index.js';
 import { createAudio } from '../core/audio.js';
 import {
-  loadSave, saveSave, recordRun,
+  loadSave, saveSave, recordRun, mergeAchievements, recordDaily,
 } from '../core/storage.js';
 import {
-  NIGHTMARES, DIFFICULTIES, CONFIG,
+  NIGHTMARES, DIFFICULTIES, CONFIG, getDailyPlan,
 } from '../content/index.js';
 
 function nowMs() {
@@ -59,12 +59,35 @@ function makeMetaState(screen, difficulty, settings, records, preview) {
     events: [],
     fx: [],
     ui: { buildMode: null, selectedBuildingId: null, hoverTile: null },
-    stats: { dreamEarned: 0, reagentEarned: 0, damageDealt: 0, kills: 0, builds: 0, reactions: 0, repairs: 0 },
+    stats: {
+      dreamEarned: 0, reagentEarned: 0, damageDealt: 0, kills: 0,
+      builds: 0, reactions: 0, repairs: 0, roommateSupports: 0, relics: 0,
+    },
     result: null,
+    mode: 'classic',
+    daily: null,
+    newAchievements: [],
     settings,
     records,
     nightmarePreview: preview,
   };
+}
+
+function evaluateAchievements(state) {
+  const ids = [];
+  const result = state.result || {};
+  const win = result.outcome === 'victory';
+  if (win) ids.push('first_dawn');
+  if (win && state.difficulty === 'nightmare') ids.push('nightmare_clear');
+  if (win && state.difficulty === 'abyss') ids.push('abyss_clear');
+  if (win && !/天亮/.test(result.reason || '')) ids.push('night_banisher');
+  if (win && Number(state.stats?.repairs) === 0) ids.push('no_repair');
+  if (win && Number(state.stats?.reactions) >= 6) ids.push('reaction_six');
+  if (Number(state.stats?.roommateSupports) >= 3) ids.push('roommate_savior');
+  if (Number(state.stats?.relics) >= 2) ids.push('relic_hunter');
+  if (win && Number(state.pressure?.level) >= 14) ids.push('pressure_14');
+  if (win && state.mode === 'daily') ids.push('daily_clear');
+  return ids;
 }
 
 function makeSeed() {
@@ -83,6 +106,7 @@ export function createController(canvas, uiRoot) {
   let records = save.records;
   let difficulty = 'normal';
   let preview = pickNightmarePreview(difficulty);
+  let dailyPlan = null;
   let state = makeMetaState('menu', difficulty, settings, records, preview);
   let pausedByUI = false;
   let lastFrame = nowMs();
@@ -98,6 +122,7 @@ export function createController(canvas, uiRoot) {
 
   const actions = {
     goRoomSelect() {
+      dailyPlan = null;
       preview = pickNightmarePreview(difficulty);
       state = makeMetaState('roomSelect', difficulty, settings, records, preview);
       audio.stopNight();
@@ -105,7 +130,20 @@ export function createController(canvas, uiRoot) {
       ui?.update(state, 0);
     },
     goMenu() {
+      dailyPlan = null;
       state = makeMetaState('menu', difficulty, settings, records, preview);
+      audio.stopNight();
+      audio.play('click');
+      ui?.update(state, 0);
+    },
+    startDaily() {
+      dailyPlan = getDailyPlan(new Date());
+      difficulty = 'normal';
+      preview = pickNightmarePreview('normal');
+      state = makeMetaState('roomSelect', 'normal', settings, records, preview);
+      state.mode = 'daily';
+      state.daily = dailyPlan;
+      state.difficulty = 'normal';
       audio.stopNight();
       audio.play('click');
       ui?.update(state, 0);
@@ -147,7 +185,11 @@ export function createController(canvas, uiRoot) {
         actions.goRoomSelect();
         return;
       }
-      startRun(state.roomId, state.difficulty || difficulty, { keepPreview: true });
+      startRun(state.roomId, state.difficulty || difficulty, {
+        keepPreview: true,
+        mode: state.mode,
+        daily: state.daily,
+      });
     },
     startBuild(type, options = {}) {
       if (state.screen !== 'game' || state.phase === 'victory' || state.phase === 'defeat') return;
@@ -266,6 +308,28 @@ export function createController(canvas, uiRoot) {
       audio.play('shower');
       ui?.update(state, 0);
     },
+    answerRoommateRequest(accept) {
+      if (typeof engine.answerRoommateRequest !== 'function') return;
+      const result = engine.answerRoommateRequest(state, Boolean(accept));
+      if (!result || result.ok === false) {
+        audio.play('error');
+        ui?.notify(result?.error || '无线电暂时没有回应。', 'error');
+        return;
+      }
+      audio.play(accept ? 'radio' : 'click');
+      ui?.update(state, 0);
+    },
+    collectRoommateRelic(roommateId) {
+      if (typeof engine.collectRoommateRelic !== 'function') return;
+      const result = engine.collectRoommateRelic(state, roommateId);
+      if (!result || result.ok === false) {
+        audio.play('error');
+        ui?.notify(result?.error || '暂时无法回收遗物。', 'error');
+        return;
+      }
+      audio.play('relic');
+      ui?.update(state, 0);
+    },
     setSetting(key, value) {
       if (!(key in settings)) return;
       settings[key] = value;
@@ -303,8 +367,10 @@ export function createController(canvas, uiRoot) {
 
   function startRun(roomId, diff, options = {}) {
     const runDifficulty = DIFFICULTIES[diff] ? diff : difficulty;
-    if (!options.keepPreview) preview = pickNightmarePreview(runDifficulty);
-    const seed = makeSeed();
+    const mode = options.mode || (state.mode === 'daily' ? 'daily' : 'classic');
+    const daily = options.daily || (mode === 'daily' ? state.daily || dailyPlan : null);
+    if (mode !== 'daily' && !options.keepPreview) preview = pickNightmarePreview(runDifficulty);
+    const seed = daily?.seed || options.seed || makeSeed();
     let run;
     try {
       run = engine.createRun({
@@ -314,6 +380,8 @@ export function createController(canvas, uiRoot) {
         settings,
         nightmareId: preview?.mainId,
         secondaryNightmareId: preview?.secondaryId,
+        mode,
+        daily,
       });
     } catch (error) {
       console.error('创建对局失败', error);
@@ -324,6 +392,9 @@ export function createController(canvas, uiRoot) {
     run.screen = 'game';
     run.settings = settings;
     run.records = records;
+    run.mode = mode;
+    run.daily = daily;
+    run.newAchievements = [];
     if (!run.ui) run.ui = { buildMode: null, selectedBuildingId: null, hoverTile: null };
     if (run.activeNightmares?.[0]) {
       preview = {
@@ -369,6 +440,15 @@ export function createController(canvas, uiRoot) {
       nightElapsed: state.nightElapsed,
       grade,
     });
+    const newAchievements = mergeAchievements(records, evaluateAchievements(state));
+    state.newAchievements = newAchievements;
+    if (state.mode === 'daily' && state.daily?.key) {
+      recordDaily(records, state.daily.key, {
+        result: state.result,
+        nightElapsed: state.nightElapsed,
+        grade,
+      });
+    }
     state.records = records;
     saveSave({ settings, records });
     audio.setPaused(false);
@@ -522,6 +602,9 @@ export function createController(canvas, uiRoot) {
     goMenu: actions.goMenu,
     setDifficulty: actions.setDifficulty,
     startRun,
+    startDaily: actions.startDaily,
+    answerRoommateRequest: actions.answerRoommateRequest,
+    collectRoommateRelic: actions.collectRoommateRelic,
     startRunWith(roomId, diff, mainId, secondaryId) {
       preview = {
         mainId: mainId || preview?.mainId || NIGHTMARES[0].id,

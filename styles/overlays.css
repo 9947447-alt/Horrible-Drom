@@ -1360,3 +1360,383 @@
   .hd-ui .overlay__foot { padding: 6px 14px 8px; }
   .hd-ui .pause-actions .btn { min-height: 30px; font-size: 12px; }
 }
+
+/* ── v2.1：值班记录 / 成就 ──────────────────────────────────── */
+
+.hd-ui .overlay__panel.panel--records {
+  width: min(1180px, 96vw);
+  height: auto;
+  max-height: 91vh;
+  overflow: hidden;
+}
+
+.hd-ui .panel--records .overlay__body { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+
+.hd-ui .panel--records .overlay__body {
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.hd-ui .records-summary {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid rgba(64, 48, 26, 0.24);
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.hd-ui .rec-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 12px;
+  border-right: 1px dotted rgba(64, 48, 26, 0.24);
+}
+
+.hd-ui .rec-tile:last-child { border-right: 0; }
+
+.hd-ui .rec-tile__k { font-size: 12px; color: var(--ink-text-faint); }
+.hd-ui .rec-tile__v {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink-text);
+  letter-spacing: 0.02em;
+}
+.hd-ui .rec-tile__v.mono { font-family: var(--font-mono); font-size: 20px; }
+.hd-ui .rec-tile small { font-size: 12px; color: var(--ink-text-dim); }
+
+.hd-ui .records-grid {
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.hd-ui .records-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 12px;
+  border: 1px solid rgba(64, 48, 26, 0.22);
+  background: rgba(255, 255, 255, 0.24);
+  min-width: 0;
+}
+
+.hd-ui .records-section__title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-text);
+}
+
+.hd-ui .records-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hd-ui .records-ach-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-text-dim);
+}
+
+.hd-ui .records-ach-count b { font-size: 16px; color: #8a5b06; }
+
+.hd-ui .rec-diff-list { display: flex; flex-direction: column; gap: 5px; }
+
+.hd-ui .rec-diff {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px 8px;
+  border-left: 3px solid var(--diff-accent);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.hd-ui .rec-diff__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hd-ui .rec-diff__head b { font-size: 13px; letter-spacing: 0.04em; }
+.hd-ui .rec-diff__head span { font-family: var(--font-mono); font-size: 12px; color: var(--ink-text-dim); }
+
+.hd-ui .bar--rec { height: 4px; background: rgba(64, 48, 26, 0.14); box-shadow: none; }
+.hd-ui .bar--rec .bar__fill { background: var(--bar-color, var(--lamp)); box-shadow: none; }
+
+.hd-ui .rec-diff__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-text-dim);
+}
+
+.hd-ui .rec-diff__meta b { font-family: var(--font-mono); font-size: 11px; color: var(--ink-text); }
+
+/* 每日记录 */
+.hd-ui .rec-today {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 7px 9px;
+  border: 1px dashed rgba(64, 48, 26, 0.3);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hd-ui .rec-today__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hd-ui .rec-today__head b { font-size: 12px; letter-spacing: 0.03em; }
+.hd-ui .rec-today__head span { font-family: var(--font-mono); font-size: 12px; color: #7a5a30; }
+
+.hd-ui .rec-today__mods { display: flex; flex-wrap: wrap; gap: 4px; }
+.hd-ui .rec-today__meta { font-size: 12px; color: var(--ink-text-faint); }
+
+.hd-ui .rec-daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 128px;
+  overflow-y: auto;
+}
+
+.hd-ui .rec-daily-row {
+  display: grid;
+  grid-template-columns: 94px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 5px;
+  border-bottom: 1px dotted rgba(64, 48, 26, 0.18);
+  font-size: 12px;
+}
+
+.hd-ui .rec-daily-row:last-child { border-bottom: 0; }
+.hd-ui .rec-daily-row.is-today { background: rgba(255, 199, 90, 0.14); }
+.hd-ui .rec-daily-row__date { font-family: var(--font-mono); font-size: 12px; color: var(--ink-text-dim); white-space: nowrap; }
+.hd-ui .rec-daily-row.is-today .rec-daily-row__date { color: #8a5b06; font-weight: 700; }
+.hd-ui .rec-daily-row__mods { display: flex; gap: 3px; min-width: 0; overflow: hidden; }
+.hd-ui .rec-daily-row__mods .daily-mod-mini { height: 17px; font-size: 12px; padding: 0 4px; }
+.hd-ui .rec-daily-row__stat { font-family: var(--font-mono); font-size: 12px; color: var(--ink-text-dim); white-space: nowrap; }
+.hd-ui .rec-daily-row__best { font-family: var(--font-mono); font-size: 12px; color: #7a5a30; white-space: nowrap; }
+
+.hd-ui .records-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink-text-faint);
+}
+
+/* 成就 */
+.hd-ui .records-section--ach { flex: 1; min-height: 0; }
+
+.hd-ui .ach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.hd-ui .ach-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 7px;
+  align-items: start;
+  padding: 7px 8px;
+  border: 1px solid rgba(64, 48, 26, 0.2);
+  border-left: 2px solid var(--ach-accent);
+  background: rgba(255, 255, 255, 0.26);
+  min-width: 0;
+}
+
+.hd-ui .ach-card.is-locked {
+  opacity: 0.58;
+  border-left-style: dashed;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.hd-ui .ach-card.is-unlocked {
+  background: linear-gradient(180deg, rgba(255, 199, 90, 0.12), rgba(255, 255, 255, 0.26));
+}
+
+.hd-ui .ach-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid color-mix(in srgb, var(--ach-accent) 45%, rgba(64, 48, 26, 0.2));
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--ach-accent) 70%, #2b231a);
+  background: color-mix(in srgb, var(--ach-accent) 9%, transparent);
+}
+
+.hd-ui .ach-card__body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.hd-ui .ach-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
+.hd-ui .ach-card__head b { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hd-ui .ach-card__state { flex: none; font-size: 12px; color: var(--ink-text-faint); }
+.hd-ui .ach-card.is-unlocked .ach-card__state { color: #8a5b06; font-weight: 600; }
+.hd-ui .ach-card__body p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hd-ui .ach-card__date { font-family: var(--font-mono); font-size: 10px; color: var(--ink-text-faint); }
+.hd-ui .ach-card__stamp {
+  align-self: start;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--ach-accent) 60%, transparent);
+  transform: rotate(4deg);
+}
+
+/* ── v2.1：结算每日标记 / 新成就 ───────────────────────────── */
+
+.hd-ui .result-daily {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 2px 0 1px;
+}
+
+.hd-ui .result-daily__stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1.5px double rgba(20, 107, 92, 0.5);
+  border-radius: 2px;
+  transform: rotate(-2deg);
+  color: #146b5c;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: rgba(20, 107, 92, 0.07);
+}
+
+.hd-ui .result-daily b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-text-dim);
+}
+
+.hd-ui .result-extra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #7a5a30;
+}
+
+.hd-ui .result-extra span { display: inline-flex; align-items: center; gap: 3px; }
+
+.hd-ui .result-new {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(138, 91, 6, 0.42);
+  background: rgba(255, 199, 90, 0.09);
+}
+
+.hd-ui .result-new__label {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #8a5b06;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.hd-ui .result-new__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+}
+
+.hd-ui .result-new__list li {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1px solid rgba(138, 91, 6, 0.28);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.hd-ui .result-new__ico { display: inline-flex; color: #8a5b06; align-self: center; }
+.hd-ui .result-new__list b { font-size: 12px; font-weight: 700; color: #5d4313; }
+.hd-ui .result-new__list small { display: none; }
+
+@media (max-width: 900px), (max-height: 620px) {
+  .hd-ui .overlay__panel.panel--records { width: 96vw; height: 93vh; max-height: 93vh; }
+  .hd-ui .records-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hd-ui .rec-tile:nth-child(2) { border-right: 0; }
+  .hd-ui .rec-tile:nth-child(-n + 2) { border-bottom: 1px dotted rgba(64, 48, 26, 0.24); }
+  .hd-ui .records-grid { grid-template-columns: 1fr; }
+  .hd-ui .ach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hd-ui .rec-daily-row { grid-template-columns: 82px minmax(0, 1fr) auto; }
+  .hd-ui .rec-daily-row__best { display: none; }
+  .hd-ui .result-new { flex-direction: column; gap: 4px; }
+}
+
+@media (max-width: 560px) {
+  .hd-ui .records-summary { grid-template-columns: 1fr 1fr; }
+  .hd-ui .ach-grid { grid-template-columns: 1fr; }
+}
+
+/* v2.1 修正：成就区不压缩，避免卡片压到页脚 */
+.hd-ui .records-section--ach { flex: none; overflow: visible; }
+
+/* v2.1：横屏手机把每日/新成就塞进一屏，避免操作按钮掉到折叠外 */
+@media (max-height: 620px) {
+  .hd-ui .panel--result .overlay__body { padding: 8px 14px 10px; gap: 8px; }
+  .hd-ui .result-hero { grid-template-columns: 52px minmax(0, 1fr) auto; gap: 8px; }
+  .hd-ui .result-stamp { width: 48px; height: 48px; font-size: 13px; border-width: 2px; }
+  .hd-ui .result-title h2 { font-size: 17px; line-height: 1.25; }
+  .hd-ui .result-reason { font-size: 12px; line-height: 1.45; max-height: 2.9em; overflow: hidden; }
+  .hd-ui .result-lines { display: none; }
+  .hd-ui .result-extra { display: none; }
+  .hd-ui .result-daily { margin: 0; gap: 4px; }
+  .hd-ui .result-grade { padding: 4px; }
+  .hd-ui .result-grade__value { font-size: 22px; }
+  .hd-ui .result-new { padding: 5px 8px; gap: 6px; }
+  .hd-ui .result-new__label { padding-top: 1px; }
+  .hd-ui .result-new__list li { padding: 1px 5px; }
+  .hd-ui .result-new__list b { font-size: 12px; }
+  .hd-ui .result-new__ico .ico { width: 12px; height: 12px; }
+  .hd-ui .result-stats .result-stat { padding: 3px 6px; }
+  .hd-ui .result-stat__v { font-size: 13px; }
+  .hd-ui .result-actions { gap: 6px; }
+  .hd-ui .result-actions .btn { min-height: 30px; font-size: 12px; padding: 0 9px; }
+  .hd-ui .result-foot { display: none; }
+}

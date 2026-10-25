@@ -233,6 +233,16 @@ export function createAudio(initialSettings = {}) {
       hit({ dur: 0.12, gain: 0.08, cutoff: 1200 });
       tone({ freq: 480, dur: 0.08, type: 'triangle', gain: 0.04 });
     },
+    radio: () => {
+      tone({ freq: 880, dur: 0.06, type: 'square', gain: 0.028 });
+      tone({ freq: 1320, dur: 0.08, type: 'square', gain: 0.024, delay: 0.08 });
+      hit({ dur: 0.12, gain: 0.025, cutoff: 2400, delay: 0.04 });
+    },
+    relic: () => {
+      tone({ freq: 660, dur: 0.09, type: 'sine', gain: 0.05 });
+      tone({ freq: 990, dur: 0.12, type: 'sine', gain: 0.045, delay: 0.06 });
+      tone({ freq: 1320, dur: 0.18, type: 'sine', gain: 0.035, delay: 0.12 });
+    },
     victory: () => {
       [523, 659, 784, 1047].forEach((f, i) => tone({ freq: f, dur: 0.5, type: 'sine', gain: 0.06, delay: i * 0.12 }));
     },

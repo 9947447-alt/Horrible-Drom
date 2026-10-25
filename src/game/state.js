@@ -7,6 +7,7 @@ import {
   ROOMS,
   ROOMMATE_NAMES,
   getBuildCost,
+  getDailyEffects,
   getRoom,
 } from '../content/index.js';
 import { getInternals } from './internals.js';
@@ -23,6 +24,9 @@ export const DEFAULT_SETTINGS = {
   shake: true,
 };
 
+// 室友性格（trait）与内容 ROOMMATE_NAMES 一一对应，缺失时按顺序回退。
+const TRAIT_FALLBACK = ['economist', 'gunner', 'turtle', 'chemist', 'lucky'];
+
 function buildRoommates(playerRoomId) {
   const otherRooms = ROOMS.filter((room) => room.id !== playerRoomId);
   return ROOMMATE_NAMES.map((entry, index) => {
@@ -37,8 +41,24 @@ function buildRoommates(playerRoomId) {
       maxDoorHp: CONFIG.roommates.baseDoorHp,
       offense: CONFIG.roommates.baseOffense,
       threat: 0.6,
+      // v2.1 室友网络
+      trait: entry.trait || TRAIT_FALLBACK[index % TRAIT_FALLBACK.length],
+      bond: 0,
+      request: null,
+      relic: null,
     };
   });
+}
+
+// 每日挑战参数归一化：模拟层只认 { key, seed, modifierIds, label }。
+function normalizeDaily(daily) {
+  const source = daily && typeof daily === 'object' ? daily : {};
+  const modifierIds = Array.isArray(source.modifierIds)
+    ? source.modifierIds.filter((id) => typeof id === 'string')
+    : [];
+  const key = typeof source.key === 'string' && source.key ? source.key : 'daily';
+  const label = typeof source.label === 'string' && source.label ? source.label : `每日守夜 · ${key}`;
+  return { key, seed: source.seed, modifierIds, label };
 }
 
 function buildStarterBuilding(room) {
@@ -83,18 +103,36 @@ function buildNightmarePreview({ seed, difficulty, nightmareId, secondaryNightma
  * 创建一局。
  * @param {object} options
  * @param {string} [options.roomId] 宿舍 id
- * @param {string} [options.difficulty] easy | normal | nightmare
+ * @param {string} [options.difficulty] easy | normal | nightmare（daily 模式固定 normal）
  * @param {number|string} [options.seed] 随机种子
  * @param {object} [options.settings] 音量等设置，合并到 state.settings
  * @param {string} [options.nightmareId] 可选：指定主魇（选房预览用）
  * @param {string} [options.secondaryNightmareId] 可选：指定副魇
+ * @param {'classic'|'daily'} [options.mode] v2.1：经典 / 每日挑战
+ * @param {object} [options.daily] v2.1：每日计划 { key, seed, modifierIds, label }
  */
-export function createRun({ roomId, difficulty, seed, settings, nightmareId, secondaryNightmareId } = {}) {
+export function createRun({
+  roomId,
+  difficulty,
+  seed,
+  settings,
+  nightmareId,
+  secondaryNightmareId,
+  mode = 'classic',
+  daily = null,
+} = {}) {
   const room = getRoom(roomId);
-  const difficultyId = DIFFICULTIES[difficulty] ? difficulty : 'normal';
+  // 每日挑战以普通难度为基础；其种子来自 daily.seed，保证同一天所有人同一局。
+  const dailyMode = mode === 'daily';
+  const normalizedDaily = dailyMode ? normalizeDaily(daily) : null;
+  const dailyEffects = getDailyEffects(normalizedDaily ? normalizedDaily.modifierIds : []);
+  const difficultyId = dailyMode ? 'normal' : (DIFFICULTIES[difficulty] ? difficulty : 'normal');
   const diff = DIFFICULTIES[difficultyId];
-  const numericSeed = normalizeSeed(seed ?? 1);
+  const rawSeed = dailyMode && normalizedDaily.seed !== undefined ? normalizedDaily.seed : seed;
+  const numericSeed = normalizeSeed(rawSeed ?? 1);
   const door = doorInfo(room);
+  const baseDoorHp = CONFIG.door.hp[1] || 1;
+  const initialDoorMaxHp = Math.max(1, Math.round(baseDoorHp * dailyEffects.doorHpMult));
 
   const state = {
     version: CONFIG.version,
@@ -108,7 +146,18 @@ export function createRun({ roomId, difficulty, seed, settings, nightmareId, sec
     prepRemaining: CONFIG.prepDuration,
     nightElapsed: 0,
     clock: 0,
-    dawnAt: diff.dawnSeconds,
+    dawnAt: diff.dawnSeconds + dailyEffects.dawnBonus,
+    // v2.1：经典 / 每日挑战与每日修饰词效果（classic 时全部为默认值）
+    mode: dailyMode ? 'daily' : 'classic',
+    daily: normalizedDaily
+      ? {
+        key: normalizedDaily.key,
+        seed: numericSeed,
+        modifierIds: normalizedDaily.modifierIds.slice(),
+        label: normalizedDaily.label,
+      }
+      : null,
+    dailyEffects,
     spawnAt: CONFIG.spawnDelay,
     player: {
       roomId: room.id,
@@ -116,8 +165,8 @@ export function createRun({ roomId, difficulty, seed, settings, nightmareId, sec
       reagent: CONFIG.startingReagent,
       bedLevel: 1,
       doorLevel: 1,
-      doorHp: CONFIG.door.hp[1],
-      doorMaxHp: CONFIG.door.hp[1],
+      doorHp: initialDoorMaxHp,
+      doorMaxHp: initialDoorMaxHp,
       showerReadyAt: 0,
       threat: 1,
     },
@@ -143,6 +192,9 @@ export function createRun({ roomId, difficulty, seed, settings, nightmareId, sec
       builds: 0,
       reactions: 0,
       repairs: 0,
+      // v2.1 室友网络统计
+      roommateSupports: 0,
+      relics: 0,
     },
     result: null,
     settings: { ...DEFAULT_SETTINGS, ...(settings || {}) },

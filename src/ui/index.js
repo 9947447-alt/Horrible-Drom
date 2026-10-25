@@ -92,12 +92,26 @@ function resultKey(state) {
     'result', state.phase, result.outcome || '', result.grade || '', result.title || '',
     result.reason || '', (result.lines || []).join('~'),
     stats.kills, stats.damageDealt, stats.builds, stats.reactions, stats.repairs,
-    stats.dreamEarned, stats.reagentEarned, state.pressure && state.pressure.level,
+    stats.dreamEarned, stats.reagentEarned, stats.roommateSupports || 0, stats.relics || 0,
+    state.pressure && state.pressure.level, state.mode || '',
+    state.daily && state.daily.key ? state.daily.key : '',
+    (state.newAchievements || []).join(','),
+  ].join('|');
+}
+
+function recordsKey(state) {
+  const records = state && state.records ? state.records : null;
+  if (!records) return 'records|none';
+  return [
+    'records', records.runs || 0, records.wins || 0,
+    Object.keys(records.achievements || {}).length,
+    Object.keys(records.daily || {}).length,
+    records.daily ? Object.keys(records.daily).join(',') : '',
   ].join('|');
 }
 
 export function createUI(options = {}) {
-  const { root, actions = {}, getSettings, autoTutorial = true, autoStyles = true, tutorialKey } = options;
+  const { root, actions = {}, getSettings, getRecords, autoTutorial = true, autoStyles = true, tutorialKey } = options;
   if (!root || typeof root.appendChild !== 'function') {
     throw new Error('createUI: 需要传入 #ui 根容器');
   }
@@ -248,6 +262,13 @@ export function createUI(options = {}) {
         view.el.addEventListener('menu', (event) => {
           const kind = event.detail && event.detail.kind;
           if (kind === 'start') openOverlay('difficulty');
+          else if (kind === 'daily') {
+            if (typeof actions.startDaily === 'function') call('startDaily');
+            else {
+              if (typeof console !== 'undefined' && console.warn) console.warn('[UI] actions.startDaily 未接入');
+              notify('每日守夜暂时无法开始，请稍后重试', 'warn');
+            }
+          } else if (kind === 'records') openOverlay('records');
           else if (kind === 'codex') openOverlay('help', 'nightmares');
           else if (kind === 'settings') openOverlay('settings');
           else if (kind === 'about') openOverlay('about');
@@ -354,6 +375,7 @@ export function createUI(options = {}) {
     if (!spec) return '';
     if (spec.name === 'result') return resultKey(state || {});
     if (spec.name === 'pause') return `pause|${state && state.roomId}|${state && state.phase}`;
+    if (spec.name === 'records') return recordsKey(state);
     return `${spec.name}|${spec.tab || ''}`;
   }
 
@@ -368,6 +390,8 @@ export function createUI(options = {}) {
       openTutorial,
       pickDifficulty,
       getSettings,
+      records: local.state && local.state.records ? local.state.records : (typeof getRecords === 'function' ? getRecords() : null),
+      getRecords,
     };
   }
 

@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-25T05:54:53.906Z",
+  "startedAt": "2026-10-25T06:28:16.587Z",
   "base": "http://127.0.0.1:8787",
   "checks": [
     {
@@ -57,9 +57,9 @@
     },
     {
       "phase": "P0 菜单与基础加载",
-      "name": "主菜单单局时长文案为 6–10 分钟（覆盖噩梦实际时长）",
+      "name": "主菜单单局时长文案为 6–10.5 分钟（覆盖噩梦与深渊实际时长）",
       "ok": true,
-      "detail": "单局 6–10 分钟\n             无联网 · 无内购\n             全部程序化绘制"
+      "detail": "单局 6–10.5 分钟\n             无联网 · 无内购\n             全部程序化绘制"
     },
     {
       "phase": "P0 菜单与基础加载",
@@ -113,7 +113,7 @@
         "hit": true,
         "rect": {
           "x": 51.2,
-          "y": 427.1,
+          "y": 401.6,
           "w": 132.2,
           "h": 46
         },
@@ -158,7 +158,7 @@
         "hit": true,
         "rect": {
           "x": 57.6,
-          "y": 527.1,
+          "y": 501.6,
           "w": 132.2,
           "h": 46
         },
@@ -203,7 +203,7 @@
         "hit": true,
         "rect": {
           "x": 272,
-          "y": 625.5,
+          "y": 600,
           "w": 132.2,
           "h": 46
         },
@@ -306,7 +306,7 @@
       "ok": true,
       "detail": {
         "x": 123.6953125,
-        "y": 550.125,
+        "y": 524.625,
         "w": 132.203125,
         "h": 46,
         "visible": true,
@@ -316,32 +316,35 @@
     },
     {
       "phase": "P1 难度选择与选房",
-      "name": "难度弹层有 3 档难度",
+      "name": "难度弹层有 4 档难度（含深渊）",
       "ok": true,
       "detail": [
         "easy",
         "normal",
-        "nightmare"
+        "nightmare",
+        "abyss"
       ]
     },
     {
       "phase": "P1 难度选择与选房",
-      "name": "难度卡展示目标通关率（简单≥85%/普通60–75%/噩梦30–45%）",
+      "name": "难度卡展示目标通关率（简单≥85%/普通60–75%/噩梦30–45%/深渊20–30%）",
       "ok": true,
       "detail": [
         "easy:目标通关率 ≥85%",
         "normal:目标通关率 60%–75%",
-        "nightmare:目标通关率 30%–45%"
+        "nightmare:目标通关率 30%–45%",
+        "abyss:目标通关率 20%–30%"
       ]
     },
     {
       "phase": "P1 难度选择与选房",
-      "name": "难度卡守夜时长与配置一致（6 / 8 / 9.5 分钟）",
+      "name": "难度卡守夜时长与配置一致（6 / 8 / 9.5 / 10.5 分钟）",
       "ok": true,
       "detail": {
         "easy": "守夜时长6 分钟",
         "normal": "守夜时长8 分钟",
-        "nightmare": "守夜时长9.5 分钟"
+        "nightmare": "守夜时长9.5 分钟",
+        "abyss": "守夜时长10.5 分钟"
       }
     },
     {
@@ -499,13 +502,15 @@
           "selected": null
         },
         "stats": {
-          "dreamEarned": 0.39990000000000053,
+          "dreamEarned": 0.3999000000000005,
           "reagentEarned": 0,
           "damageDealt": 0,
           "kills": 0,
           "builds": 0,
           "reactions": 0,
-          "repairs": 0
+          "repairs": 0,
+          "roommateSupports": 0,
+          "relics": 0
         },
         "records": {
           "runs": 0,
@@ -607,7 +612,7 @@
         "cssH": 900,
         "dpr": 1,
         "opaqueRatio": 1,
-        "colors": 101
+        "colors": 102
       }
     },
     {
@@ -716,7 +721,7 @@
       "name": "冷凝床持续产出梦能",
       "ok": true,
       "detail": {
-        "before": 26,
+        "before": 27,
         "after": 51
       }
     },
@@ -1033,8 +1038,8 @@
       "name": "键盘 Q 触发应急喷淋（冷却写入）",
       "ok": true,
       "detail": {
-        "readyAt": 51.5665,
-        "now": 6.9331000000000005
+        "readyAt": 51.5498,
+        "now": 6.9164
       }
     },
     {
@@ -1198,11 +1203,11 @@
       "detail": [
         {
           "id": "n-1",
-          "type": "benzene",
+          "type": "formaldehyde",
           "secondary": false,
           "level": 2,
-          "hp": 2884,
-          "maxHp": 2884,
+          "hp": 3795,
+          "maxHp": 3795,
           "state": "roam"
         }
       ]
@@ -1212,7 +1217,7 @@
       "name": "HUD 梦魇血条出现且名称非空",
       "ok": true,
       "detail": [
-        "苯环幽影共振干扰者"
+        "甲醛标本被泡在罐子里的童年"
       ]
     },
     {
@@ -1226,11 +1231,11 @@
         "state": [
           {
             "id": "n-1",
-            "type": "benzene",
+            "type": "formaldehyde",
             "secondary": false,
             "level": 2,
-            "hp": 2884,
-            "maxHp": 2884,
+            "hp": 3795,
+            "maxHp": 3795,
             "state": "roam"
           }
         ]
@@ -1241,8 +1246,8 @@
       "name": "HUD 梦魇名称与内容数据一致",
       "ok": true,
       "detail": {
-        "hud": "苯环幽影共振干扰者",
-        "expected": "苯环幽影"
+        "hud": "甲醛标本被泡在罐子里的童年",
+        "expected": "甲醛标本"
       }
     },
     {
@@ -1250,7 +1255,7 @@
       "name": "战斗产生伤害统计",
       "ok": true,
       "detail": {
-        "damage": 501.5
+        "damage": 1424.8499999999997
       }
     },
     {
@@ -1264,7 +1269,7 @@
       "ok": true,
       "detail": {
         "events": 14,
-        "fx": 0,
+        "fx": 7,
         "footer": "对讲机 · 记录最近 14 条"
       }
     },
@@ -1326,7 +1331,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 106
+          "colors": 108
         },
         "free": 23
       }
@@ -1386,7 +1391,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 109
+          "colors": 111
         },
         "free": 28
       }
@@ -1416,7 +1421,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 108
+          "colors": 110
         },
         "free": 18
       }
@@ -1446,7 +1451,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 102
+          "colors": 101
         },
         "free": 14
       }
@@ -1593,7 +1598,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 125
+          "colors": 127
         }
       }
     },
@@ -1679,7 +1684,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 116
+          "colors": 115
         }
       }
     },
@@ -1722,7 +1727,7 @@
           "cssH": 720,
           "dpr": 1,
           "opaqueRatio": 1,
-          "colors": 129
+          "colors": 125
         }
       }
     },
@@ -1838,7 +1843,7 @@
       "name": "门被击破触发失败结算面板",
       "ok": true,
       "detail": {
-        "overlay": "result|defeat|defeat|D|熄灯之后|气密门被梦魇击破|难度：普通 · 门破于 00:03~梦魇击杀 0 · 造成伤害 0~全局压力 Lv.1 · 触发反应链 0 次~累计梦能 90 · 试剂 0~建造 0 次 · 维修 0 次|0|0|0|0|0|90.09999999999702|0|1",
+        "overlay": "result|defeat|defeat|D|熄灯之后|气密门被梦魇击破|难度：普通 · 门破于 00:03~梦魇击杀 0 · 造成伤害 0~全局压力 Lv.1 · 触发反应链 0 次~累计梦能 90 · 试剂 0~建造 0 次 · 维修 0 次|0|0|0|0|0|90.09999999999702|0|0|0|1|classic||",
         "result": {
           "outcome": "defeat",
           "reason": "气密门被梦魇击破",
@@ -1858,7 +1863,7 @@
       "phase": "P10 结算与重开",
       "name": "失败结算包含原因与评级",
       "ok": true,
-      "detail": "门破 301 室 · 普通 · 记录终止 熄灯之后 气密门被梦魇击破 难度：普通 · 门破于 00:03梦魇击杀 0 · 造成伤害 0全局压力 Lv.1 · 触发反应链 0 次累计梦能 90 · 试剂 0建造 0 次 · 维修 0 次 评级 D 击退梦魇0 只造成伤害0建造装置0 座激活反应0 条门体维修0 次累计梦能90累计试剂0压力等级Lv.1 再来一局 查看图鉴 返回主菜单 重新开始会沿用同"
+      "detail": "门破 301 室 · 普通 · 记录终止 熄灯之后 气密门被梦魇击破 难度：普通 · 门破于 00:03梦魇击杀 0 · 造成伤害 0全局压力 Lv.1 · 触发反应链 0 次累计梦能 90 · 试剂 0建造 0 次 · 维修 0 次 评级 D 击退梦魇0 只造成伤害0建造装置0 座激活反应0 条门体维修0 次累计梦能90累计试剂0压力等级Lv.1 再来一局 查看图鉴 值班记录 返回主菜单 重新开"
     },
     {
       "phase": "P10 结算与重开",
@@ -1879,9 +1884,9 @@
         "paused": false,
         "difficulty": "normal",
         "roomId": "room-301",
-        "now": 0.12,
+        "now": 0.1,
         "nightElapsed": 0,
-        "prepRemaining": 24.88,
+        "prepRemaining": 24.9,
         "clock": 0,
         "dream": 100,
         "reagent": 0,
@@ -1912,13 +1917,15 @@
           "selected": null
         },
         "stats": {
-          "dreamEarned": 0.35009999999999125,
+          "dreamEarned": 0.3,
           "reagentEarned": 0,
           "damageDealt": 0,
           "kills": 0,
           "builds": 0,
           "reactions": 0,
-          "repairs": 0
+          "repairs": 0,
+          "roommateSupports": 0,
+          "relics": 0
         },
         "records": {
           "runs": 1,
@@ -2019,8 +2026,19 @@
             "wins": 0,
             "runs": 0,
             "bestNight": 0
+          },
+          "abyss": {
+            "wins": 0,
+            "runs": 0,
+            "bestNight": 0
           }
-        }
+        },
+        "achievements": {
+          "first_dawn": 1792909742579,
+          "night_banisher": 1792909742579,
+          "no_repair": 1792909742579
+        },
+        "daily": {}
       }
     },
     {
@@ -2071,7 +2089,7 @@
       "detail": {
         "clock": "00:00",
         "phase": "准备阶段",
-        "dream": "101",
+        "dream": "102",
         "reagent": "0",
         "doorLevel": "1",
         "bedLevel": "1",
@@ -2079,7 +2097,7 @@
         "nmNames": [],
         "nmLevels": [],
         "nmLitSkills": [],
-        "dreamChip": "101 +3.0/s",
+        "dreamChip": "102 +3.0/s",
         "reagentChip": "0 +0/s",
         "reactionCount": "0 / 6",
         "tutorial": false,
@@ -2296,7 +2314,7 @@
       "detail": {
         "newErrors": [],
         "perf": {
-          "fps": 20.018919159924238,
+          "fps": 20.017783001010464,
           "dpr": 1,
           "qualityLevel": 1,
           "canvas": {
@@ -2443,7 +2461,63 @@
         "type": "Script"
       },
       {
+        "url": "http://127.0.0.1:8787/src/game/social.js",
+        "type": "Script"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/game/result.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
         "type": "Script"
       },
       {
@@ -2464,6 +2538,126 @@
       },
       {
         "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/social.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
         "type": "Script"
       },
       {
@@ -2519,43 +2713,55 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "url": "http://127.0.0.1:8787/src/game/state.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "url": "http://127.0.0.1:8787/src/game/build.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "url": "http://127.0.0.1:8787/src/game/social.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "url": "http://127.0.0.1:8787/src/game/result.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "url": "http://127.0.0.1:8787/src/content/config.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/social.js",
         "type": "Script"
       },
       {
@@ -2572,6 +2778,46 @@
       },
       {
         "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
         "type": "Script"
       },
       {
@@ -2655,215 +2901,7 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/result.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/util.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/layout.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/themes.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/room.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/buildings.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/fx.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/overlay.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/icons.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/kit.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/screens.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/hud.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/config.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/rooms.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/towers.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/reactions.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/internals.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/fx.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/reactions.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/geometry.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/rng.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/pressure.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/devices.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/combat.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/roommates.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/paint.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/iso.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/dock.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/",
-        "type": "Document"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/main.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/main.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/base.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/screens.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/hud.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/overlays.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/responsive.css",
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/app/controller.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/index.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/index.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/index.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/core/audio.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/core/storage.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/index.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/state.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/engine.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/build.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/economy.js",
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "url": "http://127.0.0.1:8787/src/game/social.js",
         "type": "Script"
       },
       {
@@ -2940,6 +2978,10 @@
       },
       {
         "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/social.js",
         "type": "Script"
       },
       {
@@ -3006,12 +3048,17 @@
         "type": "Document"
       },
       {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/main.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/main.css",
+        "url": "http://127.0.0.1:8787/styles/screens.css",
         "status": 200,
         "type": "Stylesheet"
       },
@@ -3021,22 +3068,17 @@
         "type": "Stylesheet"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/screens.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
         "url": "http://127.0.0.1:8787/styles/hud.css",
         "status": 200,
         "type": "Stylesheet"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
         "status": 200,
         "type": "Stylesheet"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
         "status": 200,
         "type": "Stylesheet"
       },
@@ -3051,12 +3093,7 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/content/index.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "url": "http://127.0.0.1:8787/src/render/index.js",
         "status": 200,
         "type": "Script"
       },
@@ -3066,12 +3103,17 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
         "status": 200,
         "type": "Script"
       },
       {
         "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
         "status": 200,
         "type": "Script"
       },
@@ -3086,17 +3128,17 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/build.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/game/economy.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/social.js",
         "status": 200,
         "type": "Script"
       },
@@ -3106,37 +3148,7 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/content/reactions.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/rooms.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/config.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/towers.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/icons.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "url": "http://127.0.0.1:8787/src/game/result.js",
         "status": 200,
         "type": "Script"
       },
@@ -3146,17 +3158,7 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/ui/kit.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/hud.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "url": "http://127.0.0.1:8787/src/render/room.js",
         "status": 200,
         "type": "Script"
       },
@@ -3181,22 +3183,62 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/render/fx.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
         "status": 200,
         "type": "Script"
       },
@@ -3206,12 +3248,7 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/roommates.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "url": "http://127.0.0.1:8787/src/content/social.js",
         "status": 200,
         "type": "Script"
       },
@@ -3221,12 +3258,22 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
         "status": 200,
         "type": "Script"
       },
@@ -3236,12 +3283,22 @@
         "type": "Script"
       },
       {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/game/reactions.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
         "status": 200,
         "type": "Script"
       },
@@ -3256,12 +3313,292 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "status": 200,
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/social.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/social.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
         "status": 200,
         "type": "Script"
       },
       {
         "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
         "status": 200,
         "type": "Script"
       },
@@ -3301,12 +3638,12 @@
         "type": "Stylesheet"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
         "status": 200,
         "type": "Stylesheet"
       },
       {
-        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "url": "http://127.0.0.1:8787/styles/hud.css",
         "status": 200,
         "type": "Stylesheet"
       },
@@ -3336,11 +3673,6 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/core/audio.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/ui/index.js",
         "status": 200,
         "type": "Script"
@@ -3351,7 +3683,17 @@
         "type": "Script"
       },
       {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/game/state.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/social.js",
         "status": 200,
         "type": "Script"
       },
@@ -3366,12 +3708,22 @@
         "type": "Script"
       },
       {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/game/build.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
         "status": 200,
         "type": "Script"
       },
@@ -3386,32 +3738,12 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/themes.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/room.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/layout.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/render/buildings.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "url": "http://127.0.0.1:8787/src/render/room.js",
         "status": 200,
         "type": "Script"
       },
@@ -3421,272 +3753,12 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/ui/icons.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/screens.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/hud.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/kit.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/rooms.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/config.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/reactions.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/towers.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/fx.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/internals.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/reactions.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/geometry.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/devices.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/rng.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/pressure.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/combat.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/roommates.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/paint.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/iso.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/dock.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E",
-        "status": 200,
-        "type": "Image"
-      },
-      {
-        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E",
-        "status": 200,
-        "type": "Image"
-      },
-      {
-        "url": "http://127.0.0.1:8787/",
-        "status": 200,
-        "type": "Document"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/main.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/main.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/screens.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/base.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/overlays.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/hud.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/styles/responsive.css",
-        "status": 200,
-        "type": "Stylesheet"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/app/controller.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/index.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/index.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/index.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/core/audio.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/core/storage.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/index.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/state.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/engine.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/build.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/economy.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/damage.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/result.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/layout.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/util.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/themes.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/buildings.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/render/nightmares.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/room.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
         "status": 200,
         "type": "Script"
       },
@@ -3701,22 +3773,12 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
         "status": 200,
         "type": "Script"
       },
       {
         "url": "http://127.0.0.1:8787/src/ui/hud.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/ui/kit.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/content/reactions.js",
         "status": 200,
         "type": "Script"
       },
@@ -3741,22 +3803,17 @@
         "type": "Script"
       },
       {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/social.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
         "url": "http://127.0.0.1:8787/src/content/towers.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/rng.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/pressure.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
-        "url": "http://127.0.0.1:8787/src/game/internals.js",
         "status": 200,
         "type": "Script"
       },
@@ -3766,27 +3823,27 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/geometry.js",
-        "status": 200,
-        "type": "Script"
-      },
-      {
         "url": "http://127.0.0.1:8787/src/game/reactions.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
         "status": 200,
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
         "status": 200,
         "type": "Script"
       },
@@ -3796,7 +3853,17 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
         "status": 200,
         "type": "Script"
       },
@@ -3806,12 +3873,17 @@
         "type": "Script"
       },
       {
-        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
         "status": 200,
         "type": "Script"
       },
       {
         "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
         "status": 200,
         "type": "Script"
       },
@@ -3831,7 +3903,7 @@
   "notes": [
     {
       "phase": "P0 菜单与基础加载",
-      "text": "favicon 请求数：0（内联 data URI 应为 0）；资源请求数 53"
+      "text": "favicon 请求数：0（内联 data URI 应为 0）；资源请求数 55"
     },
     {
       "phase": "P0 菜单与基础加载",
@@ -3870,7 +3942,7 @@
       "source": "rendering"
     }
   ],
-  "finishedAt": "2026-10-25T05:55:49.676Z",
+  "finishedAt": "2026-10-25T06:29:12.328Z",
   "summary": {
     "total": 187,
     "passed": 187,

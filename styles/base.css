@@ -888,6 +888,13 @@
   color: var(--ink-text-dim);
 }
 
+.hd-ui .hd-screen-host {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .hd-ui .hd-fatal {
   position: absolute;
   inset: 0;
@@ -1035,3 +1042,54 @@
 
 /* 读屏/可测试文本：视觉隐藏但保留在可访问树和 textContent 中。 */
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+
+/* ── v2.1：每日守夜 / 值班记录 / 舍友网络 ───────────────────── */
+
+.hd-ui .btn--daily {
+  border-color: rgba(99, 224, 194, 0.5);
+  background: linear-gradient(180deg, rgba(23, 70, 62, 0.92), rgba(10, 34, 30, 0.94));
+  color: #c9f7ea;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 24px rgba(99, 224, 194, 0.1);
+}
+
+.hd-ui .btn--daily:hover {
+  border-color: var(--aqua);
+  color: #e6fff9;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 30px rgba(99, 224, 194, 0.2);
+}
+
+.hd-ui .btn--daily .btn__ico { color: var(--aqua); }
+
+.hd-ui .paper .btn--daily {
+  border-color: rgba(20, 107, 92, 0.42);
+  background: rgba(20, 107, 92, 0.12);
+  color: #146b5c;
+  box-shadow: none;
+}
+
+.hd-ui .paper .btn--daily:hover { color: #0e584c; border-color: rgba(20, 107, 92, 0.7); }
+
+.hd-ui .daily-mod-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid color-mix(in srgb, var(--mod-accent, var(--aqua)) 38%, transparent);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--mod-accent, var(--aqua)) 9%, transparent);
+  color: color-mix(in srgb, var(--mod-accent, var(--aqua)) 78%, var(--paper));
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hd-ui .paper .daily-mod-mini {
+  color: color-mix(in srgb, var(--mod-accent, var(--aqua)) 62%, #2b231a);
+  border-color: color-mix(in srgb, var(--mod-accent, var(--aqua)) 45%, rgba(64, 48, 26, 0.2));
+  background: color-mix(in srgb, var(--mod-accent, var(--aqua)) 12%, transparent);
+}

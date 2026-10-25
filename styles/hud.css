@@ -1594,3 +1594,308 @@
   background: rgba(4, 7, 12, 0.45);
   pointer-events: auto;
 }
+
+/* ── v2.1：每日标记 / 无线电求援 / 亲密度 / 遗物 ─────────────── */
+
+.hd-ui .hud-daily-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin-top: 1px;
+}
+
+.hd-ui .hud-daily-stamp {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 17px;
+  padding: 0 5px;
+  border: 1px solid rgba(99, 224, 194, 0.42);
+  border-radius: 2px;
+  background: rgba(99, 224, 194, 0.08);
+  color: var(--aqua);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.hd-ui .hud-daily-mods {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.hd-ui .hud-daily-mod {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  padding: 0 5px;
+  border: 1px dashed color-mix(in srgb, var(--mod-accent, var(--lamp)) 36%, transparent);
+  border-radius: 2px;
+  color: color-mix(in srgb, var(--mod-accent, var(--lamp)) 80%, var(--paper));
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 求援卡 */
+.hd-ui .radio-slot {
+  flex: none;
+  padding: 0 6px 5px;
+}
+
+.hd-ui .radio-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px 7px;
+  border: 1px solid rgba(255, 199, 90, 0.26);
+  border-left: 3px solid var(--radio-accent, var(--lamp));
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgba(28, 34, 32, 0.96), rgba(12, 20, 20, 0.96));
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+  animation: hd-pop-in 0.18s ease both;
+}
+
+.hd-ui .radio-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--radio-accent, var(--lamp)) 10%, transparent), transparent 60%);
+}
+
+.hd-ui .radio-card > * { position: relative; }
+
+.hd-ui .radio-card.is-urgent {
+  border-color: rgba(255, 107, 87, 0.5);
+  border-left-color: var(--coral);
+}
+
+.hd-ui .radio-card__head {
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr) 40px auto;
+  align-items: center;
+  gap: 5px;
+}
+
+.hd-ui .radio-card__ico {
+  display: inline-flex;
+  color: var(--lamp);
+  animation: hd-pulse 1.8s ease-in-out infinite;
+}
+
+.hd-ui .radio-card__title { display: flex; flex-direction: column; min-width: 0; }
+.hd-ui .radio-card__title b {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--paper);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hd-ui .radio-card__title small {
+  font-size: 12px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .radio-card__time {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.hd-ui .radio-card__time i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--radio-accent, var(--lamp));
+  transition: width 0.2s linear;
+}
+
+.hd-ui .radio-card__secs {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--lamp);
+  font-variant-numeric: tabular-nums;
+}
+
+.hd-ui .radio-card.is-urgent .radio-card__secs { color: var(--coral); }
+
+.hd-ui .radio-card__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.hd-ui .radio-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-width: 0;
+}
+
+.hd-ui .radio-card__cost .cost { font-size: 12px; }
+.hd-ui .radio-card__reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--aqua);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .radio-card__actions { display: flex; gap: 4px; }
+.hd-ui .radio-card__actions .btn { flex: 1 1 0; min-width: 0; }
+
+/* 舍友 trait / bond */
+.hd-ui .mate__line { min-width: 0; }
+.hd-ui .mate__line b { flex: none; }
+
+.hd-ui .mate__trait {
+  flex: none;
+  max-width: 58px;
+  padding: 0 4px;
+  border: 1px dashed rgba(243, 231, 207, 0.22);
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .mate__bond {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 1px;
+}
+
+.hd-ui .bond-pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(243, 231, 207, 0.16);
+}
+
+.hd-ui .bond-pip.is-on {
+  background: var(--aqua);
+  box-shadow: 0 0 5px rgba(99, 224, 194, 0.55);
+}
+
+.hd-ui .mate__state { margin-left: auto; }
+
+.hd-ui .mate.is-caller {
+  background: rgba(255, 199, 90, 0.07);
+  border-left-color: var(--lamp);
+}
+
+.hd-ui .mate.is-caller .mate__lamp {
+  animation: hd-pulse 1.1s ease-in-out infinite;
+}
+
+/* 遗物回收 */
+.hd-ui .mate__relic {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  padding-top: 2px;
+  border-top: 1px dotted rgba(243, 231, 207, 0.12);
+  min-width: 0;
+}
+
+.hd-ui .mate__relic-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--relic-color, var(--aqua));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hd-ui .mate__relic-btn {
+  flex: none;
+  min-height: 23px;
+  padding: 0 5px;
+  gap: 3px;
+  font-size: 12px;
+}
+
+.hd-ui .mate__relic-btn .cost {
+  font-size: 11px;
+  gap: 2px;
+}
+
+/* 小屏时左栏 / 抽屉允许滚动，避免求援卡被裁掉 */
+@media (max-width: 1024px), (max-height: 640px) {
+  .hd-ui .hud-left {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .hd-ui .hud-left .panel--mates { flex: none; }
+  .hd-ui .hud-left .panel--events { flex: none; min-height: 180px; }
+}
+
+/* v2.1：低矮桌面下求援卡 / 舍友行更紧凑，给事件流留出空间 */
+@media (max-height: 820px) {
+  .hd-ui .radio-slot { padding: 0 5px 3px; }
+  .hd-ui .radio-card { padding: 4px 6px 5px; gap: 2px; }
+  .hd-ui .radio-card__text { -webkit-line-clamp: 1; }
+  .hd-ui .radio-card__actions .btn { min-height: 22px; font-size: 12px; padding: 0 5px; }
+  .hd-ui .radio-card__meta .cost { font-size: 11px; }
+  .hd-ui .radio-card__text { line-height: 1.4; }
+  .hd-ui .radio-card__title b { font-size: 12px; }
+  .hd-ui .mate { padding: 2px 5px; }
+  .hd-ui .mate__body { gap: 1px; }
+  .hd-ui .mate-list { gap: 0; }
+  .hd-ui .mate__line b { font-size: 12px; }
+  .hd-ui .mate__door { height: 2px; }
+  .hd-ui .mate__relic { padding-top: 1px; margin-top: 1px; }
+  .hd-ui .mate__relic-btn { min-height: 21px; }
+}
+
+/* 小屏折叠时用抽屉按钮上的脉冲点提示求援 */
+.hd-ui .hud-drawer-btn { position: relative; }
+.hd-ui .hud-drawer-btn.has-alert::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 0 0 2px rgba(255, 107, 87, 0.18), 0 0 8px rgba(255, 107, 87, 0.7);
+  animation: hd-pulse 1.1s ease-in-out infinite;
+}

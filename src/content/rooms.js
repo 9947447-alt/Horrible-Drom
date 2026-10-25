@@ -97,11 +97,11 @@ export const ROOMS = [
 export const ROOM_LOOKUP = Object.fromEntries(ROOMS.map((room) => [room.id, room]));
 
 export const ROOMMATE_NAMES = [
-  { name: '阿凯', color: '#ffb45e', note: '经济流' },
-  { name: '小满', color: '#63e0c2', note: '炮台流' },
-  { name: '老白', color: '#9ecbff', note: '龟缩流' },
-  { name: '雨桐', color: '#e7a37a', note: '反应流' },
-  { name: '六六', color: '#c7a8ff', note: '运气流' },
+  { name: '阿凯', color: '#ffb45e', note: '经济流', trait: 'economist' },
+  { name: '小满', color: '#63e0c2', note: '炮台流', trait: 'gunner' },
+  { name: '老白', color: '#9ecbff', note: '龟缩流', trait: 'turtle' },
+  { name: '雨桐', color: '#e7a37a', note: '反应流', trait: 'chemist' },
+  { name: '六六', color: '#c7a8ff', note: '运气流', trait: 'lucky' },
 ];
 
 export function getRoom(roomId) {

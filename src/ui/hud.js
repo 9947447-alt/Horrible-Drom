@@ -3,6 +3,7 @@
 
 import {
   CONFIG, getBedUpgradeCost, getDoorUpgradeCost, REACTIONS, ROOMMATE_NAMES,
+  ROOMMATE_TRAITS, DAILY_LOOKUP, getDailyPlan,
   getAcidStage, getBuildDef, getNightmare,
 } from '../content/index.js';
 import { icon } from './icons.js';
@@ -91,6 +92,10 @@ function buildHudSkeleton() {
           <span class="hud-dot">·</span>
           <span class="hud-diff" data-ref="diffLabel">普通</span>
         </div>
+        <div class="hud-daily-row" data-ref="dailyRow" hidden>
+          <span class="hud-daily-stamp">${icon('calendar', '', 12)} 每日</span>
+          <span class="hud-daily-mods" data-ref="dailyMods"></span>
+        </div>
       </div>
 
       <div class="hud-nightmares" data-ref="nightmareWrap" aria-live="off"></div>
@@ -117,7 +122,7 @@ function buildHudSkeleton() {
           <button type="button" class="iconbtn" data-act="hud.pause" aria-label="暂停" data-tip="暂停（Space）" data-ref="pauseBtn">${icon('pause', '', 18)}</button>
         </div>
         <div class="hud-drawers">
-          <button type="button" class="iconbtn iconbtn--sm" data-act="hud.toggleLeft" aria-label="显示舍友与事件" data-tip="舍友 / 事件">${icon('users', '', 16)}</button>
+          <button type="button" class="iconbtn iconbtn--sm hud-drawer-btn" data-act="hud.toggleLeft" data-ref="leftDrawerBtn" aria-label="显示舍友与事件" data-tip="舍友 / 事件">${icon('users', '', 16)}</button>
           <button type="button" class="iconbtn iconbtn--sm" data-act="hud.toggleRight" aria-label="显示设施与反应" data-tip="设施 / 反应">${icon('flask', '', 16)}</button>
         </div>
       </div>
@@ -137,7 +142,8 @@ function buildHudSkeleton() {
           <span class="panel__meta" data-ref="mateCount">—</span>
         </div>
         <ul class="mate-list" data-ref="mateList"></ul>
-        <div class="panel__foot"><span>熄灯后互相照应</span><span class="panel__foot-mark">NIGHT</span></div>
+        <div class="radio-slot" data-ref="radioSlot" hidden></div>
+        <div class="panel__foot" data-ref="matesFoot"><span>熄灯后互相照应</span><span class="panel__foot-mark">NIGHT</span></div>
       </section>
       <section class="panel panel--events">
         <div class="panel__head">
@@ -208,6 +214,9 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
   let lastNightmareKey = '';
   let nightmareRefs = [];
   let mateRefs = [];
+  let radioRefs = null;
+  let radioKey = '';
+  let lastDailyPlanKey = '';
   let lastPhase = '';
   let lastBuildModeKey = '';
   let mobileHintDismissed = false;
@@ -246,13 +255,27 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
       case 'hud.pause': if (typeof togglePause === 'function') togglePause(); break;
       case 'hud.codex': if (typeof openOverlay === 'function') openOverlay('help', 'nightmares'); break;
       case 'hud.settings': if (typeof openOverlay === 'function') openOverlay('settings'); break;
+      case 'hud.supportRequest': call('answerRoommateRequest', [true]); break;
+      case 'hud.ignoreRequest': call('answerRoommateRequest', [false]); break;
+      case 'hud.collectRelic': call('collectRoommateRelic', [node.getAttribute('data-id')]); break;
       case 'hud.bedUpgrade': call('upgradeBed'); break;
       case 'hud.doorUpgrade': call('upgradeDoor'); break;
       case 'hud.repair': call('repairDoor'); break;
       case 'hud.shower': call('useShower'); break;
       case 'hud.cancelBuild': call('cancelBuild'); break;
       case 'hud.deselect': call('selectBuilding', [null]); break;
-      case 'hud.toggleLeft': el.classList.toggle('hud--left-open'); break;
+      case 'hud.toggleLeft': {
+        const opened = el.classList.toggle('hud--left-open');
+        if (opened) {
+          if (refs.leftDrawerBtn) refs.leftDrawerBtn.classList.remove('has-alert');
+          if (refs.radioSlot && !refs.radioSlot.hidden) {
+            requestAnimationFrame(() => {
+              try { refs.radioSlot.scrollIntoView({ block: 'center' }); } catch (err) { /* noop */ }
+            });
+          }
+        }
+        break;
+      }
       case 'hud.toggleRight': el.classList.toggle('hud--right-open'); break;
       case 'hud.closeDrawers':
         el.classList.remove('hud--left-open', 'hud--right-open');
@@ -439,10 +462,139 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
     });
   }
 
-  // ---------- 舍友 ----------
+  // ---------- 舍友 / 无线电求援 / 遗物 ----------
+  const RADIO_WINDOW = 18;
+  const TRAIT_DEFS = ROOMMATE_TRAITS || {};
+
+  function bondPips(bond) {
+    const n = Math.max(0, Math.min(3, Number(bond) || 0));
+    let out = '<span class="mate__bond" data-tip="亲密度 ' + n + '/3">';
+    for (let i = 1; i <= 3; i += 1) out += `<i class="bond-pip${i <= n ? ' is-on' : ''}"></i>`;
+    out += '</span>';
+    return out;
+  }
+
+  function relicCost(mate) {
+    const relic = mate && mate.relic;
+    if (!relic) return 0;
+    return Number(relic.cost && relic.cost.reagent) || 0;
+  }
+
+  function paintDailyPlan(s) {
+    const row = refs.dailyRow;
+    if (!row) return;
+    let plan = s && (s.mode === 'daily' || s.daily) ? s.daily : null;
+    if (!plan && s && s.mode === 'daily') {
+      try { plan = getDailyPlan(); } catch (err) { plan = null; }
+    }
+    if (!plan || !Array.isArray(plan.modifierIds)) {
+      row.hidden = true;
+      if (lastDailyPlanKey) { lastDailyPlanKey = ''; if (refs.dailyMods) refs.dailyMods.innerHTML = ''; }
+      return;
+    }
+    row.hidden = false;
+    const key = `${plan.key || ''}|${plan.modifierIds.join(',')}`;
+    if (key === lastDailyPlanKey) return;
+    lastDailyPlanKey = key;
+    if (!refs.dailyMods) return;
+    refs.dailyMods.innerHTML = plan.modifierIds.map((id) => {
+      const mod = DAILY_LOOKUP[id];
+      if (!mod) return '';
+      return `<span class="hud-daily-mod" style="--mod-accent:${esc(mod.accent)}" data-tip="${esc(mod.name)} · ${esc(mod.desc)}">${esc(mod.name)}</span>`;
+    }).join('');
+  }
+
+  function buildRadioCard(owner, request) {
+    const slot = refs.radioSlot;
+    if (!slot) return null;
+    const trait = TRAIT_DEFS[owner.trait];
+    const ownerName = owner.name || '舍友';
+    slot.innerHTML = `
+      <div class="radio-card" style="--radio-accent:${esc(owner.color || '#ffc75a')}">
+        <div class="radio-card__head">
+          <span class="radio-card__ico">${icon('radio', '', 15)}</span>
+          <span class="radio-card__title">
+            <b>${esc(ownerName)} · 求援</b>
+            <small>${esc(request.title || (trait && trait.request.title) || '无线电求援')}</small>
+          </span>
+          <span class="radio-card__time"><i data-ref="radioTimerFill"></i></span>
+          <b class="radio-card__secs" data-ref="radioSecs">—</b>
+        </div>
+        <p class="radio-card__text" data-tip="${esc(request.text || '')}">${esc(request.text || '')}</p>
+        <div class="radio-card__meta">
+          <span class="radio-card__cost">${costHtml(request.cost || {})}</span>
+          <span class="radio-card__reward">${icon('spark', '', 12)} ${esc(request.rewardLabel || '谢礼')}</span>
+        </div>
+        <div class="radio-card__actions">
+          <button type="button" class="btn btn--primary btn--xs radio-card__support" data-act="hud.supportRequest">${icon('bond', 'btn__ico', 13)}<span class="btn__label">支援</span></button>
+          <button type="button" class="btn btn--quiet btn--xs radio-card__ignore" data-act="hud.ignoreRequest">忽略</button>
+        </div>
+      </div>`;
+    radioRefs = {
+      card: slot.querySelector('.radio-card'),
+      support: slot.querySelector('.radio-card__support'),
+      secs: slot.querySelector('[data-ref="radioSecs"]'),
+      fill: slot.querySelector('[data-ref="radioTimerFill"]'),
+      text: slot.querySelector('.radio-card__text'),
+    };
+    return radioRefs;
+  }
+
+  function paintRadio(s) {
+    const slot = refs.radioSlot;
+    if (!slot) return;
+    const list = (s.roommates || []).filter(Boolean);
+    const owner = list.find((mate) => mate.request && mate.alive !== false);
+    const request = owner && owner.request;
+    if (!request) {
+      if (!slot.hidden) slot.hidden = true;
+      if (radioRefs) { slot.innerHTML = ''; radioRefs = null; radioKey = ''; }
+      if (refs.matesFoot) refs.matesFoot.hidden = false;
+      if (refs.leftDrawerBtn) refs.leftDrawerBtn.classList.remove('has-alert');
+      return;
+    }
+    const now = num(s.now, 0);
+    const remain = Math.max(0, Math.ceil(num(request.expiresAt, 0) - now));
+    if (remain <= 0) {
+      if (!slot.hidden) slot.hidden = true;
+      if (refs.matesFoot) refs.matesFoot.hidden = false;
+      if (refs.leftDrawerBtn) refs.leftDrawerBtn.classList.remove('has-alert');
+      return;
+    }
+    const key = `${owner.id || owner.roomId}|${request.id || request.title}`;
+    if (!radioRefs || key !== radioKey) {
+      radioKey = key;
+      buildRadioCard(owner, request);
+    }
+    slot.hidden = false;
+    if (refs.matesFoot) refs.matesFoot.hidden = true;
+    if (refs.leftDrawerBtn) {
+      refs.leftDrawerBtn.classList.add('has-alert');
+      refs.leftDrawerBtn.setAttribute('data-tip', '舍友 / 事件 · 有求援');
+    }
+    if (!radioRefs) return;
+    if (radioRefs.secs) setText(radioRefs.secs, `${remain}s`);
+    if (radioRefs.fill) radioRefs.fill.style.width = `${clamp(remain / RADIO_WINDOW) * 100}%`;
+    if (radioRefs.card) {
+      radioRefs.card.classList.toggle('is-urgent', remain <= 5);
+      radioRefs.card.style.setProperty('--radio-accent', owner.color || '#ffc75a');
+    }
+    const reason = disabledReasonForResource(s, request.cost || {});
+    if (radioRefs.support) {
+      radioRefs.support.setAttribute('data-clean-tip', '接受求援：扣除资源，提升亲密度并获得回报');
+      setDisabled(radioRefs.support, reason);
+    }
+  }
+
   function paintRoommates(s) {
     const list = (s.roommates || []).filter(Boolean);
-    const key = list.length ? list.map((r) => `${r.id || r.roomId}`).join('|') : 'empty';
+    const requestOwnerId = (list.find((mate) => mate.request) || {}).id || '';
+    const key = list.length
+      ? list.map((r) => [
+        r.id || r.roomId, r.alive ? 1 : 0, r.trait || '', r.bond == null ? '' : r.bond,
+        r.request ? (r.request.id || r.request.title) : '', r.relic ? (r.relic.id || r.relic.label) : '',
+      ].join(':')).join('|')
+      : 'empty';
     if (key !== lastMateKey) {
       lastMateKey = key;
       const ul = refs.mateList;
@@ -450,7 +602,6 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
       ul.innerHTML = '';
       mateRefs = [];
       if (!list.length) {
-        // 未同步时给出占位灯态，避免空面板。
         ROOMMATE_NAMES.forEach((meta) => {
           const li = document.createElement('li');
           li.className = 'mate mate--ghost';
@@ -466,15 +617,33 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
           const li = document.createElement('li');
           li.className = 'mate';
           li.style.setProperty('--mate-color', mate.color || '#ffc75a');
+          const alive = Boolean(mate.alive);
+          const trait = TRAIT_DEFS[mate.trait];
+          const traitName = trait ? trait.name : (mate.note || '');
+          const relic = mate.relic;
+          const relicLine = (!alive && relic) ? `
+            <span class="mate__relic" style="--relic-color:${esc(relic.color || '#63e0c2')}">
+              <span class="mate__relic-name" data-tip="${esc(relic.label || '遗物')} · 回收获得随机奖励">${icon('archive', '', 12)}${esc(relic.label || '遗物')}</span>
+              <button type="button" class="btn btn--ghost btn--xs mate__relic-btn" data-act="hud.collectRelic" data-id="${esc(mate.id || '')}" data-clean-tip="回收遗物">
+                ${icon('archive', 'btn__ico', 12)}<span class="btn__label">回收</span><span class="cost cost--reagent" data-ref="relicCost">${icon('reagent', 'cost__ico', 12)}${relicCost(mate)}</span>
+              </button>
+            </span>` : '';
           li.innerHTML = `
             <span class="mate__lamp" aria-hidden="true"></span>
             <span class="mate__body">
-              <span class="mate__line"><b>${esc(mate.name || '舍友')}</b><span class="mate__state"></span></span>
-              <span class="mate__door"><i></i></span>
+              <span class="mate__line">
+                <b>${esc(mate.name || '舍友')}</b>
+                ${traitName ? `<span class="mate__trait" data-tip="${esc(trait ? trait.desc : '舍友性格')}">${esc(traitName)}</span>` : ''}
+                ${bondPips(mate.bond)}
+                <span class="mate__state"></span>
+              </span>
+              ${alive ? '<span class="mate__door"><i></i></span>' : ''}
+              ${relicLine}
             </span>`;
           li._bar = li.querySelector('.mate__door i');
           li._state = li.querySelector('.mate__state');
           li._lamp = li.querySelector('.mate__lamp');
+          li._relicBtn = li.querySelector('.mate__relic-btn');
           ul.appendChild(li);
           mateRefs.push({ el: li, mate });
         });
@@ -484,17 +653,26 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
     mateRefs.forEach(({ el: row }, index) => {
       const fresh = list[index];
       const alive = fresh ? Boolean(fresh.alive) : false;
+      const isCaller = Boolean(fresh && requestOwnerId && (fresh.id === requestOwnerId));
       row.classList.toggle('is-dead', !alive);
       row.classList.toggle('is-target', alive && targets.has(fresh && fresh.roomId));
+      row.classList.toggle('is-caller', isCaller);
       const max = Math.max(1, num(fresh && fresh.maxDoorHp, 1));
       const hp = clamp(num(fresh && fresh.doorHp, 0) / max);
       if (row._bar) row._bar.style.width = `${(hp * 100).toFixed(1)}%`;
       if (row._state) {
         let label = alive ? `门 ${Math.round(hp * 100)}%` : '已淘汰';
         if (alive && targets.has(fresh && fresh.roomId)) label = '被追击';
+        if (isCaller) label = '求援中';
         setText(row._state, label);
       }
       if (row._lamp) row._lamp.classList.toggle('is-lit', alive);
+      if (row._relicBtn) {
+        const cost = { reagent: relicCost(fresh) };
+        const reason = disabledReasonForResource(s, cost);
+        row._relicBtn.setAttribute('data-clean-tip', '回收遗物：获得随机奖励');
+        setDisabled(row._relicBtn, reason);
+      }
     });
     if (list.length && refs.mateCount) {
       const aliveCount = list.filter((r) => r.alive).length;
@@ -722,8 +900,10 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
     if (!nextState || typeof nextState !== 'object') return;
     state = nextState;
     paintTop(state);
+    paintDailyPlan(state);
     paintNightmares(state);
     paintRoommates(state);
+    paintRadio(state);
     paintEvents(state);
     paintFacilities(state);
     paintReactions(state);

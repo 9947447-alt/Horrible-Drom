@@ -143,6 +143,20 @@ export const DIFFICULTIES = {
     accent: '#ff6b57',
     targetWin: '30%–45%',
   },
+  abyss: {
+    id: 'abyss',
+    name: '深渊',
+    sub: '终焉前夜',
+    desc: '第二只梦魇在 04:00 出现，压力更高、资源更紧；为已经赢过噩梦的人准备的长夜。',
+    hpMult: 1.75,
+    dmgMult: 1.46,
+    economyMult: 0.87,
+    dawnSeconds: 630,
+    secondary: true,
+    secondaryAt: 420,
+    accent: '#b33a3a',
+    targetWin: '20%–30%',
+  },
 };
 
 
