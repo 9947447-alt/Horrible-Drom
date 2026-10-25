@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b111b" />
+  <meta name="description" content="熄灯之后：反应 —— 化学幻想宿舍生存塔防。躺平冷凝梦能，用酸与反应链把噩梦滴定到天亮。" />
+  <title>熄灯之后：反应 / Horrible Dorm: Reaction</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    :root { color-scheme: dark; background: #0b111b; }
+    html, body { margin: 0; min-height: 100%; background: #0b111b; color: #f3e7cf; overflow: hidden; }
+    #boot-screen {
+      position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+      background:
+        radial-gradient(circle at 62% 34%, rgba(255,199,90,.10), transparent 32%),
+        radial-gradient(circle at 30% 70%, rgba(99,224,194,.06), transparent 35%),
+        #0b111b;
+      transition: opacity .45s ease, visibility .45s ease;
+    }
+    #boot-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .boot-card { text-align: center; padding: 32px; max-width: 520px; }
+    .boot-kicker { font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .32em; color: #63e0c2; text-transform: uppercase; }
+    .boot-title { margin: 16px 0 8px; font: 800 clamp(30px, 5vw, 52px)/1.15 "Hannotate SC", "Yuanti SC", "PingFang SC", sans-serif; letter-spacing: .04em; color: #f3e7cf; }
+    .boot-sub { margin: 0; font: 400 13px/1.8 "PingFang SC", "Hiragino Sans GB", sans-serif; color: #8d9aa8; letter-spacing: .12em; }
+    .boot-dots { margin-top: 26px; display: inline-flex; gap: 7px; }
+    .boot-dots i { width: 5px; height: 5px; border-radius: 50%; background: #ffc75a; animation: bootpulse 1.2s ease-in-out infinite; }
+    .boot-dots i:nth-child(2) { animation-delay: .16s; background: #63e0c2; }
+    .boot-dots i:nth-child(3) { animation-delay: .32s; background: #ff6b57; }
+    @keyframes bootpulse { 0%, 100% { opacity: .18; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+    @media (prefers-reduced-motion: reduce) { .boot-dots i { animation: none; opacity: .8; } }
+    #app-shell { position: fixed; inset: 0; overflow: hidden; }
+    #game-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #0b111b; touch-action: none; }
+    #ui { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+    #ui > * { pointer-events: auto; }
+    .boot-error { margin-top: 18px; font: 12px/1.7 ui-monospace, Menlo, monospace; color: #ff6b57; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div id="app-shell">
+    <canvas id="game-canvas" aria-hidden="true"></canvas>
+    <div id="ui"></div>
+  </div>
+  <div id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-kicker">CHEMISTRY DORM / 00:00</div>
+      <h1 class="boot-title">熄灯之后：反应</h1>
+      <p class="boot-sub">正在冷凝梦能，请稍候……</p>
+      <div class="boot-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="boot-error" id="boot-error" hidden></div>
+    </div>
+  </div>
+  <noscript>本游戏需要启用 JavaScript。</noscript>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
