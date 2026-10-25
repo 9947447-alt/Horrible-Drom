@@ -79,7 +79,7 @@ export const NIGHTMARES = [
     accent: '#d7e36b',
     desc: '一团穿旧实验服的黄绿色气体，防毒面具后面没有脸。它让你修不了门，也看不清门。',
     mechanic: '锁维修 · 腐蚀云',
-    weaknesses: ['wind', 'heat'],
+    weaknesses: ['wind', 'electric'],
     resistances: ['corrosion'],
     hpMult: 1.0,
     dmgMult: 1.0,
