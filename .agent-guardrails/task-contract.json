@@ -1,0 +1,141 @@
+{
+  "acceptanceCriteria": [],
+  "acknowledgedSkips": [],
+  "allowedChangeTypes": [
+    "docs",
+    "guardrails-internal",
+    "other"
+  ],
+  "allowedPaths": [
+    ".nojekyll",
+    "README.md",
+    "AGENTS.md",
+    "docs/PROJECT_STATE.md",
+    "docs/PR_CHECKLIST.md",
+    "docs/RELEASE-1.0.md",
+    "docs/RELEASE-1.1.md",
+    ".agent-guardrails/"
+  ],
+  "assumptions": [],
+  "autoFilledFields": [
+    "evidence paths",
+    "security requirements",
+    "dependency requirements",
+    "performance requirements",
+    "understanding requirements",
+    "continuity requirements"
+  ],
+  "continuityRequirements": [
+    "Mention reuse targets and any deliberate continuity break in evidence."
+  ],
+  "createdAt": "1792911081086",
+  "dependencyRequirements": [
+    "Mention new or upgraded packages, lockfile changes, and dependency impact explicitly."
+  ],
+  "evidencePaths": [
+    ".agent-guardrails/evidence/current-task.md"
+  ],
+  "expectedBehaviorChanges": [],
+  "expectedBoundaryExceptions": [],
+  "expectedConcurrencyImpact": "",
+  "expectedLoadSensitivePaths": [],
+  "expectedPublicSurfaceChanges": [],
+  "expectedTestTargets": [],
+  "intendedFiles": [
+    ".nojekyll",
+    "README.md",
+    "AGENTS.md",
+    "docs/PROJECT_STATE.md",
+    "docs/PR_CHECKLIST.md",
+    "docs/RELEASE-1.0.md",
+    "docs/RELEASE-1.1.md",
+    ".agent-guardrails/config.json",
+    ".agent-guardrails/task-contract.json",
+    ".agent-guardrails/evidence/current-task.md"
+  ],
+  "intendedSymbols": [],
+  "nfrRequirements": [],
+  "nonGoals": [],
+  "observabilityRequirements": [],
+  "patternSummary": "",
+  "performanceRequirements": [
+    "Mention page load, render, or asset size impact in evidence."
+  ],
+  "preset": "static-frontend",
+  "productionProfile": "",
+  "protectedPaths": [],
+  "requiredCommands": [
+    "QA_URL=http://127.0.0.1:8788 npm test",
+    "npm run check",
+    "node src/render/selfcheck.mjs"
+  ],
+  "requiresReviewNotes": false,
+  "riskJustification": "",
+  "riskLevel": "standard",
+  "rollbackNotes": "",
+  "schemaVersion": 3,
+  "securityRequirements": [
+    "Mention auth, secrets, permissions, and sensitive-data handling explicitly."
+  ],
+  "session": {
+    "archaeologyNotes": [],
+    "autoFilledFields": [
+      "evidence paths",
+      "security requirements",
+      "dependency requirements",
+      "performance requirements",
+      "understanding requirements",
+      "continuity requirements"
+    ],
+    "changedFiles": [],
+    "contractSource": "preset-defaults",
+    "createdAt": "1792911081086",
+    "evidencePathSuggested": ".agent-guardrails/evidence/current-task.md",
+    "finishCheckHints": [
+      "Report the commands you actually ran: QA_URL=http://127.0.0.1:8788 npm test, npm run check, node src/render/selfcheck.mjs",
+      "Keep the evidence note current: .agent-guardrails/evidence/current-task.md",
+      "Finish with npx agent-guardrails check --review before handing off or merging."
+    ],
+    "nextActions": [
+      "Implement the smallest change that fits the contract.",
+      "Run required commands: QA_URL=http://127.0.0.1:8788 npm test, npm run check, node src/render/selfcheck.mjs",
+      "Update evidence: .agent-guardrails/evidence/current-task.md",
+      "Run npx agent-guardrails check --review before completing the task."
+    ],
+    "repoRoot": "/Users/a0000/Developer/Horrible-Drom-release-1.1",
+    "requiredCommandsSuggested": [
+      "QA_URL=http://127.0.0.1:8788 npm test",
+      "npm run check",
+      "node src/render/selfcheck.mjs"
+    ],
+    "riskDimensions": {
+      "continuityRequirements": [
+        "Mention reuse targets and any deliberate continuity break in evidence."
+      ],
+      "dependencyRequirements": [
+        "Mention new or upgraded packages, lockfile changes, and dependency impact explicitly."
+      ],
+      "performanceRequirements": [
+        "Mention page load, render, or asset size impact in evidence."
+      ],
+      "securityRequirements": [
+        "Mention auth, secrets, permissions, and sensitive-data handling explicitly."
+      ],
+      "understandingRequirements": [
+        "Explain the main tradeoffs so future maintainers can follow the change."
+      ]
+    },
+    "riskSignals": [],
+    "selectedFiles": [],
+    "sessionId": "rust-plan-65111-1792911081086",
+    "taskRequest": "Publish v1.1.0 from frozen DS commit e2f979963d3027e8c3f502637d752ca6149e1651, integrating existing hosting/documentation history. Keep src, styles, index.html, package.json and tests byte-identical to DS. Preserve v1.0.0 tag and release/v1.0, deploy release/v1.1 after validation.",
+    "version": 1
+  },
+  "smallestViableChange": "",
+  "task": "Publish v1.1.0 from frozen DS commit e2f979963d3027e8c3f502637d752ca6149e1651, integrating existing hosting/documentation history. Keep src, styles, index.html, package.json and tests byte-identical to DS. Preserve v1.0.0 tag and release/v1.0, deploy release/v1.1 after validation.",
+  "understandingRequirements": [
+    "Explain the main tradeoffs so future maintainers can follow the change."
+  ],
+  "userVisibleEffects": [],
+  "validationProfile": "standard"
+}
