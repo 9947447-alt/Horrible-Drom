@@ -2,6 +2,14 @@
 
 > 化学幻想宿舍生存塔防。躺平冷凝梦能，用酸与反应链把噩梦滴定到天亮。
 
+## 在线试玩与正式版本
+
+- [在线试玩](https://9947447-alt.github.io/Horrible-Drom/)
+- [v1.0.0 正式发布](https://github.com/9947447-alt/Horrible-Drom/releases/tag/v1.0.0)
+- [1.0 发布边界与部署说明](docs/RELEASE-1.0.md)
+
+Pages 从 `release/v1.0` 分支根目录发布。该分支固定为 1.0，后续开发提交不会自动替换线上 1.0。
+
 ## 怎么玩
 
 ```bash
