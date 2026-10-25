@@ -61,13 +61,14 @@ export function finishRun(state, outcome, reason) {
   ];
   state.phase = outcome;
   state.result = { outcome, reason, grade, title, lines };
-  pushEvent(state, outcome === 'victory' ? '天亮了，梦魇退回黑暗。' : '气密门被击破……', outcome);
+  const victoryText = dawnVictory ? '天亮了，梦魇退回黑暗。' : '所有梦魇都被滴定干净了。';
+  pushEvent(state, outcome === 'victory' ? victoryText : '气密门被击破……', outcome);
   pushFx(state, {
     kind: 'skill',
     space: 'screen',
     x: 0,
     y: 0,
-    text: outcome === 'victory' ? '天亮' : '门破',
+    text: outcome === 'victory' ? (dawnVictory ? '天亮' : '滴定') : '门破',
     color: outcome === 'victory' ? '#ffd479' : '#ff6b57',
     ttl: 3,
   });

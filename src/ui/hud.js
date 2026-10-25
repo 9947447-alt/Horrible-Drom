@@ -2,7 +2,7 @@
 // 所有数值来自 state，更新节流由 index.js 控制；这里只做 10Hz 级别的文本/宽度刷新。
 
 import {
-  CONFIG, REACTIONS, ROOMMATE_NAMES,
+  CONFIG, getBedUpgradeCost, getDoorUpgradeCost, REACTIONS, ROOMMATE_NAMES,
   getAcidStage, getBuildDef, getNightmare,
 } from '../content/index.js';
 import { icon } from './icons.js';
@@ -287,7 +287,9 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
         const spawnIn = Math.max(0, num(s.spawnAt, CONFIG.spawnDelay) - num(s.nightElapsed, 0));
         refs.dawnLabel.textContent = `天亮 06:00 · 首魇 ${fmtSpan(spawnIn)}后苏醒`;
       } else if (s.phase === 'victory') {
-        refs.dawnLabel.textContent = '夜魇散尽 · 天亮了';
+        refs.dawnLabel.textContent = /天亮/.test(s.result?.reason || '')
+          ? '夜魇散尽 · 天亮了'
+          : '全部梦魇已被滴定 · 夜色将退';
       } else if (s.phase === 'defeat') {
         refs.dawnLabel.textContent = '气密门已破';
       } else {
@@ -554,7 +556,7 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
     const level = Math.max(1, Math.min(CONFIG.bed.maxLevel, num(player.bedLevel, 1)));
     if (refs.bedLevel) setText(refs.bedLevel, String(level));
     if (refs.bedRate) setText(refs.bedRate, `${fmtRate(bedIncome(s))}/s`);
-    const bedCost = level < CONFIG.bed.maxLevel ? { dream: CONFIG.bed.upgradeCost[level] || 0 } : null;
+    const bedCost = getBedUpgradeCost(level);
     if (refs.bedCost) refs.bedCost.innerHTML = bedCost ? costHtml(bedCost) : '';
     if (refs.bedNote) {
       if (level >= CONFIG.bed.maxLevel) {
@@ -596,13 +598,7 @@ export function createHud({ call, notify, openOverlay, togglePause }) {
     const locked = doorLocked(s);
     const now = num(s.now, 0);
 
-    let doorUpCost = null;
-    if (doorLevel < CONFIG.door.maxLevel) {
-      doorUpCost = {
-        dream: (CONFIG.door.upgradeCost && CONFIG.door.upgradeCost[doorLevel]) || 0,
-        reagent: (CONFIG.door.upgradeReagent && CONFIG.door.upgradeReagent[doorLevel]) || 0,
-      };
-    }
+    const doorUpCost = getDoorUpgradeCost(doorLevel);
     if (refs.doorUpCost) refs.doorUpCost.innerHTML = doorUpCost ? costHtml(doorUpCost) : '';
     if (refs.doorUpBtn) {
       refs.doorUpBtn.setAttribute('data-clean-tip', '升级气密门：提高耐久上限');

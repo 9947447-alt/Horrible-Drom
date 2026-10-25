@@ -1,6 +1,6 @@
 // 经济与玩家操作：冷凝床/层析仪产出、床与门升级、维修、淋浴。
 
-import { CONFIG, DIFFICULTIES, getDeviceStats } from '../content/index.js';
+import { CONFIG, DIFFICULTIES, getBedUpgradeCost, getDoorUpgradeCost, getDeviceStats } from '../content/index.js';
 import { getInternals } from './internals.js';
 import { pushEvent, pushFx } from './fx.js';
 
@@ -102,7 +102,7 @@ export function upgradeBed(state) {
   if (gate && state.player.doorLevel < gate) {
     return { ok: false, error: `需要气密门达到 ${gate} 级才能继续升级冷凝床` };
   }
-  const cost = { dream: CONFIG.bed.upgradeCost[nextLevel] || 0, reagent: 0 };
+  const cost = getBedUpgradeCost(state.player.bedLevel) || { dream: 0, reagent: 0 };
   const afford = canPayCost(state, cost);
   if (!afford.ok) return afford;
   payCost(state, cost);
@@ -126,10 +126,7 @@ export function upgradeDoor(state) {
   if (isRepairLocked(state)) return { ok: false, error: '门被臭气锁住，暂时无法维修或升级' };
   const nextLevel = state.player.doorLevel + 1;
   if (nextLevel > CONFIG.door.maxLevel) return { ok: false, error: '气密门已达到最高等级' };
-  const cost = {
-    dream: CONFIG.door.upgradeCost[nextLevel] || 0,
-    reagent: CONFIG.door.upgradeReagent[nextLevel] || 0,
-  };
+  const cost = getDoorUpgradeCost(state.player.doorLevel) || { dream: 0, reagent: 0 };
   const afford = canPayCost(state, cost);
   if (!afford.ok) return afford;
   payCost(state, cost);

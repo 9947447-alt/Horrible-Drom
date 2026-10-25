@@ -101,7 +101,9 @@ export function phaseLabel(state) {
   const phase = state && state.phase;
   if (phase === 'prep') return '准备阶段';
   if (phase === 'night') return '守夜中';
-  if (phase === 'victory') return '天亮了';
+  if (phase === 'victory') {
+    return /天亮/.test(state?.result?.reason || '') ? '天亮了' : '梦魇散尽';
+  }
   if (phase === 'defeat') return '门已破';
   return '守夜中';
 }
@@ -367,7 +369,7 @@ export function doorRepairCost(state) {
   const missing = Math.max(0, num(player.doorMaxHp, 180) - num(player.doorHp, 180));
   const raw = missing * CONFIG.repair.costPerHp;
   if (missing <= 0) return 0;
-  return Math.max(CONFIG.repair.minCost, Math.round(raw));
+  return Math.max(CONFIG.repair.minCost, Math.ceil(raw));
 }
 
 export function showerCooldownLeft(state) {

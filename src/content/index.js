@@ -1,4 +1,4 @@
-export { CONFIG, DIFFICULTIES } from './config.js';
+export { CONFIG, DIFFICULTIES, getBedUpgradeCost, getDoorUpgradeCost } from './config.js';
 export {
   ROOMS, ROOM_LOOKUP, ROOMMATE_NAMES, getRoom, isBuildableTile,
 } from './rooms.js';

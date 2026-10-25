@@ -144,3 +144,21 @@ export const DIFFICULTIES = {
     targetWin: '30%–45%',
   },
 };
+
+
+// 下一等级的升级价格：以实际扣费逻辑为唯一来源，UI 必须复用，避免显示值与扣费不一致。
+export function getBedUpgradeCost(level) {
+  const next = Math.max(1, Math.floor(Number(level) || 1)) + 1;
+  if (next > CONFIG.bed.maxLevel) return null;
+  return { dream: CONFIG.bed.upgradeCost[next] || 0, reagent: 0, nextLevel: next };
+}
+
+export function getDoorUpgradeCost(level) {
+  const next = Math.max(1, Math.floor(Number(level) || 1)) + 1;
+  if (next > CONFIG.door.maxLevel) return null;
+  return {
+    dream: CONFIG.door.upgradeCost[next] || 0,
+    reagent: CONFIG.door.upgradeReagent[next] || 0,
+    nextLevel: next,
+  };
+}

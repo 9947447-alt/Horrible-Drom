@@ -496,6 +496,8 @@ function renderResult(ctx) {
   const result = state.result || {};
   const stats = state.stats || {};
   const victory = (result.outcome || state.phase) === 'victory';
+  const dawnVictory = victory && /天亮/.test(result.reason || '');
+  const victoryStamp = dawnVictory ? '天亮' : '滴定';
   const grade = result.grade || (victory ? 'A' : '—');
   const title = result.title || (victory ? '天亮了，噩梦退散' : '气密门被推开');
   const room = getRoom(state.roomId);
@@ -513,7 +515,7 @@ function renderResult(ctx) {
   const body = `
     <div class="result-hero">
       <div class="result-stamp ${victory ? 'is-win' : 'is-loss'}" aria-hidden="true">
-        <span>${victory ? '天亮' : '门破'}</span>
+        <span>${victory ? victoryStamp : '门破'}</span>
       </div>
       <div class="result-title">
         <p class="kicker kicker--sm">${esc(room.number)} 室 · ${esc(diff.name)} · 记录终止</p>
