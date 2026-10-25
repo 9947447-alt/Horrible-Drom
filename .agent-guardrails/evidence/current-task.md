@@ -5,7 +5,7 @@
 从固定提交 75c3e7d75447e895497d442ccb2e905295b14e7d 单独克隆。
 游戏现有模式是零依赖的 HTML + CSS + ES Modules；保留原结构，用 .nojekyll 托管。
 原开发目录和 8787 服务未修改，1.1 的工作区改动未纳入发布。
-计划托管于公开仓库 9947447-alt/Horrible-Drom，Pages 固定 release/v1.0，标签 v1.0.0。
+已托管于公开仓库 9947447-alt/Horrible-Drom，Pages 固定 release/v1.0，标签 v1.0.0。
 
 ## 已执行验证
 
@@ -20,7 +20,7 @@
 - 依赖：未增加生产/开发包依赖，无锁文件变化。agent-guardrails 0.21.0 仅用于本次本地检查。
 - 性能与可访问性：运行资源及 HTML 无变化，没有新增网络依赖，页面体积与交互语义保持原样。
 - 连续性：源码、样式和测试沿用 1.0 基线；使用单独 Pages 分支，防止后续 main 开发覆盖 1.0。
-- 线上构建与真实浏览器验证将在推送后执行，未在此预先宣称通过。
+- 线上构建与真实浏览器验证已完成，结果见下方发布后验证。
 
 ## Review notes
 
@@ -31,3 +31,16 @@
 
 最终本地发布检查：npx agent-guardrails check --base-ref HEAD~1 --commands-run "QA_URL=http://127.0.0.1:8788 npm test,npm run check" --review 通过（90/100，0 error，3 warning）。
 三条提示涉及发布设施跨顶层路径，以及把 docs/PROJECT_STATE.md 误识别为游戏状态管理；已人工核实都属于文档/发布范围。
+
+## 发布后验证
+
+- 公开仓库：https://github.com/9947447-alt/Horrible-Drom
+- 正式 Release：https://github.com/9947447-alt/Horrible-Drom/releases/tag/v1.0.0（非草稿、非预发布）。
+- Pages：https://9947447-alt.github.io/Horrible-Drom/
+- v1.0.0 标签与 release/v1.0 分支均指向 760c4f173c2668302261468d2e12c8819d7be2cf。
+- Pages 构建/部署成功：Actions run 40168329582，commit 760c4f173c2668302261468d2e12c8819d7be2cf。
+- 59 个线上 src/styles/入口/包清单文件全部 HTTP 成功且 SHA-256 与标签文件一致。
+- 真实浏览器通过：首页 → 选择噩梦 → 301 宿舍 → 教程 → 游戏 HUD → 暂停 → 返回主菜单。
+- 原开发目录仍保留 1.1 的未提交改动，未设置或变更其 remote，未操作其开发服务。
+- 本发布后记录仅更新 main 上的文档，保持发布标签和 Pages 来源分支固定。
+- 限制：线上仅做启动交互冒烟，未再完整打通一局；本地完整测试已通过。
