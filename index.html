@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0b111b" />
   <meta name="description" content="熄灯之后：反应 —— 化学幻想宿舍生存塔防。躺平冷凝梦能，用酸与反应链把噩梦滴定到天亮。" />
   <title>熄灯之后：反应 / Horrible Dorm: Reaction</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b111b'/%3E%3Cpath d='M32 10v20l13 8' stroke='%23ffc75a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='34' r='20' stroke='%2363e0c2' stroke-width='2' fill='none' opacity='.6'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
     :root { color-scheme: dark; background: #0b111b; }
@@ -19,6 +20,7 @@
       transition: opacity .45s ease, visibility .45s ease;
     }
     #boot-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    [hidden] { display: none !important; }
     .boot-card { text-align: center; padding: 32px; max-width: 520px; }
     .boot-kicker { font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .32em; color: #63e0c2; text-transform: uppercase; }
     .boot-title { margin: 16px 0 8px; font: 800 clamp(30px, 5vw, 52px)/1.15 "Hannotate SC", "Yuanti SC", "PingFang SC", sans-serif; letter-spacing: .04em; color: #f3e7cf; }
@@ -51,6 +53,20 @@
     </div>
   </div>
   <noscript>本游戏需要启用 JavaScript。</noscript>
+  <script>
+    // ES Modules 在 file:// 下会被浏览器 CORS 拦截；在主模块执行前给出可见提示。
+    if (location.protocol === 'file:') {
+      var bootSub = document.querySelector('.boot-sub');
+      var bootError = document.getElementById('boot-error');
+      var bootDots = document.querySelector('.boot-dots');
+      if (bootSub) bootSub.textContent = '当前以 file:// 直接打开，浏览器会拦截 ES Modules。';
+      if (bootError) {
+        bootError.hidden = false;
+        bootError.textContent = '请在本项目目录运行 npm start，然后访问 http://127.0.0.1:8787 。\n不要直接双击 index.html。';
+      }
+      if (bootDots) bootDots.hidden = true;
+    }
+  </script>
   <script type="module" src="src/main.js"></script>
 </body>
 </html>

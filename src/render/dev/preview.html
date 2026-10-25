@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>渲染开发预览 · 熄灯之后：反应</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; height: 100%; background: #05080d; overflow: hidden; }
+  #game-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #hud { position: fixed; inset: 0; pointer-events: none; z-index: 2; }
+  .panel {
+    position: absolute; background: rgba(11,17,27,0.82);
+    border: 1px solid rgba(243,231,207,0.14); border-radius: 7px;
+    color: #f3e7cf; font: 12px/1.6 "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    padding: 8px 10px; letter-spacing: 0.02em;
+  }
+  .chip { display: inline-block; padding: 1px 6px; border: 1px solid rgba(243,231,207,0.2); border-radius: 3px; margin-right: 4px; }
+  #stamp { position: fixed; left: 10px; bottom: 8px; z-index: 3; color: rgba(243,231,207,0.4); font: 11px system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<canvas id="game-canvas"></canvas>
+<div id="hud"></div>
+<div id="stamp"></div>
+<script type="module">
+  import { createRenderer } from '../index.js';
+  import { createMockState, animateMockState } from './mock-state.js';
+
+  const q = new URLSearchParams(location.search);
+  const canvas = document.getElementById('game-canvas');
+  const hud = document.getElementById('hud');
+  const stamp = document.getElementById('stamp');
+
+  const monsters = (q.get('monsters') || 'benzene,formaldehyde').split(',').map((s) => s.trim()).filter(Boolean);
+  const hover = q.get('hover') ? q.get('hover').split(',').map(Number) : null;
+  const build = q.get('build')
+    ? q.get('build') === 'acid'
+      ? { type: 'acid', stage: Number(q.get('stage') || 4) }
+      : { type: q.get('build') }
+    : null;
+  const state = createMockState({
+    roomId: q.get('room') || 'room-301',
+    monsters,
+    phase: q.get('phase') || 'night',
+    lowHp: q.get('lowhp') === '1',
+    single: q.get('single') === '1',
+    allPlayer: q.get('bothplayer') === '1',
+    secondaryRoam: q.get('roam') === '1',
+    reveal: q.get('reveal') === '1',
+    screen: q.get('screen') || 'game',
+    buildMode: build,
+    hoverTile: hover ? { x: hover[0], y: hover[1] } : null,
+    selectedBuildingId: q.has('selected') ? (q.get('selected') || null) : (build ? null : 'acid-3'),
+    levels: q.get('levels') ? q.get('levels').split(',').map(Number) : undefined,
+    bedLevel: Number(q.get('bed') || 5),
+    doorLevel: Number(q.get('door') || 4),
+    shake: q.get('shake') !== '0',
+  });
+
+  const only = q.get('only');
+  if (only === 'none') state.buildings = [];
+  else if (only) state.buildings = state.buildings.filter((b) => b.type === only);
+  if (q.get('nome') === '1') state.activeNightmares = [];
+  const renderer = createRenderer(canvas);
+  window.__renderer = renderer;
+  window.__state = state;
+  window.__ready = false;
+
+  // 模拟 HUD 覆盖区域（真实 HUD 由 ui-dev 提供；这里只用于检查安全区）
+  if (q.get('hud') === '1') {
+    hud.innerHTML = `
+      <div class="panel" style="left:12px;top:12px;width:220px;height:86px">
+        <div><b>夜间 02:12</b> · 压力 Lv.7</div>
+        <div class="chip">梦能 268</div><div class="chip">试剂 34</div>
+        <div style="opacity:.7;margin-top:4px">舍友灯态 / 事件流</div>
+      </div>
+      <div class="panel" style="right:12px;top:12px;width:268px;height:150px">
+        <div><b>苯环幽影</b> Lv.9</div>
+        <div style="opacity:.7">共振脉冲 · 六元护盾</div>
+        <div style="margin-top:6px"><b>甲醛标本</b> Lv.12（副魇）</div>
+        <div style="opacity:.7">防腐 · 固定</div>
+      </div>
+      <div class="panel" style="left:12px;bottom:12px;width:200px;height:210px">
+        <div><b>冷凝床 V</b></div>
+        <div style="opacity:.7">气密门 IV · 468 / 600</div>
+        <div style="opacity:.7;margin-top:8px">反应链</div>
+      </div>
+      <div class="panel" style="left:50%;transform:translateX(-50%);bottom:12px;width:600px;height:96px">
+        <b>建造栏</b>（DOM HUD 覆盖示意）
+      </div>
+      <div class="panel" style="right:12px;bottom:12px;width:250px;height:190px">
+        <b>建筑检查</b><div style="opacity:.7">硅酸炮台 III</div>
+      </div>`;
+  }
+
+  let last = performance.now();
+  let frames = 0;
+  function frame(now) {
+    const dt = Math.max(0, Math.min((now - last) / 1000, 0.1));
+    last = now;
+    if (state.screen === 'game' && q.get('freeze') !== '1') animateMockState(state, dt);
+    renderer.render(state, now / 1000, dt);
+    frames++;
+    window.__frames = frames;
+    stamp.textContent = `${q.get('room') || 'room-301'} · ${monsters.join(' + ')} · ${Math.round(1000 / Math.max(1, dt))} fps · frame ${frames}`;
+    if (frames === 2) window.__ready = true;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+</script>
+</body>
+</html>

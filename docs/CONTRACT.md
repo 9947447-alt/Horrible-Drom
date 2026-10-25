@@ -122,7 +122,7 @@ export function createRenderer(canvas)
   nightElapsed: 0,        // 夜晚开始后的秒数
   clock: 0,               // 0..360，展示为 00:00..06:00
   dawnAt: 480,            // nightElapsed 达到此值即天亮
-  spawnAt: 35,
+  spawnAt: 65,
   player: {
     roomId, dream: 60, reagent: 0,
     bedLevel: 1, doorLevel: 1, doorHp: 180, doorMaxHp: 180,
@@ -135,7 +135,7 @@ export function createRenderer(canvas)
   minions: [Minion],
   roommates: [Roommate],
   pressure: { level: 1, xp: 0, nextLevelXp: 220 },
-  events: [ { id, at, text, kind } ],
+  events: [ { id, at, text, kind } ],   // 最多保留 CONFIG.fx.maxEvents=14 条
   fx: [Fx],
   ui: {
     buildMode: null,      // {type:'acid',stage:2} | {type:'chlorate'} | {type:'analyzer'}
@@ -199,7 +199,7 @@ export function createRenderer(canvas)
   x, y, text, color, bornAt, ttl }
 ```
 
-- `state.events` 保留最近 12 条；`state.fx` 保留最近 40 条。渲染端只读。
+- `state.events` 保留最近 14 条；`state.fx` 保留最近 48 条。渲染端只读。
 - 所有时间单位秒；`now` 由控制器/`step` 累加。
 
 ## 游戏规则摘要（实现判据）

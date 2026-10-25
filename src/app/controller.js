@@ -177,7 +177,11 @@ export function createController(canvas, uiRoot) {
       ui?.update(state, 0);
     },
     selectBuilding(id) {
-      if (!id) return;
+      if (!id) {
+        state.ui.selectedBuildingId = null;
+        state.ui.buildMode = null;
+        return;
+      }
       state.ui.buildMode = null;
       state.ui.selectedBuildingId = id;
       audio.play('click');
@@ -518,6 +522,13 @@ export function createController(canvas, uiRoot) {
     goMenu: actions.goMenu,
     setDifficulty: actions.setDifficulty,
     startRun,
+    startRunWith(roomId, diff, mainId, secondaryId) {
+      preview = {
+        mainId: mainId || preview?.mainId || NIGHTMARES[0].id,
+        secondaryId: secondaryId || null,
+      };
+      startRun(roomId, diff, { keepPreview: true });
+    },
     selectRoom: actions.selectRoom,
     build(type, options, tile) {
       const result = engine.build(state, type, options, tile);

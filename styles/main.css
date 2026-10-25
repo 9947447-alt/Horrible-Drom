@@ -1,0 +1,7 @@
+/* 《熄灯之后：反应》UI 样式入口。
+   index.html 固定引用本文件；子样式通过 @import 拆分。 */
+@import url('./base.css');
+@import url('./screens.css');
+@import url('./hud.css');
+@import url('./overlays.css');
+@import url('./responsive.css');

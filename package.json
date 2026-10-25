@@ -6,7 +6,7 @@
   "description": "《熄灯之后：反应》化学幻想宿舍塔防",
   "scripts": {
     "start": "node tools/serve.mjs",
-    "test": "node --test tests/",
+    "test": "node --test",
     "check": "node --check src/main.js"
   }
 }

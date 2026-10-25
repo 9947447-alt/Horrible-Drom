@@ -1,0 +1,333 @@
+/* ─────────────────────────────────────────────────────────────
+   响应式：1280×720 为首要验收尺寸；1440/1920 更宽松；
+   横屏手机（844×390 等）折叠侧栏；竖屏显示旋转提示。
+   ───────────────────────────────────────────────────────────── */
+
+/* 矮桌面（1280×720 等）：隐藏菜单值班日志与选房标签，保证一屏放下 */
+@media (max-height: 800px) and (min-width: 961px) {
+  .hd-ui .menu-log { display: none; }
+  .hd-ui .menu-wrap { gap: 16px; }
+  .hd-ui .menu-main { padding: 2px 0; }
+  .hd-ui .room-card__tags { display: none; }
+  .hd-ui .room-card { padding-top: 12px; padding-bottom: 12px; }
+  .hd-ui .room-wrap { gap: 10px; }
+}
+
+/* 大屏：让侧栏与建造栏更舒展 */
+@media (min-width: 1600px) {
+  .hd-ui .hud-top { grid-template-columns: 244px minmax(0, 1fr) 470px; height: 78px; padding: 0 18px; }
+  .hd-ui .hud-clock__time { font-size: 28px; }
+  .hd-ui .hud-left { width: 232px; left: 18px; }
+  .hd-ui .hud-right { width: 266px; right: 18px; }
+  .hd-ui .hud-left, .hd-ui .hud-right { top: 88px; bottom: 152px; }
+  .hd-ui .dock { width: min(1120px, calc(100vw - 560px)); height: 122px; }
+  .hd-ui .dock__flavor { display: flex; }
+  .hd-ui .hud-banner, .hd-ui .inspector { bottom: 142px; }
+  .hd-ui .inspector { width: min(680px, calc(100vw - 560px)); }
+  .hd-ui .hud-prep { max-width: calc(100vw - 560px); }
+  .hd-ui .hd-toasts { bottom: 160px; }
+}
+
+/* 小桌面 / 横屏平板：压缩侧栏与顶部 */
+@media (max-width: 1279px) {
+  .hd-ui .hud-top {
+    grid-template-columns: minmax(160px, 196px) minmax(0, 1fr) minmax(286px, 372px);
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .hd-ui .hud-clock__time { font-size: 23px; }
+  .hd-ui .hud-left { width: 200px; left: 10px; }
+  .hd-ui .hud-right { width: 228px; right: 10px; }
+  .hd-ui .dock { width: calc(100vw - 456px); }
+  .hd-ui .dock__tabs { width: 96px; }
+  .hd-ui .dock-tab { grid-template-columns: 14px minmax(0, 1fr) auto; gap: 4px; padding: 0 6px; font-size: 12px; }
+  .hd-ui .hud-banner, .hd-ui .inspector { width: min(600px, calc(100vw - 496px)); }
+  .hd-ui .hud-banner { max-width: calc(100vw - 496px); }
+  .hd-ui .nm__name small { display: none; }
+  .hd-ui .res__rate { display: none; }
+  .hd-ui .res { height: 30px; }
+  .hd-ui .hud-prep { max-width: calc(100vw - 460px); }
+}
+
+/* 中等宽度：进一步收紧 HUD，仍保留完整侧栏 */
+@media (max-width: 1120px) {
+  .hd-ui .hud-left { width: 188px; }
+  .hd-ui .hud-right { width: 216px; }
+  .hd-ui .dock { width: calc(100vw - 436px); }
+  .hd-ui .hud-banner { max-width: calc(100vw - 460px); }
+  .hd-ui .inspector { width: calc(100vw - 460px); }
+  .hd-ui .nm__mechanic { display: none; }
+  .hd-ui .nm__hpText { min-width: 72px; font-size: 10px; }
+}
+
+/* ── 横屏手机 / 低矮窗口：侧栏折叠成抽屉，建造栏铺满 ───────── */
+
+@media (max-width: 1024px), (max-height: 640px) {
+  .hd-ui .hud-top {
+    grid-template-columns: minmax(104px, auto) minmax(0, 1fr) auto;
+    height: 56px;
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .hd-ui .hud-clock { gap: 0; }
+  .hd-ui .hud-clock__row { gap: 5px; }
+  .hd-ui .hud-clock__time { font-size: 19px; }
+  .hd-ui .hud-clock__ico .ico { width: 15px; height: 15px; }
+  .hd-ui .hud-phase { height: 17px; padding: 0 5px; font-size: 12px; letter-spacing: 0.02em; }
+  .hd-ui .hud-clock__sub { display: none; }
+  .hd-ui .hud-clock__tag { display: none; }
+
+  .hd-ui .hud-nightmares { gap: 5px; }
+  .hd-ui .nm { padding: 3px 6px 4px 8px; gap: 2px; border-left-width: 2px; }
+  .hd-ui .nm__name { font-size: 12px; }
+  .hd-ui .nm__name small,
+  .hd-ui .nm__mechanic,
+  .hd-ui .nm__tag { display: none; }
+  .hd-ui .nm__icon .ico { width: 14px; height: 14px; }
+  .hd-ui .nm__hpText { display: none; }
+  .hd-ui .nm__skills { gap: 2px; }
+  .hd-ui .skill-node { width: 13px; height: 13px; font-size: 8px; }
+  .hd-ui .nm__meta { gap: 5px; }
+  .hd-ui .nm__emptyText small { display: none; }
+  .hd-ui .nm__emptyBadge { display: none; }
+  .hd-ui .nm__emptyText b { font-size: 12px; }
+
+  .hd-ui .hud-res { gap: 4px; }
+  .hd-ui .res { height: 28px; padding: 0 6px; gap: 4px; }
+  .hd-ui .res__val { font-size: 13px; }
+  .hd-ui .res__rate,
+  .hd-ui .res--pressure { display: none; }
+  .hd-ui .iconbtn { width: 29px; height: 27px; }
+  .hd-ui .hud-btns .iconbtn:first-child { display: none; }
+  .hd-ui .hud-drawers { display: flex; }
+
+  .hd-ui .hud-prep {
+    top: 58px;
+    max-width: calc(100vw - 16px);
+    padding: 3px 8px;
+    gap: 7px;
+  }
+  .hd-ui .hud-prep__bar { width: 64px; }
+  .hd-ui .hud-prep__hint--keys { display: none; }
+  .hd-ui .hud-prep__hint { font-size: 12px; }
+
+  /* 侧栏抽屉 */
+  .hd-ui .hud-left,
+  .hd-ui .hud-right {
+    top: 62px;
+    bottom: 108px;
+    width: min(264px, 80vw);
+    z-index: 32;
+    display: none;
+    background: rgba(7, 12, 20, 0.72);
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.6);
+  }
+
+  .hd-ui .hud-left { left: 8px; }
+  .hd-ui .hud-right { right: 8px; }
+
+  .hd-ui .hud--left-open .hud-left,
+  .hd-ui .hud--right-open .hud-right { display: flex; }
+
+  .hd-ui .hud--left-open .hud-drawer-scrim,
+  .hd-ui .hud--right-open .hud-drawer-scrim {
+    display: block;
+    pointer-events: auto;
+  }
+
+  .hd-ui .panel--mates { flex: none; }
+  .hd-ui .panel--events { flex: 1; }
+
+  /* 建造栏铺满底部 */
+  .hd-ui .dock {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    transform: none;
+    height: 96px;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .hd-ui .dock__tabs { width: 72px; gap: 3px; padding-right: 5px; }
+  .hd-ui .dock-tab { grid-template-columns: 14px minmax(0, 1fr); gap: 4px; padding: 0 5px; font-size: 12px; }
+  .hd-ui .dock-tab__count { display: none; }
+  .hd-ui .dock__mode { display: none; }
+  .hd-ui .dock__cards { gap: 4px; }
+  .hd-ui .build-card { flex: 1 1 0; max-width: none; padding: 4px 5px; min-width: 50px; gap: 1px; }
+  .hd-ui .dock__flavor { display: none; }
+  .hd-ui .build-card__icon .ico { width: 16px; height: 16px; }
+  .hd-ui .build-card__name { font-size: 12px; }
+  .hd-ui .build-card__meta { display: none; }
+  .hd-ui .build-card__cost .cost { font-size: 10px; }
+  .hd-ui .build-card__key { min-width: 13px; height: 13px; font-size: 8px; }
+
+  .hd-ui .dock-pop { width: calc(100vw - 20px); left: 4px; max-height: 64vh; overflow-y: auto; }
+  .hd-ui .dock-pop__list { grid-template-columns: 1fr; }
+
+  .hd-ui .hud-banner {
+    bottom: 112px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    max-width: none;
+    transform: none;
+    padding: 5px 7px;
+    gap: 7px;
+  }
+
+  .hd-ui .hud-banner__hint { display: none; }
+  .hd-ui .hud-banner__text { font-size: 12px; }
+
+  .hd-ui .inspector {
+    left: 8px;
+    right: 8px;
+    bottom: 112px;
+    width: auto;
+    transform: none;
+    gap: 6px;
+    padding: 5px 7px;
+  }
+
+  .hd-ui .inspector__stats { font-size: 12px; gap: 1px 8px; }
+  .hd-ui .inspector__next { display: none; }
+  .hd-ui .inspector__actions .btn { padding: 0 6px; }
+  .hd-ui .inspector__actions .btn__cost { display: none; }
+  .hd-ui .inspector__actions .btn--study .btn__label { font-size: 12px; }
+  .hd-ui .mini-chip { display: none; }
+
+  .hd-ui .hud-mobile-hint { display: flex; bottom: 112px; }
+  .hd-ui .hd-toasts { bottom: 118px; width: calc(100vw - 20px); }
+  .hd-ui .hud-vignette { background: radial-gradient(80% 70% at 50% 55%, transparent 50%, rgba(4, 8, 14, 0.28) 100%); }
+}
+
+/* 超矮窗口（如 844×390 手机横屏）：进一步压缩 */
+@media (max-height: 460px) {
+  .hd-ui .hud-top { height: 48px; }
+  .hd-ui .hud-clock__time { font-size: 17px; }
+  .hd-ui .hud-phase { display: none; }
+  .hd-ui .hud-nightmares { align-items: center; }
+  .hd-ui .nm { flex-direction: row; align-items: center; padding: 2px 5px; gap: 5px; }
+  .hd-ui .nm__head { flex: none; gap: 3px; min-width: 0; }
+  .hd-ui .nm__name { font-size: 12px; max-width: 76px; }
+  .hd-ui .nm__hprow { flex: 1 1 auto; min-width: 44px; gap: 3px; }
+  .hd-ui .nm__meta { flex: none; display: flex; gap: 3px; overflow: visible; }
+  .hd-ui .nm__skills,
+  .hd-ui .nm__mechanic,
+  .hd-ui .nm__status { display: none; }
+  .hd-ui .nm__weak { gap: 2px; }
+  .hd-ui .nm__head { gap: 4px; }
+  .hd-ui .nm__lv { font-size: 11px; margin-left: 0; }
+  .hd-ui .nm__lv b { font-size: 12px; }
+  .hd-ui .hud-prep { top: 50px; }
+  .hd-ui .hud-left, .hd-ui .hud-right { top: 52px; bottom: 100px; }
+  .hd-ui .dock { height: 86px; bottom: 6px; }
+  .hd-ui .build-card__icon .ico { width: 14px; height: 14px; }
+  .hd-ui .build-card__name { font-size: 12px; }
+  .hd-ui .hud-banner, .hd-ui .inspector { bottom: 98px; }
+  .hd-ui .inspector { padding: 3px 6px; }
+  .hd-ui .inspector__stats { display: none; }
+  .hd-ui .hud-mobile-hint { bottom: 98px; }
+  .hd-ui .hd-toasts { bottom: 100px; }
+  .hd-ui .hud-mobile-hint { display: none; }
+}
+
+/* ── 主菜单 / 选房的响应式 ─────────────────────────────────── */
+
+@media (max-width: 1180px) {
+  .hd-ui .menu-main {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+    gap: 28px;
+  }
+  .hd-ui .menu-title__main { font-size: clamp(52px, 8.4vw, 88px); }
+  .hd-ui .menu-record { width: min(100%, 400px); }
+  .hd-ui .room-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hd-ui .room-card__desc { -webkit-line-clamp: 2; }
+}
+
+@media (max-width: 960px), (max-height: 620px) {
+  .hd-ui .menu-wrap { padding: 14px 18px 12px; gap: 12px; }
+  .hd-ui .menu-main { grid-template-columns: 1fr; align-items: start; gap: 16px; }
+  .hd-ui .menu-record { display: none; }
+  .hd-ui .menu-title { margin: 8px 0 6px; }
+  .hd-ui .menu-title__main { font-size: clamp(42px, 9vw, 64px); }
+  .hd-ui .menu-title__tail { font-size: clamp(20px, 4vw, 30px); }
+  .hd-ui .menu-lead { font-size: 13px; line-height: 1.8; max-width: 640px; }
+  .hd-ui .menu-actions { margin-top: 14px; gap: 7px; }
+  .hd-ui .menu-actions .btn--lg { min-height: 40px; font-size: 14px; }
+  .hd-ui .menu-meta { margin-top: 12px; }
+  .hd-ui .menu-hints { margin-top: 10px; padding-top: 8px; }
+  .hd-ui .menu-topnav .btn span { display: none; }
+  .hd-ui .menu-topnav .btn { min-width: 32px; padding: 0 8px; }
+  .hd-ui .brand__text small { display: none; }
+  .hd-ui .menu-foot { display: none; }
+
+  .hd-ui .room-wrap { padding: 8px 10px; gap: 7px; }
+  .hd-ui .room-title { font-size: 19px; }
+  .hd-ui .room-heading .kicker { display: none; }
+  .hd-ui .room-top { gap: 8px; align-items: center; }
+  .hd-ui .room-top__left { gap: 8px; }
+  .hd-ui .room-top__right .room-diff { height: 28px; }
+  .hd-ui .room-diff__label { display: none; }
+  .hd-ui .room-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-content: start; }
+  .hd-ui .room-card { padding: 8px 9px 7px 11px; gap: 2px; }
+  .hd-ui .room-card__num { font-size: 20px; }
+  .hd-ui .room-card__name { font-size: 13px; }
+  .hd-ui .room-card__desc,
+  .hd-ui .room-card__tags { display: none; }
+  .hd-ui .room-card__sub { font-size: 12px; }
+  .hd-ui .room-spec { padding: 2px 0; }
+  .hd-ui .room-foot { padding: 6px 9px; }
+  .hd-ui .room-foot__label,
+  .hd-ui .room-foot__hint { display: none; }
+  .hd-ui .room-foot__summary p { font-size: 12px; gap: 2px 8px; }
+  .hd-ui .room-foot__summary b { font-size: 13px; }
+  .hd-ui .room-foot__meta { display: none; }
+  .hd-ui .room-foot .btn--lg { min-height: 36px; font-size: 13px; padding: 0 14px; }
+}
+
+@media (max-height: 460px) {
+  .hd-ui .menu-wrap { padding: 8px 14px; gap: 8px; }
+  .hd-ui .menu-main { padding: 0; }
+  .hd-ui .menu-hero .kicker { display: none; }
+  .hd-ui .menu-title { margin: 4px 0; }
+  .hd-ui .menu-title__main { font-size: 42px; }
+  .hd-ui .menu-title__tail { font-size: 19px; }
+  .hd-ui .menu-lead { display: none; }
+  .hd-ui .menu-actions { margin-top: 8px; }
+  .hd-ui .menu-meta { display: flex; margin-top: 10px; font-size: 12px; }
+  .hd-ui .menu-hints { display: none; }
+  .hd-ui .room-wrap { padding: 6px 8px; gap: 5px; }
+  .hd-ui .room-card__sub { display: none; }
+  .hd-ui .room-foot__summary span:not(b) { display: none; }
+  .hd-ui .room-card__specs { margin-top: 2px; }
+}
+
+/* ── 竖屏旋转提示 ───────────────────────────────────────────── */
+
+@media (orientation: portrait) and (max-width: 960px) {
+  .hd-ui .hd-rotate-tip { display: flex; }
+  .hd-ui .hd-rotate-tip ~ .hd-overlay-host { display: none !important; }
+}
+
+/* ── 触屏：去掉悬浮位移，扩大热区 ───────────────────────────── */
+
+@media (hover: none) and (pointer: coarse) {
+  .hd-ui .btn:hover,
+  .hd-ui .room-card:hover,
+  .hd-ui .build-card:hover,
+  .hd-ui .diff-card:hover,
+  .hd-ui .iconbtn:hover {
+    transform: none;
+  }
+  .hd-ui .btn { min-height: 36px; }
+  .hd-ui .btn--sm { min-height: 32px; }
+  .hd-ui .btn--xs { min-height: 28px; }
+  .hd-ui .iconbtn { width: 36px; height: 34px; }
+  .hd-ui .build-card { min-height: 64px; }
+  .hd-ui .hud-mobile-hint { display: none; }
+}

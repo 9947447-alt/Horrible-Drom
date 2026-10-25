@@ -25,6 +25,8 @@ await mkdir(path.dirname(out), { recursive: true }).catch(() => {});
 
 const chrome = spawn(CHROME, [
   '--headless=new',
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
   `--remote-debugging-port=${port}`,
   `--user-data-dir=${profile}`,
   `--window-size=${width},${height}`,
@@ -60,7 +62,8 @@ async function connect() {
   for (let i = 0; i < 50; i += 1) {
     try {
       const list = await fetch(`http://127.0.0.1:${port}/json/list`).then((r) => r.json());
-      if (list?.length) { info = list[0]; break; }
+      info = list?.find((t) => t.type === 'page') || null;
+      if (info) break;
     } catch { /* wait */ }
     await sleep(150);
   }
@@ -106,6 +109,7 @@ try {
       userGesture: true,
     });
     if (res?.exceptionDetails) errors.push(res.exceptionDetails.text || 'eval exception');
+    if (res?.result?.value !== undefined) console.log('eval:', typeof res.result.value === 'string' ? res.result.value : JSON.stringify(res.result.value));
     await sleep(900);
   }
   const shot = await send('Page.captureScreenshot', { format: 'png', fromSurface: true });

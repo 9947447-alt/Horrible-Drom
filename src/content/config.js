@@ -3,9 +3,9 @@
 export const CONFIG = {
   version: 1,
   prepDuration: 25,
-  spawnDelay: 35,
-  firstAttackDelay: 30,
-  startingDream: 70,
+  spawnDelay: 65,
+  firstAttackDelay: 50,
+  startingDream: 100,
   startingReagent: 0,
   sellRefund: 0.5,
 
@@ -18,8 +18,8 @@ export const CONFIG = {
 
   bed: {
     maxLevel: 8,
-    income: [0, 2.0, 3.4, 5.8, 9.8, 16.5, 28, 47, 80],
-    upgradeCost: [0, 40, 75, 130, 220, 360, 580, 900],
+    income: [0, 3.0, 5.0, 8.0, 13.0, 21.0, 34.0, 55.0, 90.0],
+    upgradeCost: [0, 35, 65, 110, 180, 300, 480, 760],
     // 床达到这些等级时，门至少要达到对应等级
     doorGate: { 4: 2, 6: 4, 8: 6 },
   },
@@ -32,7 +32,7 @@ export const CONFIG = {
   },
 
   repair: {
-    costPerHp: 0.16,
+    costPerHp: 0.09,
     minCost: 3,
   },
 
@@ -60,11 +60,11 @@ export const CONFIG = {
   },
 
   nightmare: {
-    baseHp: 900,
-    baseDamage: 10,
-    baseInterval: 1.8,
-    hpScale: [0, 1, 1.18, 1.39, 1.64, 1.94, 2.29, 2.7, 3.19, 3.76, 4.44, 5.24, 6.18, 7.29, 8.6],
-    dmgScale: [0, 1, 1.12, 1.25, 1.4, 1.57, 1.76, 1.97, 2.21, 2.47, 2.77, 3.1, 3.47, 3.89, 4.36],
+    baseHp: 2200,
+    baseDamage: 19,
+    baseInterval: 2.0,
+    hpScale: [0, 1, 1.15, 1.32, 1.52, 1.75, 2.0, 2.3, 2.65, 3.05, 3.5, 4.03, 4.63, 5.32, 6.12],
+    dmgScale: [0, 1, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.15, 2.36, 2.6, 2.86, 3.15, 3.46],
     // 达到某等级所需累计压力经验；索引 = 等级
     pressureXpForLevel: [0, 0, 50, 120, 215, 335, 480, 655, 865, 1115, 1410, 1755, 2155, 2615, 3140],
     xpPerSecond: 2.4,
@@ -120,8 +120,8 @@ export const DIFFICULTIES = {
     name: '普通',
     sub: '长夜的标准答案',
     desc: '一只梦魇；完整经济与技能压力，推荐首次体验。',
-    hpMult: 1,
-    dmgMult: 1,
+    hpMult: 1.2,
+    dmgMult: 1.18,
     economyMult: 1,
     dawnSeconds: 480,
     secondary: false,
@@ -134,12 +134,12 @@ export const DIFFICULTIES = {
     name: '噩梦',
     sub: '双魇夜',
     desc: '主魇之外，04:00 还会从黑掉的宿舍里钻出第二只梦魇。',
-    hpMult: 1.25,
-    dmgMult: 1.15,
+    hpMult: 1.5,
+    dmgMult: 1.42,
     economyMult: 0.95,
     dawnSeconds: 570,
     secondary: true,
-    secondaryAt: 240,
+    secondaryAt: 380,
     accent: '#ff6b57',
     targetWin: '30%–45%',
   },

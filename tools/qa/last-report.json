@@ -1,0 +1,3882 @@
+{
+  "startedAt": "2026-10-25T05:11:36.308Z",
+  "base": "http://127.0.0.1:8787",
+  "checks": [
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "页面完成启动并挂载 UI",
+      "ok": true
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "主菜单渲染",
+      "ok": true
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "调试钩子 window.__HORRIBLE_DORM 可用",
+      "ok": true
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "启动遮罩已隐藏",
+      "ok": true
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "首屏无 console error / 异常",
+      "ok": true,
+      "detail": {
+        "errors": [],
+        "exceptions": []
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "首屏无 console warning",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "无外部网络请求",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "无 HTTP >=400 响应（含 favicon）",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "无加载失败请求",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "主菜单单局时长文案为 6–10 分钟（覆盖噩梦实际时长）",
+      "ok": true,
+      "detail": "单局 6–10 分钟\n             无联网 · 无内购\n             全部程序化绘制"
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "Canvas 元素铺满视口（CSS 尺寸）",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 1440,
+        "cssH": 900,
+        "dpr": 0.21,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1280x720：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 1280,
+        "cssH": 720,
+        "dpr": 0.23,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1280x720：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1280,
+        "scrollH": 720,
+        "innerW": 1280,
+        "innerH": 720,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1280x720：开始守夜按钮可见可点",
+      "ok": true,
+      "detail": {
+        "found": true,
+        "visible": true,
+        "inView": true,
+        "hit": true,
+        "rect": {
+          "x": 51.2,
+          "y": 427.1,
+          "w": 132.2,
+          "h": 46
+        },
+        "topTag": "SPAN"
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1440x900：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 1440,
+        "cssH": 900,
+        "dpr": 0.21,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1440x900：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "scrollH": 900,
+        "innerW": 1440,
+        "innerH": 900,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1440x900：开始守夜按钮可见可点",
+      "ok": true,
+      "detail": {
+        "found": true,
+        "visible": true,
+        "inView": true,
+        "hit": true,
+        "rect": {
+          "x": 57.6,
+          "y": 527.1,
+          "w": 132.2,
+          "h": 46
+        },
+        "topTag": "SPAN"
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1920x1080：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 1920,
+        "cssH": 1080,
+        "dpr": 0.16,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1920x1080：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "innerW": 1920,
+        "innerH": 1080,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 1920x1080：开始守夜按钮可见可点",
+      "ok": true,
+      "detail": {
+        "found": true,
+        "visible": true,
+        "inView": true,
+        "hit": true,
+        "rect": {
+          "x": 272,
+          "y": 625.5,
+          "w": 132.2,
+          "h": 46
+        },
+        "topTag": "SPAN"
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 844x390：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 844,
+        "cssH": 390,
+        "dpr": 0.36,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 844x390：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 844,
+        "scrollH": 390,
+        "innerW": 844,
+        "innerH": 390,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 844x390：开始守夜按钮可见可点",
+      "ok": true,
+      "detail": {
+        "found": true,
+        "visible": true,
+        "inView": true,
+        "hit": true,
+        "rect": {
+          "x": 14,
+          "y": 147.1,
+          "w": 128.1,
+          "h": 40
+        },
+        "topTag": "SPAN"
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 390x844：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "backingW": 300,
+        "backingH": 150,
+        "cssW": 390,
+        "cssH": 844,
+        "dpr": 0.77,
+        "opaqueRatio": 0,
+        "colors": 1
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 390x844：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "scrollH": 844,
+        "innerW": 390,
+        "innerH": 844,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "name": "菜单 390x844：开始守夜按钮可见可点",
+      "ok": true,
+      "detail": {
+        "found": true,
+        "visible": true,
+        "inView": true,
+        "hit": true,
+        "rect": {
+          "x": 18,
+          "y": 254.2,
+          "w": 128.1,
+          "h": 40
+        },
+        "topTag": "SPAN"
+      }
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "点击“开始守夜”命中按钮",
+      "ok": true,
+      "detail": {
+        "x": 123.6953125,
+        "y": 550.125,
+        "w": 132.203125,
+        "h": 46,
+        "visible": true,
+        "hit": true,
+        "topTag": "SPAN.btn__label"
+      }
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "难度弹层有 3 档难度",
+      "ok": true,
+      "detail": [
+        "easy",
+        "normal",
+        "nightmare"
+      ]
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "难度卡展示目标通关率（简单≥85%/普通60–75%/噩梦30–45%）",
+      "ok": true,
+      "detail": [
+        "easy:目标通关率 ≥85%",
+        "normal:目标通关率 60%–75%",
+        "nightmare:目标通关率 30%–45%"
+      ]
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "难度卡守夜时长与配置一致（6 / 8 / 9.5 分钟）",
+      "ok": true,
+      "detail": {
+        "easy": "守夜时长6 分钟",
+        "normal": "守夜时长8 分钟",
+        "nightmare": "守夜时长9.5 分钟"
+      }
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "选择普通难度后 aria-pressed 正确",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "选房页展示 6 间宿舍",
+      "ok": true,
+      "detail": [
+        "room-301",
+        "room-302",
+        "room-303",
+        "room-304",
+        "room-305",
+        "room-306"
+      ]
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "选房页难度为普通",
+      "ok": true,
+      "detail": "普通"
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "每间宿舍显示主魇预览（6/6 非空）",
+      "ok": true,
+      "detail": [
+        "苯环幽影",
+        "白磷鬼火",
+        "汞形怪",
+        "硫化氢瘴气",
+        "一氧化碳潜影",
+        "甲醛标本"
+      ]
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "选房页默认选中一间",
+      "ok": true,
+      "detail": "room-301"
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "选房页 ←→ 键可切换选中房间",
+      "ok": true,
+      "detail": {
+        "from": "room-301",
+        "to": "room-302"
+      }
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "点击房间卡选中 room-301",
+      "ok": true,
+      "detail": "room-301"
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "name": "进入对局后 screen=game",
+      "ok": true
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "首次进入对局自动弹出教程",
+      "ok": true
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "教程已写入 localStorage hd-tutorial-seen-v1=1",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "教程共 5 页且标题依次呈现",
+      "ok": true,
+      "detail": [
+        "第 1 / 5 页:活到天亮",
+        "第 2 / 5 页:躺平发育",
+        "第 3 / 5 页:搭起装置",
+        "第 4 / 5 页:反应链",
+        "第 5 / 5 页:守门应急"
+      ]
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "教程最后一页按钮为“开始布防”",
+      "ok": true,
+      "detail": {
+        "step": "第 5 / 5 页",
+        "title": "守门应急",
+        "next": "开始布防"
+      }
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "教程读完后关闭",
+      "ok": true
+    },
+    {
+      "phase": "P2 首次教程",
+      "name": "教程关闭后回到准备阶段",
+      "ok": true,
+      "detail": {
+        "screen": "game",
+        "phase": "prep",
+        "prep": 24.87
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "开局状态：room-301 / 普通 / 准备阶段 / 25 秒倒计时",
+      "ok": true,
+      "detail": {
+        "screen": "game",
+        "phase": "prep",
+        "paused": false,
+        "difficulty": "normal",
+        "roomId": "room-301",
+        "now": 0.13,
+        "nightElapsed": 0,
+        "prepRemaining": 24.87,
+        "clock": 0,
+        "dream": 100,
+        "reagent": 0,
+        "doorHp": 180,
+        "doorMaxHp": 180,
+        "bedLevel": 1,
+        "doorLevel": 1,
+        "pressure": 1,
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "acid",
+            "stage": 1,
+            "level": 1,
+            "tile": {
+              "x": 4,
+              "y": 2
+            },
+            "starter": true
+          }
+        ],
+        "reactions": [],
+        "acidUnlocked": 1,
+        "nightmares": [],
+        "result": null,
+        "ui": {
+          "buildMode": null,
+          "selected": null
+        },
+        "stats": {
+          "dreamEarned": 0.3999000000000006,
+          "reagentEarned": 0,
+          "damageDealt": 0,
+          "kills": 0,
+          "builds": 0,
+          "reactions": 0,
+          "repairs": 0
+        },
+        "records": {
+          "runs": 0,
+          "wins": 0
+        },
+        "settings": {
+          "volume": 0.55,
+          "muted": false,
+          "reducedMotion": false,
+          "shake": true
+        }
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "起始道具已放置（1 座）",
+      "ok": true,
+      "detail": [
+        {
+          "id": "b-1",
+          "type": "acid",
+          "stage": 1,
+          "level": 1,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "starter": true
+        }
+      ]
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "HUD 夜钟 00:00 / 准备阶段",
+      "ok": true,
+      "detail": {
+        "clock": "00:00",
+        "phase": "准备阶段",
+        "dream": "100",
+        "reagent": "0",
+        "doorLevel": "1",
+        "bedLevel": "1",
+        "nmCount": "0",
+        "nmNames": [],
+        "nmLevels": [],
+        "nmLitSkills": [],
+        "dreamChip": "100 +3.0/s",
+        "reagentChip": "0 +0/s",
+        "reactionCount": "0 / 6",
+        "tutorial": false,
+        "overlay": "",
+        "rotateTipVisible": false,
+        "dockCards": 3,
+        "dockTabs": 2,
+        "acidPopover": false,
+        "inspectorVisible": false
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "HUD 建造 dock 存在（3 炮台卡 + 2 分组）",
+      "ok": true,
+      "detail": {
+        "cards": 3,
+        "tabs": 2
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "准备阶段中央区域 Canvas 未被遮挡（≥85%）",
+      "ok": true,
+      "detail": {
+        "ratio": 1,
+        "total": 99,
+        "blockTags": {}
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "对局界面无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "scrollH": 900,
+        "innerW": 1440,
+        "innerH": 900,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "对局场景已绘制（Canvas 非空）",
+      "ok": true,
+      "detail": {
+        "backingW": 1440,
+        "backingH": 900,
+        "cssW": 1440,
+        "cssH": 900,
+        "dpr": 1,
+        "opaqueRatio": 1,
+        "colors": 101
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "酸系建造弹层展示 6 个阶段且 I 可用",
+      "ok": true,
+      "detail": {
+        "count": 6,
+        "stages": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "footer": "点卡片默认进入建造；选其它阶段会切换。建塔后从 I 升到 III，再研究下一阶段。 未解锁阶段需先研究"
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "选择酸系阶段 I 进入建造模式",
+      "ok": true,
+      "detail": {
+        "type": "acid",
+        "stage": 1
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "建造模式提示条出现",
+      "ok": true
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "房间中存在可点击的空格（未被 HUD 遮挡）",
+      "ok": true,
+      "detail": {
+        "tile": {
+          "x": 2,
+          "y": 0
+        },
+        "x": 832.9090909090909,
+        "y": 317.8787878787879
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "Canvas 点击成功放置酸塔",
+      "ok": true,
+      "detail": {
+        "count": 2,
+        "mode": null
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "放置后自动选中并显示检查面板",
+      "ok": true,
+      "detail": "b-2"
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "设备分类展示 7 种功能设备",
+      "ok": true,
+      "detail": {
+        "count": 7,
+        "types": [
+          "analyzer",
+          "condenser",
+          "vent",
+          "catalyst",
+          "neutralizer",
+          "accelerator",
+          "atm"
+        ],
+        "tabActive": "true"
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "设备 tab aria-selected=true",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "放置层析仪成功",
+      "ok": true,
+      "detail": [
+        "acid",
+        "acid",
+        "analyzer"
+      ]
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "层析仪开始产出试剂",
+      "ok": true,
+      "detail": {
+        "reagent": 4
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "冷凝床持续产出梦能",
+      "ok": true,
+      "detail": {
+        "before": 26,
+        "after": 51
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "建造氯酸钾特化炮台（炮台分类）",
+      "ok": true,
+      "detail": [
+        "acid",
+        "acid",
+        "analyzer",
+        "chlorate"
+      ]
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "建造苯特化炮台（键盘 3）",
+      "ok": true,
+      "detail": [
+        "acid",
+        "acid",
+        "analyzer",
+        "chlorate",
+        "benzene"
+      ]
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "键盘 1–0 全部映射到对应建造卡",
+      "ok": true,
+      "detail": {
+        "0": "atm",
+        "1": "popover",
+        "2": "chlorate",
+        "3": "benzene",
+        "4": "analyzer",
+        "5": "condenser",
+        "6": "vent",
+        "7": "catalyst",
+        "8": "neutralizer",
+        "9": "accelerator"
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "键盘 1 打开酸系建造弹层",
+      "ok": true
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "Esc 关闭酸系弹层",
+      "ok": true
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "键盘 2 进入氯酸钾建造模式",
+      "ok": true,
+      "detail": {
+        "type": "chlorate"
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "Esc 取消建造模式",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "键盘 0 进入梦能取款机建造模式",
+      "ok": true,
+      "detail": {
+        "type": "atm"
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "右键取消建造模式",
+      "ok": true,
+      "detail": {
+        "armed": {
+          "type": "benzene"
+        },
+        "afterRight": null
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "酸塔升级到 II 级",
+      "ok": true,
+      "detail": {
+        "id": "b-1",
+        "type": "acid",
+        "stage": 1,
+        "level": 2,
+        "tile": {
+          "x": 4,
+          "y": 2
+        },
+        "starter": true
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "酸塔升级到 III 级",
+      "ok": true,
+      "detail": {
+        "id": "b-1",
+        "type": "acid",
+        "stage": 1,
+        "level": 3,
+        "tile": {
+          "x": 4,
+          "y": 2
+        },
+        "starter": true
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "III 级酸塔显示“研究”按钮",
+      "ok": true
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "研究后进入下一阶段并解锁全局阶段 2",
+      "ok": true,
+      "detail": {
+        "acid": {
+          "id": "b-1",
+          "type": "acid",
+          "stage": 2,
+          "level": 1,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "starter": true
+        },
+        "acidUnlocked": 2
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "HUD 建造栏 flavors 反映酸系解锁进度",
+      "ok": true,
+      "detail": 3
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "拆除建筑后从场景移除",
+      "ok": true,
+      "detail": {
+        "before": 5,
+        "after": 4
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "拆除返还梦能（50%）",
+      "ok": true,
+      "detail": {
+        "before": 59894,
+        "after": 59968
+      }
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "被拆除的酸塔已不存在",
+      "ok": true
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "酸塔 + 催化台相邻自动激活“催化氧化”反应链",
+      "ok": true,
+      "detail": [
+        "catalytic_oxidation"
+      ]
+    },
+    {
+      "phase": "P3 准备阶段 / 建造 / 升级 / 研究 / 拆除",
+      "name": "HUD 反应链计数大于 0",
+      "ok": true,
+      "detail": "1 / 6"
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "点“酸系主炮”卡立即进入建造模式（默认已解锁且买得起的最高阶段）",
+      "ok": true,
+      "detail": {
+        "type": "acid",
+        "stage": 1
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "阶段弹层仍同时打开（可切换阶段）",
+      "ok": true
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "地板存在可点击空位",
+      "ok": true,
+      "detail": {
+        "tile": {
+          "x": 2,
+          "y": 0
+        },
+        "x": 832.9090909090909,
+        "y": 317.8787878787879
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "酸卡后直接点地板成功建造（用户实测问题回归）",
+      "ok": true,
+      "detail": {
+        "before": 1,
+        "after": [
+          "acid",
+          "acid"
+        ],
+        "mode": null
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "直接放置未出现“无法放置/已有装置”错误提示",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "酸卡默认选已解锁且买得起的最高阶段（解锁 I–III → 阶段 3）",
+      "ok": true,
+      "detail": {
+        "type": "acid",
+        "stage": 3
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "阶段弹层切换阶段（3 → 2）",
+      "ok": true,
+      "detail": {
+        "type": "acid",
+        "stage": 2
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "Esc 先关闭阶段弹层、再次 Esc 取消建造模式",
+      "ok": true,
+      "detail": {
+        "afterEsc1": {
+          "type": "acid",
+          "stage": 3
+        },
+        "popover": false,
+        "afterEsc2": null,
+        "paused": false
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "右键取消酸系建造且不误放装置",
+      "ok": true,
+      "detail": {
+        "mode": null,
+        "before": 2,
+        "after": 2
+      }
+    },
+    {
+      "phase": "P3b 酸系主炮直接放置回归",
+      "name": "资源不足时点酸卡不进入建造模式、点地板不误建造",
+      "ok": true,
+      "detail": {
+        "mode": null,
+        "before": 2,
+        "after": 2
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "HUD 升级冷凝床",
+      "ok": true,
+      "detail": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "HUD 升级气密门",
+      "ok": true,
+      "detail": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "HUD 维修气密门恢复耐久",
+      "ok": true,
+      "detail": {
+        "before": 170,
+        "after": 340,
+        "repairs": 1
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "键盘 Q 触发应急喷淋（冷却写入）",
+      "ok": true,
+      "detail": {
+        "readyAt": 51.5497,
+        "now": 6.916400000000005
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "键盘 R 维修路径可用（满血时不报错）",
+      "ok": true,
+      "detail": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "Space 暂停对局并弹出暂停面板",
+      "ok": true,
+      "detail": {
+        "paused": true,
+        "overlay": "pause|room-301|prep"
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "Space 再次按下继续对局",
+      "ok": true,
+      "detail": {
+        "paused": false
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "Esc 暂停对局",
+      "ok": true,
+      "detail": {
+        "paused": true,
+        "preEsc": {
+          "paused": false,
+          "overlay": ""
+        },
+        "overlay": "pause|room-301|prep"
+      }
+    },
+    {
+      "phase": "P4 设施操作与暂停",
+      "name": "Esc 再次按下恢复对局",
+      "ok": true,
+      "detail": false
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "帮助面板 4 个 tab",
+      "ok": true,
+      "detail": [
+        "nightmares",
+        "builds",
+        "reactions",
+        "operations"
+      ]
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "梦魇图鉴展示 6 张卡",
+      "ok": true,
+      "detail": 6
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "帮助 4 个 tab 均可切换",
+      "ok": true,
+      "detail": {
+        "builds": "builds",
+        "reactions": "reactions",
+        "operations": "operations"
+      }
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "建造目录含酸系六阶段 / 特化 / 设备",
+      "ok": true
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "反应链面板 6 条齐全",
+      "ok": true,
+      "detail": 6
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "操作面板列出 1–0/Q/R/Space/Esc",
+      "ok": true
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "帮助面板内容可滚轮滚动",
+      "ok": true,
+      "detail": {
+        "before": 0,
+        "after": 402,
+        "sh": 1010,
+        "ch": 608
+      }
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "Esc 关闭帮助面板",
+      "ok": true
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "设置面板渲染 4 项设置（音量 + 3 个开关）",
+      "ok": true,
+      "detail": {
+        "toggles": [
+          "muted",
+          "reducedMotion",
+          "shake"
+        ],
+        "volume": "55",
+        "settingRows": 4
+      }
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "设置写入 localStorage（volume/muted/reducedMotion）",
+      "ok": true,
+      "detail": {
+        "volume": 0.3,
+        "muted": true,
+        "reducedMotion": true,
+        "shake": true
+      }
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "减少动效同步到 documentElement dataset",
+      "ok": true
+    },
+    {
+      "phase": "P5 帮助 4 tab 与设置持久化",
+      "name": "关闭设置面板后对局继续",
+      "ok": true
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "准备倒计时结束进入夜晚",
+      "ok": true,
+      "detail": {
+        "phase": "night",
+        "night": 1
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "HUD 阶段显示“守夜中”",
+      "ok": true,
+      "detail": "守夜中"
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "梦魇按时苏醒（activeNightmares=1）",
+      "ok": true,
+      "detail": [
+        {
+          "id": "n-1",
+          "type": "phosphorus",
+          "secondary": false,
+          "level": 2,
+          "hp": 2429,
+          "maxHp": 2429,
+          "state": "roam"
+        }
+      ]
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "HUD 梦魇血条出现且名称非空",
+      "ok": true,
+      "detail": [
+        "白磷鬼火自燃的急躁"
+      ]
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "HUD 梦魇 Lv 与状态一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "2"
+        ],
+        "state": [
+          {
+            "id": "n-1",
+            "type": "phosphorus",
+            "secondary": false,
+            "level": 2,
+            "hp": 2429,
+            "maxHp": 2429,
+            "state": "roam"
+          }
+        ]
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "HUD 梦魇名称与内容数据一致",
+      "ok": true,
+      "detail": {
+        "hud": "白磷鬼火自燃的急躁",
+        "expected": "白磷鬼火"
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "战斗产生伤害统计",
+      "ok": true,
+      "detail": {
+        "damage": 542.2
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "战斗产生事件流（无异常）",
+      "ok": true
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "事件/特效队列受上限保护（事件≤14、特效≤48）",
+      "ok": true,
+      "detail": {
+        "events": 14,
+        "fx": 5,
+        "footer": "对讲机 · 记录最近 14 条"
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "战斗期间无非预期 console error",
+      "ok": true,
+      "detail": {
+        "unexpected": [],
+        "known": 0
+      }
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "name": "夜晚中央区域 Canvas 未被遮挡（≥85%）",
+      "ok": true,
+      "detail": {
+        "ratio": 1,
+        "total": 99,
+        "blockTags": {}
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "内容数据包含 6 间宿舍",
+      "ok": true,
+      "detail": [
+        "room-301",
+        "room-302",
+        "room-303",
+        "room-304",
+        "room-305",
+        "room-306"
+      ]
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-301 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-301",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "acid",
+            "stage": 1,
+            "level": 1,
+            "tile": {
+              "x": 4,
+              "y": 2
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 105
+        },
+        "free": 23
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-302 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-302",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "analyzer",
+            "level": 1,
+            "tile": {
+              "x": 3,
+              "y": 1
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 106
+        },
+        "free": 18
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-303 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-303",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "condenser",
+            "level": 1,
+            "tile": {
+              "x": 5,
+              "y": 3
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 107
+        },
+        "free": 28
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-304 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-304",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "catalyst",
+            "level": 1,
+            "tile": {
+              "x": 4,
+              "y": 1
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 106
+        },
+        "free": 18
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-305 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-305",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "chlorate",
+            "level": 1,
+            "tile": {
+              "x": 3,
+              "y": 2
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 104
+        },
+        "free": 14
+      }
+    },
+    {
+      "phase": "P7 六个房间渲染",
+      "name": "房间 room-306 可开局并渲染（Canvas 非空 / 起点装置 / 空位）",
+      "ok": true,
+      "detail": {
+        "roomId": "room-306",
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "atm",
+            "level": 1,
+            "tile": {
+              "x": 4,
+              "y": 2
+            },
+            "starter": true
+          }
+        ],
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 97
+        },
+        "free": 29
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "内容数据包含 6 种梦魇",
+      "ok": true,
+      "detail": [
+        "benzene",
+        "phosphorus",
+        "mercury",
+        "hydrogen_sulfide",
+        "carbon_monoxide",
+        "formaldehyde"
+      ]
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 benzene 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "benzene",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 121
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 benzene HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "苯环幽影共振干扰者"
+        ],
+        "expected": "苯环幽影"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 benzene HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 热 伤害 ×1.5",
+          "弱点 · 电 伤害 ×1.5",
+          "抗性 · 腐蚀 伤害 ×0.5"
+        ],
+        "aria": "弱点：热、电；抗性：腐蚀",
+        "text": "弱点：热、电；抗性：腐蚀"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 phosphorus 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "phosphorus",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 125
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 phosphorus HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "白磷鬼火自燃的急躁"
+        ],
+        "expected": "白磷鬼火"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 phosphorus HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 冷 伤害 ×1.5",
+          "弱点 · 风 伤害 ×1.5",
+          "抗性 · 热 伤害 ×0.5"
+        ],
+        "aria": "弱点：冷、风；抗性：热",
+        "text": "弱点：冷、风；抗性：热"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 mercury 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "mercury",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 128
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 mercury HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "汞形怪不断分裂的镜子"
+        ],
+        "expected": "汞形怪"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 mercury HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 冷 伤害 ×1.5",
+          "弱点 · 电 伤害 ×1.5",
+          "抗性 · 物理 伤害 ×0.5"
+        ],
+        "aria": "弱点：冷、电；抗性：物理",
+        "text": "弱点：冷、电；抗性：物理"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 hydrogen_sulfide 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "hydrogen_sulfide",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 122
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 hydrogen_sulfide HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "硫化氢瘴气臭鸡蛋味的窒息"
+        ],
+        "expected": "硫化氢瘴气"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 hydrogen_sulfide HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 风 伤害 ×1.5",
+          "弱点 · 电 伤害 ×1.5",
+          "抗性 · 腐蚀 伤害 ×0.5"
+        ],
+        "aria": "弱点：风、电；抗性：腐蚀",
+        "text": "弱点：风、电；抗性：腐蚀"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 carbon_monoxide 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "carbon_monoxide",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 119
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 carbon_monoxide HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "一氧化碳潜影无声的刺客"
+        ],
+        "expected": "一氧化碳潜影"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 carbon_monoxide HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 风 伤害 ×1.5",
+          "弱点 · 热 伤害 ×1.5",
+          "抗性 · 物理 伤害 ×0.5"
+        ],
+        "aria": "弱点：风、热；抗性：物理",
+        "text": "弱点：风、热；抗性：物理"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 formaldehyde 出现且 Canvas 渲染",
+      "ok": true,
+      "detail": {
+        "type": "formaldehyde",
+        "cs": {
+          "backingW": 1280,
+          "backingH": 720,
+          "cssW": 1280,
+          "cssH": 720,
+          "dpr": 1,
+          "opaqueRatio": 1,
+          "colors": 123
+        }
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 formaldehyde HUD 名称与内容一致",
+      "ok": true,
+      "detail": {
+        "hud": [
+          "甲醛标本被泡在罐子里的童年"
+        ],
+        "expected": "甲醛标本"
+      }
+    },
+    {
+      "phase": "P8 六种梦魇渲染",
+      "name": "梦魇 formaldehyde HUD 弱点/抗性有图标与可读文本（aria/sr-only）",
+      "ok": true,
+      "detail": {
+        "count": 3,
+        "tips": [
+          "弱点 · 热 伤害 ×1.5",
+          "弱点 · 物理 伤害 ×1.5",
+          "抗性 · 冷 伤害 ×0.5"
+        ],
+        "aria": "弱点：热、物理；抗性：冷",
+        "text": "弱点：热、物理；抗性：冷"
+      }
+    },
+    {
+      "phase": "P9 噩梦双魇与 Lv14 终焉",
+      "name": "噩梦难度 04:00 追加第二只梦魇（双魇条）",
+      "ok": true,
+      "detail": {
+        "result": {
+          "night": 390.4999999999735,
+          "actives": [
+            {
+              "type": "benzene",
+              "secondary": false,
+              "level": 12
+            },
+            {
+              "type": "mercury",
+              "secondary": true,
+              "level": 12
+            }
+          ]
+        },
+        "hud": "2"
+      }
+    },
+    {
+      "phase": "P9 噩梦双魇与 Lv14 终焉",
+      "name": "双魇类型不同且副魇标记为增援",
+      "ok": true,
+      "detail": [
+        {
+          "type": "benzene",
+          "secondary": false,
+          "level": 12
+        },
+        {
+          "type": "mercury",
+          "secondary": true,
+          "level": 12
+        }
+      ]
+    },
+    {
+      "phase": "P9 噩梦双魇与 Lv14 终焉",
+      "name": "Lv14 终焉状态推进不崩溃",
+      "ok": true,
+      "detail": {
+        "level": 14,
+        "nmLevels": [
+          14,
+          14
+        ],
+        "actives": 2,
+        "phase": "night"
+      }
+    },
+    {
+      "phase": "P9 噩梦双魇与 Lv14 终焉",
+      "name": "Lv14 HUD 技能节点全部点亮（5/5）",
+      "ok": true,
+      "detail": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "14",
+        "3",
+        "6",
+        "9",
+        "12",
+        "14"
+      ]
+    },
+    {
+      "phase": "P9 噩梦双魇与 Lv14 终焉",
+      "name": "Lv14 渲染无非预期 console error / 异常",
+      "ok": true,
+      "detail": {
+        "unexpected": [],
+        "known": 0,
+        "exc": []
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "门被击破触发失败结算面板",
+      "ok": true,
+      "detail": {
+        "overlay": "result|defeat|defeat|D|熄灯之后|气密门被梦魇击破|难度：普通 · 门破于 00:03~梦魇击杀 0 · 造成伤害 0~全局压力 Lv.1 · 触发反应链 0 次~累计梦能 90 · 试剂 0~建造 0 次 · 维修 0 次|0|0|0|0|0|90.09999999999702|0|1",
+        "result": {
+          "outcome": "defeat",
+          "reason": "气密门被梦魇击破",
+          "grade": "D",
+          "title": "熄灯之后",
+          "lines": [
+            "难度：普通 · 门破于 00:03",
+            "梦魇击杀 0 · 造成伤害 0",
+            "全局压力 Lv.1 · 触发反应链 0 次",
+            "累计梦能 90 · 试剂 0",
+            "建造 0 次 · 维修 0 次"
+          ]
+        }
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "失败结算包含原因与评级",
+      "ok": true,
+      "detail": "门破 301 室 · 普通 · 记录终止 熄灯之后 气密门被梦魇击破 难度：普通 · 门破于 00:03梦魇击杀 0 · 造成伤害 0全局压力 Lv.1 · 触发反应链 0 次累计梦能 90 · 试剂 0建造 0 次 · 维修 0 次 评级 D 击退梦魇0 只造成伤害0建造装置0 座激活反应0 条门体维修0 次累计梦能90累计试剂0压力等级Lv.1 再来一局 查看图鉴 返回主菜单 重新开始会沿用同"
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "结算写入 localStorage 记录（runs+1）",
+      "ok": true,
+      "detail": {
+        "before": 0,
+        "after": 1
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "结算页“再来一局”沿用房间与难度",
+      "ok": true,
+      "detail": {
+        "screen": "game",
+        "phase": "prep",
+        "paused": false,
+        "difficulty": "normal",
+        "roomId": "room-301",
+        "now": 0.1,
+        "nightElapsed": 0,
+        "prepRemaining": 24.9,
+        "clock": 0,
+        "dream": 100,
+        "reagent": 0,
+        "doorHp": 180,
+        "doorMaxHp": 180,
+        "bedLevel": 1,
+        "doorLevel": 1,
+        "pressure": 1,
+        "buildings": [
+          {
+            "id": "b-1",
+            "type": "acid",
+            "stage": 1,
+            "level": 1,
+            "tile": {
+              "x": 4,
+              "y": 2
+            },
+            "starter": true
+          }
+        ],
+        "reactions": [],
+        "acidUnlocked": 1,
+        "nightmares": [],
+        "result": null,
+        "ui": {
+          "buildMode": null,
+          "selected": null
+        },
+        "stats": {
+          "dreamEarned": 0.30000000000000004,
+          "reagentEarned": 0,
+          "damageDealt": 0,
+          "kills": 0,
+          "builds": 0,
+          "reactions": 0,
+          "repairs": 0
+        },
+        "records": {
+          "runs": 1,
+          "wins": 0
+        },
+        "settings": {
+          "volume": 0.3,
+          "muted": true,
+          "reducedMotion": true,
+          "shake": true
+        }
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "重开后回到准备阶段且无结算面板",
+      "ok": true
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "清空全部梦魇触发胜利结算",
+      "ok": true,
+      "detail": {
+        "result": {
+          "outcome": "victory",
+          "reason": "所有梦魇都被滴定干净",
+          "grade": "A",
+          "title": "天亮之前",
+          "lines": [
+            "难度：普通 · 全部梦魇被滴定（00:31 结束）",
+            "梦魇击杀 0 · 造成伤害 0",
+            "全局压力 Lv.2 · 触发反应链 0 次",
+            "累计梦能 201 · 试剂 0",
+            "建造 0 次 · 维修 0 次"
+          ]
+        }
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "击杀胜利文案为“所有梦魇都被滴定干净”",
+      "ok": true,
+      "detail": "所有梦魇都被滴定干净"
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "天亮触发胜利结算",
+      "ok": true,
+      "detail": {
+        "outcome": "victory",
+        "reason": "天亮了，梦魇退回黑暗",
+        "grade": "B",
+        "title": "守住了门",
+        "lines": [
+          "难度：普通 · 坚守到 06:00 天亮",
+          "梦魇击杀 0 · 造成伤害 0",
+          "全局压力 Lv.1 · 触发反应链 0 次",
+          "累计梦能 77 · 试剂 0",
+          "建造 0 次 · 维修 0 次"
+        ]
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "天亮结算夜钟为 06:00 且包含天亮文案",
+      "ok": true,
+      "detail": {
+        "clock": 360,
+        "reason": "天亮了，梦魇退回黑暗"
+      }
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "结算页“返回主菜单”回到菜单",
+      "ok": true
+    },
+    {
+      "phase": "P10 结算与重开",
+      "name": "多次结算后记录累计正确",
+      "ok": true,
+      "detail": {
+        "runs": 3,
+        "wins": 2,
+        "bestNight": 480,
+        "bestGrade": "A",
+        "byDifficulty": {
+          "easy": {
+            "wins": 0,
+            "runs": 0,
+            "bestNight": 0
+          },
+          "normal": {
+            "wins": 2,
+            "runs": 3,
+            "bestNight": 480
+          },
+          "nightmare": {
+            "wins": 0,
+            "runs": 0,
+            "bestNight": 0
+          }
+        }
+      }
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "设置持久化于 localStorage（volume=0.3 / muted / reducedMotion）",
+      "ok": true,
+      "detail": {
+        "volume": 0.3,
+        "muted": true,
+        "reducedMotion": true,
+        "shake": true
+      }
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "刷新后设置从 localStorage 恢复",
+      "ok": true,
+      "detail": {
+        "volume": 0.3,
+        "muted": true,
+        "reducedMotion": true,
+        "shake": true
+      }
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "刷新后仍处于主菜单（不恢复对局）",
+      "ok": true
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "刷新后教程已读标记保留",
+      "ok": true
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "教程不再于第二局自动弹出",
+      "ok": true,
+      "detail": {
+        "immediate": false,
+        "afterFrame": false
+      }
+    },
+    {
+      "phase": "P11 刷新持久化",
+      "name": "刷新后第二局 HUD 正常",
+      "ok": true,
+      "detail": {
+        "clock": "00:00",
+        "phase": "准备阶段",
+        "dream": "102",
+        "reagent": "0",
+        "doorLevel": "1",
+        "bedLevel": "1",
+        "nmCount": "0",
+        "nmNames": [],
+        "nmLevels": [],
+        "nmLitSkills": [],
+        "dreamChip": "102 +3.0/s",
+        "reagentChip": "0 +0/s",
+        "reactionCount": "0 / 6",
+        "tutorial": false,
+        "overlay": "",
+        "rotateTipVisible": false,
+        "dockCards": 3,
+        "dockTabs": 2,
+        "acidPopover": false,
+        "inspectorVisible": false
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1280x720：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "cssW": 1280,
+        "cssH": 720
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1280x720：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1280,
+        "scrollH": 720,
+        "innerW": 1280,
+        "innerH": 720,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1280x720：中央 Canvas 未被遮挡（≥85%）",
+      "ok": true,
+      "detail": {
+        "ratio": 1,
+        "total": 99,
+        "blockTags": {}
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1280x720：暂停按钮与建造卡可点",
+      "ok": true,
+      "detail": {
+        "pauseBtn": {
+          "found": true,
+          "visible": true,
+          "inView": true,
+          "hit": true,
+          "rect": {
+            "x": 1232,
+            "y": 23,
+            "w": 34,
+            "h": 32
+          },
+          "topTag": "svg"
+        },
+        "dockCard": {
+          "found": true,
+          "visible": true,
+          "inView": true,
+          "hit": true,
+          "rect": {
+            "x": 373,
+            "y": 599,
+            "w": 118,
+            "h": 102
+          },
+          "topTag": "SPAN"
+        }
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1920x1080：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "cssW": 1920,
+        "cssH": 1080
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1920x1080：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "innerW": 1920,
+        "innerH": 1080,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1920x1080：中央 Canvas 未被遮挡（≥85%）",
+      "ok": true,
+      "detail": {
+        "ratio": 1,
+        "total": 99,
+        "blockTags": {}
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 1920x1080：暂停按钮与建造卡可点",
+      "ok": true,
+      "detail": {
+        "pauseBtn": {
+          "found": true,
+          "visible": true,
+          "inView": true,
+          "hit": true,
+          "rect": {
+            "x": 1868,
+            "y": 23,
+            "w": 34,
+            "h": 32
+          },
+          "topTag": "svg"
+        },
+        "dockCard": {
+          "found": true,
+          "visible": true,
+          "inView": true,
+          "hit": true,
+          "rect": {
+            "x": 533,
+            "y": 957,
+            "w": 118,
+            "h": 104
+          },
+          "topTag": "SPAN"
+        }
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 844x390：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "cssW": 844,
+        "cssH": 390
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 844x390：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 844,
+        "scrollH": 390,
+        "innerW": 844,
+        "innerH": 390,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 844x390：HUD 与建造栏仍可见",
+      "ok": true,
+      "detail": {
+        "clock": "00:52",
+        "dockCards": 3
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 390x844：Canvas 尺寸匹配视口",
+      "ok": true,
+      "detail": {
+        "cssW": 390,
+        "cssH": 844
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 390x844：无滚动溢出",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "scrollH": 844,
+        "innerW": 390,
+        "innerH": 844,
+        "overflowX": false,
+        "overflowY": false
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "对局 390x844：HUD 与建造栏仍可见",
+      "ok": true,
+      "detail": {
+        "clock": "00:53",
+        "dockCards": 3
+      }
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "name": "竖屏 390x844 显示“请横屏守夜”提示",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "phase": "P13 自适应降质渲染回归",
+      "name": "自适应降质后渲染不产生 console error（低帧率健壮性）",
+      "ok": true,
+      "detail": {
+        "newErrors": [],
+        "perf": {
+          "fps": 20.018919159924238,
+          "dpr": 1,
+          "qualityLevel": 1,
+          "canvas": {
+            "width": 1440,
+            "height": 900
+          },
+          "lastFrameTime": 29.950000000000003
+        },
+        "knownTotal": 0
+      }
+    }
+  ],
+  "shots": [
+    "tools/qa/shots/00-menu-1440x900.png",
+    "tools/qa/shots/01-menu-1280x720.png",
+    "tools/qa/shots/02-menu-1440x900.png",
+    "tools/qa/shots/03-menu-1920x1080.png",
+    "tools/qa/shots/04-menu-844x390-landscape.png",
+    "tools/qa/shots/05-menu-390x844-portrait.png",
+    "tools/qa/shots/06-difficulty-1440x900.png",
+    "tools/qa/shots/07-room-select-1440x900.png",
+    "tools/qa/shots/08-tutorial-page1.png",
+    "tools/qa/shots/09-game-prep-1440x900.png",
+    "tools/qa/shots/10-build-acid-popover.png",
+    "tools/qa/shots/11-build-mode.png",
+    "tools/qa/shots/12-build-placed-inspector.png",
+    "tools/qa/shots/13-device-category.png",
+    "tools/qa/shots/14-inspector-evolve-ready.png",
+    "tools/qa/shots/15-inspector-evolved.png",
+    "tools/qa/shots/16-reaction-active.png",
+    "tools/qa/shots/17-pause-1440x900.png",
+    "tools/qa/shots/18-help-nightmares.png",
+    "tools/qa/shots/19-help-builds.png",
+    "tools/qa/shots/20-settings.png",
+    "tools/qa/shots/21-night-nightmare-hud.png",
+    "tools/qa/shots/22-night-combat.png",
+    "tools/qa/shots/23-room-room-301-1280x720.png",
+    "tools/qa/shots/23-room-room-302-1280x720.png",
+    "tools/qa/shots/23-room-room-303-1280x720.png",
+    "tools/qa/shots/23-room-room-304-1280x720.png",
+    "tools/qa/shots/23-room-room-305-1280x720.png",
+    "tools/qa/shots/23-room-room-306-1280x720.png",
+    "tools/qa/shots/24-nightmare-benzene-1280x720.png",
+    "tools/qa/shots/24-nightmare-phosphorus-1280x720.png",
+    "tools/qa/shots/24-nightmare-mercury-1280x720.png",
+    "tools/qa/shots/24-nightmare-hydrogen_sulfide-1280x720.png",
+    "tools/qa/shots/24-nightmare-carbon_monoxide-1280x720.png",
+    "tools/qa/shots/24-nightmare-formaldehyde-1280x720.png",
+    "tools/qa/shots/25-nightmare-dual-1440x900.png",
+    "tools/qa/shots/26-nightmare-lv14-final-1440x900.png",
+    "tools/qa/shots/27-result-defeat-1440x900.png",
+    "tools/qa/shots/28-result-victory-kill.png",
+    "tools/qa/shots/29-result-victory-dawn.png",
+    "tools/qa/shots/30-reload-second-run.png",
+    "tools/qa/shots/31-game-1280x720.png",
+    "tools/qa/shots/32-game-1920x1080.png",
+    "tools/qa/shots/33-game-mobile-844x390.png",
+    "tools/qa/shots/34-game-portrait-390x844.png",
+    "tools/qa/shots/35-quality-downgrade.png"
+  ],
+  "consoleErrors": [],
+  "consoleWarnings": [],
+  "exceptions": [],
+  "network": {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:8787/",
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "type": "Script"
+      }
+    ],
+    "responses": [
+      {
+        "url": "http://127.0.0.1:8787/",
+        "status": 200,
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "status": 200,
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "http://127.0.0.1:8787/",
+        "status": 200,
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/main.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/main.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/base.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/screens.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/overlays.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/responsive.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/styles/hud.css",
+        "status": 200,
+        "type": "Stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/app/controller.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/audio.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/core/storage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/engine.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/state.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/index.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/build.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/economy.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/damage.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/util.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/result.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/layout.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/themes.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/buildings.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/room.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/overlay.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/icons.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/screens.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/kit.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/internals.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/overlays.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/hud.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/devices.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/fx.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/combat.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/roommates.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/pressure.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/nightmare.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/rng.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/game/geometry.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/config.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/rooms.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/towers.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/reactions.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/paint.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/content/nightmares.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/render/iso.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/inspector.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:8787/src/ui/dock.js",
+        "status": 200,
+        "type": "Script"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      },
+      {
+        "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E",
+        "status": 200,
+        "type": "Image"
+      }
+    ],
+    "failures": []
+  },
+  "notes": [
+    {
+      "phase": "P0 菜单与基础加载",
+      "text": "favicon 请求数：0（内联 data URI 应为 0）；资源请求数 53"
+    },
+    {
+      "phase": "P0 菜单与基础加载",
+      "text": "主菜单阶段 Canvas backing store = 300x150（进入对局后按 DPR 重建，菜单不绘制世界）"
+    },
+    {
+      "phase": "P1 难度选择与选房",
+      "text": "噩梦难度卡：守夜时长9.5 分钟 / 梦魇数量2 只 · 04:00 增援 / 梦魇生命× 1.5 / 梦魇伤害× 1.42 / 梦能效率× 0.95"
+    },
+    {
+      "phase": "P6 夜晚阶段与战斗",
+      "text": "事件流实际缓存 14 条，HUD 文案为“对讲机 · 记录最近 14 条”（契约/文案为 12）"
+    },
+    {
+      "phase": "P10 结算与重开",
+      "text": "累计记录 runs=3 wins=2"
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "text": "对局 844x390：中央遮挡比 1，block={}；暂停按钮可点=true；建造卡可点=true"
+    },
+    {
+      "phase": "P12 对局响应式与移动端",
+      "text": "对局 390x844：中央遮挡比 1，block={}；暂停按钮可点=true；建造卡可点=true"
+    }
+  ],
+  "logEntries": [
+    {
+      "level": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+      "source": "rendering"
+    },
+    {
+      "level": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+      "source": "rendering"
+    }
+  ],
+  "finishedAt": "2026-10-25T05:12:30.230Z",
+  "summary": {
+    "total": 187,
+    "passed": 187,
+    "failed": 0,
+    "shots": 46,
+    "consoleErrors": 0,
+    "exceptions": 0
+  }
+}
